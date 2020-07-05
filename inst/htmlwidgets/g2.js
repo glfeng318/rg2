@@ -45,9 +45,6 @@ HTMLWidgets.widget({
           case 'Column':
             chart = new G2Plot.Column(el.id, x.cfg);
             break;
-          case 'ColumnLabel':
-            chart = new G2Plot.ColumnLabel(el.id, x.cfg);
-            break;
           case 'GroupedColumn':
             chart = new G2Plot.GroupedColumn(el.id, x.cfg);
             break;

@@ -35,7 +35,30 @@ g2bullet(df,
                   rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A'))
 )
 
+# density
+df = data.frame(x=rnorm(1000, mean = 50, sd=5))
+g2Density(df, x, binWidth = 2)
                       
+
+#DensityHeatmap
+df = jsonlite::read_json('https://antv-g2plot.gitee.io/zh/examples/data/jobpaying.json',TRUE)
+g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed')
+g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed', 
+                 radius=15,
+                 color=c('#295599', '#3e94c0', '#78c6d0', '#b4d9e4', '#fffef0', '#f9cdac', '#ec7d92', '#bc448c'))
+
+# Donut
+df = jsonlite::fromJSON('[{"type": "分类一","value": 27},
+ {"type": "分类二","value": 25},
+ {"type": "分类三","value": 18},
+ {"type": "分类四","value": 15},
+ {"type": "分类五","value": 10},
+ {"type": "其它","value": 5}]')
+g2Donut(df, value, type)
+g2Donut(df, type, value)
+
+
+
 
 
 geoms = c(
@@ -52,7 +75,6 @@ geoms = c(
   'StackedArea',
   'PercentStackedArea',
   'Column',
-  'ColumnLabel',
   'GroupedColumn',
   'StackedColumn',
   'StackedColumnLabel',

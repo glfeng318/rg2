@@ -6,9 +6,13 @@
 \usage{
 g2Calendar(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  dateField,
+  valueField,
+  dateRange,
+  colors = NULL,
+  months = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+    "Nov", "Dec"),
+  weeks = c("Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"),
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,7 +22,15 @@ g2Calendar(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{dateField, valueField}{column name in data for aesthetic mapping}
+
+\item{dateRange}{the date range of chart, a vector like \code{c('2020-01-01','2020-06-30')}}
+
+\item{colors}{valueField color mapping, color string or vector like \code{'#BAE7FF-#1890FF-#0050B3'} or \code{c('#BAE7FF', '#1890FF', '#0050B3')}}
+
+\item{months}{months name, default to c('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')}
+
+\item{weeks}{weeks name, default to c('Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'), week start on sunday}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
@@ -28,5 +40,13 @@ data should only contains the necessary data for chart (reduce json/data transmi
 }
 \description{
 Calendar chart
+}
+\examples{
+\dontrun{
+
+df = jsonlite::read_json('https://antv-g2plot.gitee.io/zh/examples//data/contributions.json',TRUE)
+g2Calendar(df,date,commits,c('2017-05-01','2017-10-31'),color='#BAE7FF-#1890FF-#0050B3')
+
+}
 }
 \concept{}

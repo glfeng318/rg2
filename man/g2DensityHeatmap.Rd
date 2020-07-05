@@ -8,7 +8,10 @@ g2DensityHeatmap(
   data,
   xField,
   yField,
-  colorField = NULL,
+  colorField,
+  color = NULL,
+  radius = NULL,
+  intensity = 2,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -19,6 +22,12 @@ g2DensityHeatmap(
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
 \item{xField, yField, colorField}{column name in data for aesthetic mapping}
+
+\item{color}{character color vector. For example: c('#295599', '#3e94c0', '#78c6d0', '#b4d9e4', '#fffef0', '#f9cdac', '#ec7d92', '#bc448c')}
+
+\item{radius}{Numeric heat radius. automatic calculation.}
+
+\item{intensity}{Numeric heat weight, default to 2.}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 

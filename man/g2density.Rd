@@ -6,9 +6,10 @@
 \usage{
 g2Density(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  binField,
+  binWidth = NULL,
+  binNumber = NULL,
+  kernel = "epanechnikov",
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,7 +19,11 @@ g2Density(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{binField}{column name in data for aesthetic mapping}
+
+\item{binWidth, binNumber}{width/number of bins. you must specify at least one of these.}
+
+\item{kernel}{One of `'uniform'` or `'triangle'` or `'epanechnikov'` or `'quartic'` or `'triweight'` or `'gaussian'` or `'cosinus'`, default to `'epanechnikov'`.}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 

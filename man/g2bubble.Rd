@@ -8,7 +8,8 @@ g2Bubble(
   data,
   xField,
   yField,
-  colorField = NULL,
+  colorField,
+  sizeField,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,7 +19,7 @@ g2Bubble(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, colorField, sizeField}{column name in data for aesthetic mapping}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 

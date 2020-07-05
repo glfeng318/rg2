@@ -31,7 +31,6 @@ Column chart
 }
 \seealso{
 Other column: 
-\code{\link{g2ColumnLabel}()},
 \code{\link{g2GroupedColumn}()},
 \code{\link{g2PercentStackedColumn}()},
 \code{\link{g2RangeColumn}()},
