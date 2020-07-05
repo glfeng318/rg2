@@ -2,23 +2,29 @@
 #' 
 #' PercentStackedBar chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param xField,yField,stackField column name in data for aesthetic mapping
+#' @param color color vector or javascript function
+#' @barSize automatic calculation if not specified
 #' @inheritParams g2
 #' @family bar
 #' 
 #' @export
-g2PercentStackedBar <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2PercentStackedBar <- function(data, xField, yField, stackField,
+                                color = NULL, barSize = NULL,
+                                cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  stackField = as.character(substitute(stackField))
   
   cfg$xField = xField
   cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  cfg$color = color
+  cfg$barSize = barSize
+  keep_col = c(xField, yField, stackField)
+  if (!identical(stackField, character(0))) {
+    cfg$stackField = as.character(stackField)
+    keep_col = append(keep_col, stackField)
   }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
@@ -30,6 +36,4 @@ g2PercentStackedBar <- function(data, xField, yField, colorField = NULL, cfg = l
   # create the widget
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
-
-
 

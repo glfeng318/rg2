@@ -17,5 +17,3 @@ renderG2 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   shinyRenderWidget(expr, g2Output, env, quoted = TRUE, package = 'rg2')
 }
-
-

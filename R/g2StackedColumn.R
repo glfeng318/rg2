@@ -2,23 +2,33 @@
 #' 
 #' StackedColumn chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param xField,yField,stackField column name in data for aesthetic mapping
+#' @param color color vector or javascript function
+#' @columnSize automatic calculation if not specified
+#' @param connectedArea `TRUE` fro display the connected line, default to `FALSE`
 #' @inheritParams g2
 #' @family column
 #' 
 #' @export
-g2StackedColumn <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2StackedColumn <- function(data, xField, yField, stackField,
+                            color = NULL, columnSize = NULL,connectedArea = FALSE,
+                            cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  stackField = as.character(substitute(stackField))
   
   cfg$xField = xField
   cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  cfg$color = color
+  cfg$columnSize = columnSize
+  if (connectedArea){
+    cfg$connectedArea = list(visible=TRUE, triggerOn=FALSE)
+  }
+  keep_col = c(xField, yField, stackField)
+  if (!identical(stackField, character(0))) {
+    cfg$stackField = as.character(stackField)
+    keep_col = append(keep_col, stackField)
   }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)

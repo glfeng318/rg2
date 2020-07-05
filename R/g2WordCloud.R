@@ -2,25 +2,36 @@
 #' 
 #' WordCloud chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param maskImage The mask image, black-white pixel image will be better, can be specified with a `url` or `base64`.
+#' @param shape One of the following: 
+#'   * circle
+#'   * square
+#'   * cardioid
+#'   * diamond
+#'   * triangle
+#'   * triangle-forward
+#'   * triangle-backward
+#'   * triangle-up
+#'   * triangle-down
+#'   * pentagon
+#'   * star
+#' @param backgroundColor
+#' @param shuffle shuffle the data, default to `TRUE`
 #' @inheritParams g2
 #' @family 
 #' 
 #' @export
-g2WordCloud <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2WordCloud <- function(data, maskImage = NULL, shape = 'circle', 
+                        backgroundColor = '#ffffff', shuffle = TRUE,
+                        cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
-  
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  if (!is.null(maskImage)) {
+    cfg$maskImage = maskImage
   }
-  data = subset(data, select = keep_col)
+  cfg$shape = shape
+  cfg$backgroundColor = backgroundColor
+  cfg$shuffle = shuffle
+  cfg$wordStyle = list() # required wordStyle
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(

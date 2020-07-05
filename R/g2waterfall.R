@@ -1,18 +1,27 @@
 #' Waterfall chart
 #' 
 #' Waterfall chart
+#' It's not recommended to use colorField param for waterfall chart (such as basic the column chart)
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param color color can be a character, list or javascript function:
+#'   * '#60d7a7'
+#'   * list(rising='#60d7a7', falling='#dedede', total='#fedca9')
 #' @inheritParams g2
 #' @family 
 #' 
 #' @export
-g2Waterfall <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Waterfall <- function(data, xField, yField, colorField = NULL, 
+                        color = NULL,
+                        cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
   colorField = as.character(substitute(colorField))  # NULL returns character(0)
   
+  if (!is.null(color)){
+    cfg$color = color
+  }
   cfg$xField = xField
   cfg$yField = yField
   keep_col = c(xField, yField)

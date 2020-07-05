@@ -2,23 +2,27 @@
 #' 
 #' Radar chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param angleField,radiusField,seriesField column name in data for aesthetic mapping
+#' @param color color vector or a javascript function
+#' @param smooth smooth the line
 #' @inheritParams g2
 #' @family 
 #' 
 #' @export
-g2Radar <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Radar <- function(data, angleField, radiusField, seriesField = NULL, 
+                    color = NULL, smooth = FALSE, 
+                    cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  angleField = as.character(substitute(angleField))
+  radiusField = as.character(substitute(radiusField))
+  seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
   
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  cfg$angleField = angleField
+  cfg$radiusField = radiusField
+  keep_col = c(angleField, radiusField)
+  if (!identical(seriesField, character(0))) {
+    cfg$seriesField = as.character(seriesField)
+    keep_col = append(keep_col, seriesField)
   }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)

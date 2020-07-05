@@ -2,23 +2,36 @@
 #' 
 #' StepLine chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param xField,yField,seriesField column name in data for aesthetic mapping
+#' @param step The step turning pattern, one of 'hv' | 'vh' | 'vhv' | 'hvh', default to 'hv'
+#' @param color color vector or javascript function
+#' @param interaction You can specify `'slider'` or `'scrollbar'` for a large dataset
+#' @param lineSize default to 2
 #' @inheritParams g2
 #' @family line
 #' 
 #' @export
-g2StepLine <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2StepLine <- function(data, xField, yField, seriesField = NULL, 
+                       setp = 'hv', color = NULL, lineSize = 2, 
+                       interaction = NULL,
+                       cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
   
   cfg$xField = xField
   cfg$yField = yField
+  cfg$setp = setp
+  cfg$color = color
+  cfg$lineSize = lineSize
+  if (!is.null(interaction)) {
+    cfg$interactions = c(list(type=interaction, cfg=list(start=0.1,end=0.2)),list())
+  }
   keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  if (!identical(seriesField, character(0))) {
+    cfg$seriesField = as.character(seriesField)
+    keep_col = append(keep_col, seriesField)
   }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
