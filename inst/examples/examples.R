@@ -13,13 +13,13 @@ df = jsonlite::fromJSON('[
 
 g2Bar(df,pv,action)
 
-g2Funnel(df, action, pv)
+g2Funnel(df, action, 'pv')
 
-g2Line(economics,'date','uempmed')
+g2Line(economics,date,uempmed)
 
 df_tmp = economics_long %>% filter(variable %in% c('psavert','uempmed'))
-g2line(df_tmp,'date','value','variable')
-g2line(df_tmp,'date','value','variable',cfg=list(theme='dark'))
+g2Line(df_tmp,'date','value','variable')
+g2Line(df_tmp,'date','value','variable',cfg=list(theme='dark'))
 
 
 # bullet
@@ -90,30 +90,35 @@ for (geom in geoms) {
 
 
 for (geom in geoms) {
+  print(paste0(geom,'-',))
+}
+
+
+for (geom in geoms) {
   writeLines(paste0("#' ",geom," chart
 #' 
 #' ",geom," chart
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
-#' @family bar
+#' @family ",case_when(grepl('Area',geom) ~ 'area',grepl('Rose',geom) ~ 'rose',grepl('Gauge',geom) ~ 'gauge',grepl('Bar',geom) ~ 'bar',grepl('Line',geom) ~ 'line',grepl('Column',geom) ~ 'column',TRUE ~ ''),"
 #' 
 #' @export
 g2",geom," <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField     = as.character(substitute(xField))
-  yField     = as.character(substitute(yField))
+  xField = as.character(substitute(xField))
+  yField = as.character(substitute(yField))
   colorField = as.character(substitute(colorField))  # NULL returns character(0)
   
-  cfg$xField     = xField
-  cfg$yField     = yField
+  cfg$xField = xField
+  cfg$yField = yField
   keep_col = c(xField, yField)
   if (!identical(colorField, character(0))) {
     cfg$colorField = as.character(colorField)
     keep_col = append(keep_col, colorField)
   }
   data = subset(data, select = keep_col)
-  cfg$data       = jsonlite::toJSON(data)
+  cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(
     type = '",geom,"',

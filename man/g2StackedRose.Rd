@@ -8,7 +8,7 @@ g2StackedRose(
   data,
   xField,
   yField,
-  colorField = "",
+  colorField = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -30,44 +30,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 StackedRose chart
 }
 \seealso{
-Other bar: 
-\code{\link{g2Area}()},
-\code{\link{g2Bar}()},
-\code{\link{g2Bubble}()},
-\code{\link{g2Bullet}()},
-\code{\link{g2Calendar}()},
-\code{\link{g2ColumnLabel}()},
-\code{\link{g2Column}()},
-\code{\link{g2DensityHeatmap}()},
-\code{\link{g2Density}()},
-\code{\link{g2Donut}()},
-\code{\link{g2FanGauge}()},
-\code{\link{g2Funnel}()},
-\code{\link{g2Gauge}()},
-\code{\link{g2GroupedBar}()},
-\code{\link{g2GroupedColumn}()},
+Other rose: 
 \code{\link{g2GroupedRose}()},
-\code{\link{g2Heatmap}()},
-\code{\link{g2Histogram}()},
-\code{\link{g2Line}()},
-\code{\link{g2Liquid}()},
-\code{\link{g2MeterGauge}()},
-\code{\link{g2PercentStackedArea}()},
-\code{\link{g2PercentStackedBar}()},
-\code{\link{g2PercentStackedColumn}()},
-\code{\link{g2Pie}()},
-\code{\link{g2Radar}()},
-\code{\link{g2RangeBar}()},
-\code{\link{g2RangeColumn}()},
-\code{\link{g2Rose}()},
-\code{\link{g2Scatter}()},
-\code{\link{g2StackedArea}()},
-\code{\link{g2StackedBar}()},
-\code{\link{g2StackedColumnLabel}()},
-\code{\link{g2StackedColumn}()},
-\code{\link{g2StepLine}()},
-\code{\link{g2Treemap}()},
-\code{\link{g2Waterfall}()},
-\code{\link{g2WordCloud}()}
+\code{\link{g2Rose}()}
 }
-\concept{bar}
+\concept{rose}
