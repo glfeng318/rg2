@@ -26,9 +26,9 @@ g2Bullet(
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Bullet chart

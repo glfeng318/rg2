@@ -6,9 +6,9 @@
 \usage{
 g2StackedRose(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  radiusField,
+  categoryField,
+  stackField,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +18,13 @@ g2StackedRose(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{radiusField, categoryField, stackField}{column name in data for aesthetic mapping}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 StackedRose chart

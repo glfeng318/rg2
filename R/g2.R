@@ -3,7 +3,8 @@
 #' @param data a data object.Currently supported object is data.frame, 
 #'    data should only contains the necessary data for chart (reduce json/data transmission)
 #' @param cfg configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details. 
-#' @param width,height the width and height of the chart
+#' @param width width of the chart
+#' @param height height of the chart
 #' @name g2
 NULL
 

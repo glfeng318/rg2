@@ -9,6 +9,8 @@ g2RangeColumn(
   xField,
   yField,
   colorField = NULL,
+  color = NULL,
+  columnSize = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +20,18 @@ g2RangeColumn(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, colorField}{column name in data for aesthetic mapping
+The data in yField column should be a vector with a start and end value, \code{c(10,50)}}
+
+\item{color}{color vector or javascript function}
+
+\item{columnSize}{automatic calculation if not specified}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 RangeColumn chart
@@ -34,7 +41,6 @@ Other column:
 \code{\link{g2Column}()},
 \code{\link{g2GroupedColumn}()},
 \code{\link{g2PercentStackedColumn}()},
-\code{\link{g2StackedColumnLabel}()},
 \code{\link{g2StackedColumn}()}
 }
 \concept{column}

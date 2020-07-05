@@ -22,9 +22,9 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Column chart
@@ -34,7 +34,6 @@ Other column:
 \code{\link{g2GroupedColumn}()},
 \code{\link{g2PercentStackedColumn}()},
 \code{\link{g2RangeColumn}()},
-\code{\link{g2StackedColumnLabel}()},
 \code{\link{g2StackedColumn}()}
 }
 \concept{column}

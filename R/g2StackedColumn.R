@@ -4,7 +4,7 @@
 #' 
 #' @param xField,yField,stackField column name in data for aesthetic mapping
 #' @param color color vector or javascript function
-#' @columnSize automatic calculation if not specified
+#' @param columnSize automatic calculation if not specified
 #' @param connectedArea `TRUE` fro display the connected line, default to `FALSE`
 #' @inheritParams g2
 #' @family column

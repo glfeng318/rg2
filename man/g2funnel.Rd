@@ -8,7 +8,9 @@ g2Funnel(
   data,
   xField,
   yField,
-  colorField = NULL,
+  compareField = NULL,
+  dynamicHeight = FALSE,
+  transpose = FALSE,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +20,21 @@ g2Funnel(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField}{column name in data for aesthetic mapping}
+
+\item{compareField}{Required by compare funnel. specified values will overwrite the dynamicHeight to `FALSE`.
+you can configure the compare text style in `cfg` parameter with `compareText=list(...)`}
+
+\item{dynamicHeight}{`TRUE` for mapping xField to width/angle of funnel with a fixed height, 
+`FALSE` for mapping xField to height of funnel with a fixed angle.}
+
+\item{transpose}{`TRUE` for horizontal funnel, and `FALSE` for vertical funnel}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Funnel chart

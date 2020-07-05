@@ -6,9 +6,10 @@
 \usage{
 g2Histogram(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  binField,
+  binWidth,
+  binNumber = NULL,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +19,17 @@ g2Histogram(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{binField}{column name in data for aesthetic mapping}
+
+\item{binWidth, binNumber}{width/number of bins. you must specify at least one of these.}
+
+\item{color}{}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Histogram chart

@@ -5,26 +5,27 @@
 \title{FanGauge chart}
 \usage{
 g2FanGauge(
-  data,
-  xField,
-  yField,
-  colorField = NULL,
+  value,
+  range,
+  min = 0,
+  max = 1,
   cfg = list(),
   width = NULL,
   height = NULL
 )
 }
 \arguments{
-\item{data}{a data object.Currently supported object is data.frame, 
-data should only contains the necessary data for chart (reduce json/data transmission)}
+\item{value}{Numeric value}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{range}{color range of the gauge, it separate the gauge to several parts by color, example: \code{range=c(0,25,50,75,100)}}
+
+\item{min, max}{minimum and maximum value of the chart}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 FanGauge chart

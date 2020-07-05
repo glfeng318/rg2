@@ -9,6 +9,7 @@ g2Waterfall(
   xField,
   yField,
   colorField = NULL,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -20,13 +21,18 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{xField, yField, colorField}{column name in data for aesthetic mapping}
 
+\item{color}{color can be a character, list or javascript function:
+* '#60d7a7'
+* list(rising='#60d7a7', falling='#dedede', total='#fedca9')}
+
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Waterfall chart
+It's not recommended to use colorField param for waterfall chart (such as basic the column chart)
 }
 \concept{}

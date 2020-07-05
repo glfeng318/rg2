@@ -6,9 +6,10 @@
 \usage{
 g2WordCloud(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  maskImage = NULL,
+  shape = "circle",
+  backgroundColor = "#ffffff",
+  shuffle = TRUE,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +19,30 @@ g2WordCloud(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{maskImage}{The mask image, black-white pixel image will be better, can be specified with a `url` or `base64`.}
+
+\item{shape}{One of the following: 
+* circle
+* square
+* cardioid
+* diamond
+* triangle
+* triangle-forward
+* triangle-backward
+* triangle-up
+* triangle-down
+* pentagon
+* star}
+
+\item{backgroundColor}{background color}
+
+\item{shuffle}{shuffle the data, default to `TRUE`}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 WordCloud chart

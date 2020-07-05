@@ -15,7 +15,7 @@
 #'   * triangle-down
 #'   * pentagon
 #'   * star
-#' @param backgroundColor
+#' @param backgroundColor background color
 #' @param shuffle shuffle the data, default to `TRUE`
 #' @inheritParams g2
 #' @family 

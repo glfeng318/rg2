@@ -6,9 +6,10 @@
 \usage{
 g2Pie(
   data,
-  xField,
-  yField,
+  angleField,
   colorField = NULL,
+  radius = 0.8,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +19,17 @@ g2Pie(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{angleField, colorField}{column name in data for aesthetic mapping}
+
+\item{radius}{default to 0.8}
+
+\item{color}{color vector or a javascript function}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Pie chart

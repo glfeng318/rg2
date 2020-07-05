@@ -4,7 +4,7 @@
 #' 
 #' @param xField,yField,stackField column name in data for aesthetic mapping
 #' @param color color vector or javascript function
-#' @barSize automatic calculation if not specified
+#' @param barSize automatic calculation if not specified
 #' @inheritParams g2
 #' @family bar
 #' 

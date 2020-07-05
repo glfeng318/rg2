@@ -12,7 +12,7 @@
 #' 
 #' @export
 g2StepLine <- function(data, xField, yField, seriesField = NULL, 
-                       setp = 'hv', color = NULL, lineSize = 2, 
+                       step = 'hv', color = NULL, lineSize = 2, 
                        interaction = NULL,
                        cfg = list(), width = NULL, height = NULL) {
   # prep cfg
@@ -22,7 +22,7 @@ g2StepLine <- function(data, xField, yField, seriesField = NULL,
   
   cfg$xField = xField
   cfg$yField = yField
-  cfg$setp = setp
+  cfg$step = step
   cfg$color = color
   cfg$lineSize = lineSize
   if (!is.null(interaction)) {

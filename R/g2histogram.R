@@ -4,12 +4,13 @@
 #' 
 #' @param binField column name in data for aesthetic mapping
 #' @param binWidth,binNumber width/number of bins. you must specify at least one of these.
-#' @param 
+#' @param color 
 #' @inheritParams g2
 #' @family 
 #' 
 #' @export
-g2Histogram <- function(data, binField, binWidth, binNumber = NULL, color = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Histogram <- function(data, binField, binWidth, binNumber = NULL, color = NULL, 
+                        cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   binField = as.character(substitute(binField))
   cfg$binField = binField

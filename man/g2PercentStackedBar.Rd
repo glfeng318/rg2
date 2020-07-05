@@ -8,7 +8,9 @@ g2PercentStackedBar(
   data,
   xField,
   yField,
-  colorField = NULL,
+  stackField,
+  color = NULL,
+  barSize = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +20,17 @@ g2PercentStackedBar(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, stackField}{column name in data for aesthetic mapping}
+
+\item{color}{color vector or javascript function}
+
+\item{barSize}{automatic calculation if not specified}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 PercentStackedBar chart

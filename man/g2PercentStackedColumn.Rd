@@ -8,7 +8,10 @@ g2PercentStackedColumn(
   data,
   xField,
   yField,
-  colorField = NULL,
+  stackField,
+  color = NULL,
+  columnSize = NULL,
+  connectedArea = FALSE,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +21,19 @@ g2PercentStackedColumn(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, stackField}{column name in data for aesthetic mapping}
+
+\item{color}{color vector or javascript function}
+
+\item{columnSize}{automatic calculation if not specified}
+
+\item{connectedArea}{`TRUE` fro display the connected line, default to `FALSE`}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 PercentStackedColumn chart
@@ -34,7 +43,6 @@ Other column:
 \code{\link{g2Column}()},
 \code{\link{g2GroupedColumn}()},
 \code{\link{g2RangeColumn}()},
-\code{\link{g2StackedColumnLabel}()},
 \code{\link{g2StackedColumn}()}
 }
 \concept{column}

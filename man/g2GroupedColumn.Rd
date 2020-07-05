@@ -8,7 +8,7 @@ g2GroupedColumn(
   data,
   xField,
   yField,
-  colorField = NULL,
+  groupField,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +18,13 @@ g2GroupedColumn(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, groupField}{column name in data for aesthetic mapping}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 GroupedColumn chart
@@ -34,7 +34,6 @@ Other column:
 \code{\link{g2Column}()},
 \code{\link{g2PercentStackedColumn}()},
 \code{\link{g2RangeColumn}()},
-\code{\link{g2StackedColumnLabel}()},
 \code{\link{g2StackedColumn}()}
 }
 \concept{column}

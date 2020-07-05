@@ -8,7 +8,9 @@ g2Line(
   data,
   xField,
   yField,
-  colorField = NULL,
+  seriesField = NULL,
+  smooth = FALSE,
+  point = FALSE,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +20,18 @@ g2Line(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, seriesField}{column name in data for aesthetic mapping}
+
+\item{smooth}{smooth the line, default to `FALSE`}
+
+\item{point}{display data point and the data label, default to `FALSE`. You can also configure the point
+by cfg parameter using `point = list(...)`, see \url{https://antv-g2plot.gitee.io/zh/examples/line/basic/API} for detail.}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Line chart

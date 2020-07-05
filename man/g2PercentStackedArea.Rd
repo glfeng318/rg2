@@ -8,7 +8,10 @@ g2PercentStackedArea(
   data,
   xField,
   yField,
-  colorField = NULL,
+  stackField,
+  color = NULL,
+  smooth = FALSE,
+  label = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +21,19 @@ g2PercentStackedArea(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, stackField}{column name in data for aesthetic mapping}
+
+\item{color}{Color vector or javascript function}
+
+\item{smooth}{smooth the line}
+
+\item{label}{The label type can be specified with `'area'` or `'line'`, default to NULL}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 PercentStackedArea chart

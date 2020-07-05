@@ -6,9 +6,11 @@
 \usage{
 g2Radar(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  angleField,
+  radiusField,
+  seriesField = NULL,
+  color = NULL,
+  smooth = FALSE,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +20,17 @@ g2Radar(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{angleField, radiusField, seriesField}{column name in data for aesthetic mapping}
+
+\item{color}{color vector or a javascript function}
+
+\item{smooth}{smooth the line}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Radar chart

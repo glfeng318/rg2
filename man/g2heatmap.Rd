@@ -8,7 +8,12 @@ g2Heatmap(
   data,
   xField,
   yField,
-  colorField = NULL,
+  colorField,
+  sizeField = NULL,
+  color = NULL,
+  shapeType = "rect",
+  forceSquare = FALSE,
+  shapeSize = c(5, 50),
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,13 +23,21 @@ g2Heatmap(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, colorField, sizeField}{column name in data for aesthetic mapping}
+
+\item{color}{color range vector}
+
+\item{shapeType}{specified one of 'rect' and 'circle', default to `'rect'`}
+
+\item{forceSquare}{Default to `FALSE`}
+
+\item{shapeSize}{the size range of shape, c(min, max), default to `c(5, 50)`}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
-\item{width}{the width and height of the chart}
+\item{width}{width of the chart}
 
-\item{height}{the width and height of the chart}
+\item{height}{height of the chart}
 }
 \description{
 Heatmap chart
