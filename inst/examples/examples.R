@@ -11,9 +11,9 @@ df = jsonlite::fromJSON('[
 { "action": "支付", "pv": 1500 },
 { "action": "成交", "pv": 850 }]')
 
-g2Bar(df,'pv','action')
+g2Bar(df,pv,action)
 
-g2Funnel(df,'action','pv')
+g2Funnel(df, action, pv)
 
 g2Line(economics,'date','uempmed')
 
@@ -99,13 +99,21 @@ for (geom in geoms) {
 #' @family bar
 #' 
 #' @export
-g2",geom," <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2",geom," <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  cfg$data       = jsonlite::toJSON(data)
+  xField     = as.character(substitute(xField))
+  yField     = as.character(substitute(yField))
+  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  
   cfg$xField     = xField
   cfg$yField     = yField
-  cfg$colorField = colorField
-  
+  keep_col = c(xField, yField)
+  if (!identical(colorField, character(0))) {
+    cfg$colorField = as.character(colorField)
+    keep_col = append(keep_col, colorField)
+  }
+  data = subset(data, select = keep_col)
+  cfg$data       = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(
     type = '",geom,"',
@@ -119,4 +127,24 @@ g2",geom," <- function(data, xField, yField, colorField = '', cfg = list(), widt
 "),paste0('./R/g2',geom,'.R'))
 }
 
+
+
+test <- function(data, xField, yField, colorField=NULL, cfg = list(), width = NULL, height = NULL) {
+  # prep cfg
+  xField     = as.character(substitute(xField))
+  yField     = as.character(substitute(yField))
+  colorField = as.character(substitute(colorField))
+  print(xField)
+  print(yField)
+  print(colorField)
+  
+  if (!identical(colorField, character(0))) {
+    print('set color field')
+  }
+}
+
+test(df,pv)
+test(df,pv,action)
+test(df,'pv','action')
+test(df,pv,action,action)
 
