@@ -37,20 +37,9 @@ g2bullet(df,
 
                       
 
-# generate geom file
 
-geom1 = readr::read_csv('./inst/examples/geom1.csv')
-geom2 = readr::read_csv('./inst/examples/geom2.csv')
-
-
-# generate geom
-
-# for (geom in c('line','treemap','step_line','stacked_bar','grouped_bar','percent_stacked_bar','range_bar','area','stacked_area','percent_stacked_area','column','grouped_column','stacked_column','range_column','percent_stacked_column','pie','density_heatmap','heatmap','rose','funnel','stacked_rose','grouped_rose','radar','histogram','density','donut','waterfall','scatter','bubble','bullet','calendar','word_cloud','gauge','fan_gauge','meter_gauge','liquid')) {
-#   file.copy('./R/g2bar.R',paste0('./R/g2',geom,'.R'))
-#   file.copy('./inst/htmlwidgets/g2bar.yaml',paste0('./R/g2',geom,'.yaml'))
-# }
-
-geom = list(
+geoms = list(
+  bar = 'Bar',
   line = 'Line',
   step_line = 'StepLine',
   treemap = 'Treemap',
@@ -94,27 +83,18 @@ geom = list(
 
 
 for (geom in names(geoms)) {
-  writeLines(paste0('HTMLWidgets.widget({
-  name: "g2',geom,'",
-  type: "output",
-  factory: function(el, width, height) {
-    var chart;
-    return {
-      renderValue: function(x) {
-        chart = new G2Plot.',geoms[[geom]],'(el.id, x.cfg);
-        chart.render();
-      }
-    };
-  }
-});'), paste0('./inst/htmlwidgets/g2',geom,'.js'))
+  cat(paste0("\n          case '",geom,"':
+            chart = new G2Plot.",geoms[[geom]],"(el.id, x.cfg);
+            break;"))
 }
+
 
 for (geom in names(geoms)) {
   writeLines(paste0("#' ",geoms[[geom]]," chart
 #' 
 #' ",geoms[[geom]]," chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -128,23 +108,13 @@ g2",geom," <- function(data, xField, yField, colorField = '', cfg = list(), widt
   
   # pass the data and settings using 'x'
   x <- list(
+    type = '",geom,"',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2",geom,"', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2",geom,"Output <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2",geom,"', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2",geom," <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2",geom,"Output, env, quoted = TRUE, package = 'rg2')
-}
 
 "),paste0('./R/g2',geom,'.R'))
 }

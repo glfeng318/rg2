@@ -2,7 +2,7 @@
 #' 
 #' PercentStackedBar chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -16,22 +16,12 @@ g2percent_stacked_bar <- function(data, xField, yField, colorField = '', cfg = l
   
   # pass the data and settings using 'x'
   x <- list(
+    type = 'percent_stacked_bar',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2percent_stacked_bar', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2percent_stacked_barOutput <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2percent_stacked_bar', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2percent_stacked_bar <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2percent_stacked_barOutput, env, quoted = TRUE, package = 'rg2')
-}
 
 

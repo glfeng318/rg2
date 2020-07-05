@@ -2,7 +2,7 @@
 #' 
 #' Liquid chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -16,22 +16,12 @@ g2liquid <- function(data, xField, yField, colorField = '', cfg = list(), width 
   
   # pass the data and settings using 'x'
   x <- list(
+    type = 'liquid',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2liquid', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2liquidOutput <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2liquid', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2liquid <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2liquidOutput, env, quoted = TRUE, package = 'rg2')
-}
 
 

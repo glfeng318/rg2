@@ -2,7 +2,7 @@
 #' 
 #' StackedColumnLabel chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -16,22 +16,12 @@ g2stacked_column_label <- function(data, xField, yField, colorField = '', cfg = 
   
   # pass the data and settings using 'x'
   x <- list(
+    type = 'stacked_column_label',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2stacked_column_label', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2stacked_column_labelOutput <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2stacked_column_label', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2stacked_column_label <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2stacked_column_labelOutput, env, quoted = TRUE, package = 'rg2')
-}
 
 

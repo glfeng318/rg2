@@ -2,7 +2,7 @@
 #' 
 #' GroupedRose chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -16,22 +16,12 @@ g2grouped_rose <- function(data, xField, yField, colorField = '', cfg = list(), 
   
   # pass the data and settings using 'x'
   x <- list(
+    type = 'grouped_rose',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2grouped_rose', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2grouped_roseOutput <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2grouped_rose', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2grouped_rose <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2grouped_roseOutput, env, quoted = TRUE, package = 'rg2')
-}
 
 

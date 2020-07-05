@@ -2,7 +2,7 @@
 #' 
 #' FanGauge chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -16,22 +16,12 @@ g2fan_gauge <- function(data, xField, yField, colorField = '', cfg = list(), wid
   
   # pass the data and settings using 'x'
   x <- list(
+    type = 'fan_gauge',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2fan_gauge', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2fan_gaugeOutput <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2fan_gauge', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2fan_gauge <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2fan_gaugeOutput, env, quoted = TRUE, package = 'rg2')
-}
 
 

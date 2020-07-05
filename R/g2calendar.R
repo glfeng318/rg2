@@ -2,7 +2,7 @@
 #' 
 #' Calendar chart
 #' 
-#' @param xField,yField,colorField colname in data for aesthetic mapping
+#' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family bar
 #' 
@@ -16,22 +16,12 @@ g2calendar <- function(data, xField, yField, colorField = '', cfg = list(), widt
   
   # pass the data and settings using 'x'
   x <- list(
+    type = 'calendar',
     cfg = cfg
   )
   # create the widget
-  htmlwidgets::createWidget('g2calendar', x, width = width, height = height, package='rg2')
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-#' @export
-g2calendarOutput <- function(outputId, width = '100%', height = '400px') {
-  shinyWidgetOutput(outputId, 'g2calendar', width, height, package = 'rg2')
-}
-
-#' @export
-renderG2calendar <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
-  shinyRenderWidget(expr, g2calendarOutput, env, quoted = TRUE, package = 'rg2')
-}
 
 
