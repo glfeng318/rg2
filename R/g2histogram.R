@@ -7,7 +7,7 @@
 #' @family bar
 #' 
 #' @export
-g2histogram <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2Histogram <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   cfg$data       = jsonlite::toJSON(data)
   cfg$xField     = xField
@@ -16,7 +16,7 @@ g2histogram <- function(data, xField, yField, colorField = '', cfg = list(), wid
   
   # pass the data and settings using 'x'
   x <- list(
-    type = 'histogram',
+    type = 'Histogram',
     cfg = cfg
   )
   # create the widget

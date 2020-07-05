@@ -7,7 +7,7 @@
 #' @family bar
 #' 
 #' @export
-g2calendar <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2Calendar <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   cfg$data       = jsonlite::toJSON(data)
   cfg$xField     = xField
@@ -16,7 +16,7 @@ g2calendar <- function(data, xField, yField, colorField = '', cfg = list(), widt
   
   # pass the data and settings using 'x'
   x <- list(
-    type = 'calendar',
+    type = 'Calendar',
     cfg = cfg
   )
   # create the widget

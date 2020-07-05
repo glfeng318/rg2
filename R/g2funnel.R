@@ -4,10 +4,9 @@
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
-#' @family bar
 #' 
 #' @export
-g2funnel <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2Funnel <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   cfg$data       = jsonlite::toJSON(data)
   cfg$xField     = xField
@@ -16,7 +15,7 @@ g2funnel <- function(data, xField, yField, colorField = '', cfg = list(), width 
   
   # pass the data and settings using 'x'
   x <- list(
-    type = 'funnel',
+    type = 'Funnel',
     cfg = cfg
   )
   # create the widget

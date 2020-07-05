@@ -7,7 +7,7 @@
 #' @family bar
 #' 
 #' @export
-g2donut <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2Donut <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   cfg$data       = jsonlite::toJSON(data)
   cfg$xField     = xField
@@ -16,7 +16,7 @@ g2donut <- function(data, xField, yField, colorField = '', cfg = list(), width =
   
   # pass the data and settings using 'x'
   x <- list(
-    type = 'donut',
+    type = 'Donut',
     cfg = cfg
   )
   # create the widget

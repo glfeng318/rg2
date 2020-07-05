@@ -53,7 +53,7 @@ cfg = list(
                text    = '',
                style   = list(fontSize=18, fill='black')
   ),
-  description = lsit(visible = FALSE,
+  description = list(visible = FALSE,
                      alignTo = 'left',
                      text    = '',
                      style   = list(fontSize=12, fill='grey')

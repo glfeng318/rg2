@@ -7,7 +7,7 @@
 #' @family bar
 #' 
 #' @export
-g2pie <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2Pie <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   cfg$data       = jsonlite::toJSON(data)
   cfg$xField     = xField
@@ -16,7 +16,7 @@ g2pie <- function(data, xField, yField, colorField = '', cfg = list(), width = N
   
   # pass the data and settings using 'x'
   x <- list(
-    type = 'pie',
+    type = 'Pie',
     cfg = cfg
   )
   # create the widget

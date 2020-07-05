@@ -11,11 +11,11 @@ df = jsonlite::fromJSON('[
 { "action": "支付", "pv": 1500 },
 { "action": "成交", "pv": 850 }]')
 
-g2bar(df,'pv','action')
+g2Bar(df,'pv','action')
 
-g2funnel(df,'action','pv')
+g2Funnel(df,'action','pv')
 
-g2line(economics,'date','uempmed')
+g2Line(economics,'date','uempmed')
 
 df_tmp = economics_long %>% filter(variable %in% c('psavert','uempmed'))
 g2line(df_tmp,'date','value','variable')
@@ -38,61 +38,61 @@ g2bullet(df,
                       
 
 
-geoms = list(
-  bar = 'Bar',
-  line = 'Line',
-  step_line = 'StepLine',
-  treemap = 'Treemap',
-  bar = 'Bar',
-  stacked_bar = 'StackedBar',
-  grouped_bar = 'GroupedBar',
-  percent_stacked_bar = 'PercentStackedBar',
-  range_bar = 'RangeBar',
-  area = 'Area',
-  stacked_area = 'StackedArea',
-  percent_stacked_area = 'PercentStackedArea',
-  column = 'Column',
-  column_label = 'ColumnLabel',
-  grouped_column = 'GroupedColumn',
-  stacked_column = 'StackedColumn',
-  stacked_column_label = 'StackedColumnLabel',
-  range_column = 'RangeColumn',
-  percent_stacked_column = 'PercentStackedColumn',
-  pie = 'Pie',
-  density_heatmap = 'DensityHeatmap',
-  heatmap = 'Heatmap',
-  word_cloud = 'WordCloud',
-  rose = 'Rose',
-  funnel = 'Funnel',
-  stacked_rose = 'StackedRose',
-  grouped_rose = 'GroupedRose',
-  radar = 'Radar',
-  liquid = 'Liquid',
-  histogram = 'Histogram',
-  density = 'Density',
-  donut = 'Donut',
-  waterfall = 'Waterfall',
-  scatter = 'Scatter',
-  bubble = 'Bubble',
-  bullet = 'Bullet',
-  calendar = 'Calendar',
-  gauge = 'Gauge',
-  fan_gauge = 'FanGauge',
-  meter_gauge = 'MeterGauge'
+geoms = c(
+  'Bar',
+  'Line',
+  'StepLine',
+  'Treemap',
+  'Bar',
+  'StackedBar',
+  'GroupedBar',
+  'PercentStackedBar',
+  'RangeBar',
+  'Area',
+  'StackedArea',
+  'PercentStackedArea',
+  'Column',
+  'ColumnLabel',
+  'GroupedColumn',
+  'StackedColumn',
+  'StackedColumnLabel',
+  'RangeColumn',
+  'PercentStackedColumn',
+  'Pie',
+  'DensityHeatmap',
+  'Heatmap',
+  'WordCloud',
+  'Rose',
+  'Funnel',
+  'StackedRose',
+  'GroupedRose',
+  'Radar',
+  'Liquid',
+  'Histogram',
+  'Density',
+  'Donut',
+  'Waterfall',
+  'Scatter',
+  'Bubble',
+  'Bullet',
+  'Calendar',
+  'Gauge',
+  'FanGauge',
+  'MeterGauge'
 )
 
 
-for (geom in names(geoms)) {
+for (geom in geoms) {
   cat(paste0("\n          case '",geom,"':
-            chart = new G2Plot.",geoms[[geom]],"(el.id, x.cfg);
+            chart = new G2Plot.",geom,"(el.id, x.cfg);
             break;"))
 }
 
 
-for (geom in names(geoms)) {
-  writeLines(paste0("#' ",geoms[[geom]]," chart
+for (geom in geoms) {
+  writeLines(paste0("#' ",geom," chart
 #' 
-#' ",geoms[[geom]]," chart
+#' ",geom," chart
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2

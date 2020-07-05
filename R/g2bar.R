@@ -7,7 +7,7 @@
 #' @family bar
 #' 
 #' @export
-g2bar <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
+g2Bar <- function(data, xField, yField, colorField = '', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   cfg$data       = jsonlite::toJSON(data)
   cfg$xField     = xField
@@ -16,7 +16,7 @@ g2bar <- function(data, xField, yField, colorField = '', cfg = list(), width = N
   
   # pass the data and settings using 'x'
   x <- list(
-    type = 'bar',
+    type = 'Bar',
     cfg = cfg
   )
   # create the widget
