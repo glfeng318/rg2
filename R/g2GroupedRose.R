@@ -2,24 +2,21 @@
 #' 
 #' GroupedRose chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param radiusField,categoryField,groupField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family rose
 #' 
 #' @export
-g2GroupedRose <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2GroupedRose <- function(data, radiusField, categoryField, groupField, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  radiusField = as.character(substitute(radiusField))
+  categoryField = as.character(substitute(categoryField))
+  groupField = as.character(substitute(groupField))  # NULL returns character(0)
   
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
-  }
+  cfg$radiusField = radiusField
+  cfg$categoryField = categoryField
+  cfg$groupField = as.character(groupField)
+  keep_col = c(radiusField, categoryField, groupField)
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'

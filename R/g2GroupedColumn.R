@@ -2,23 +2,23 @@
 #' 
 #' GroupedColumn chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param xField,yField,groupField  column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family column
 #' 
 #' @export
-g2GroupedColumn <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2GroupedColumn <- function(data, xField, yField, groupField, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  groupField  = as.character(substitute(groupField ))  # NULL returns character(0)
   
   cfg$xField = xField
   cfg$yField = yField
   keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  if (!identical(groupField , character(0))) {
+    cfg$groupField  = as.character(groupField )
+    keep_col = append(keep_col, groupField )
   }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)

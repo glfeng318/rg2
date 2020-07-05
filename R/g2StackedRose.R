@@ -2,24 +2,21 @@
 #' 
 #' StackedRose chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param radiusField,categoryField,stackField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family rose
 #' 
 #' @export
-g2StackedRose <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2StackedRose <- function(data, radiusField, categoryField, stackField, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  radiusField = as.character(substitute(radiusField))
+  categoryField = as.character(substitute(categoryField))
+  stackField = as.character(substitute(stackField))
   
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
-  }
+  cfg$radiusField = radiusField
+  cfg$categoryField = categoryField
+  cfg$stackField = as.character(stackField)
+  keep_col = c(radiusField, categoryField, stackField)
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'

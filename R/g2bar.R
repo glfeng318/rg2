@@ -31,5 +31,3 @@ g2Bar <- function(data, xField, yField, colorField = NULL, cfg = list(), width =
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-

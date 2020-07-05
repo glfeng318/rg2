@@ -31,5 +31,3 @@ g2Column <- function(data, xField, yField, colorField = NULL, cfg = list(), widt
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-

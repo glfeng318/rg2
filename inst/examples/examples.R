@@ -4,16 +4,10 @@ library(dplyr)
 data("economics", package="ggplot2")
 data("economics_long", package="ggplot2")
 
-df = jsonlite::fromJSON('[
-{ "action": "浏览", "pv": 5000 },
-{ "action": "加购", "pv": 3500 },
-{ "action": "下单", "pv": 2500 },
-{ "action": "支付", "pv": 1500 },
-{ "action": "成交", "pv": 850 }]')
 
 g2Bar(df,pv,action)
 
-g2Funnel(df, action, 'pv')
+
 
 g2Line(economics,date,uempmed)
 
@@ -57,121 +51,77 @@ df = jsonlite::fromJSON('[{"type": "分类一","value": 27},
 g2Donut(df, value, type)
 g2Donut(df, type, value)
 
+# Gauge
+cfg = list(statistic=list(visible=TRUE,text='Good',color='#43E089'))
+g2Gauge(50, range = c(0,25,75,100), min=0, max=100)
+g2Gauge(50, range = c(  25,75,100), min=0, max=100)
+g2Gauge(50, range = c(  25,75,100), min=0, max=100, cfg=cfg)
+# MeterGauge
+g2MeterGauge(50, range = c(0,25,75,100), min=0, max=100)
+g2MeterGauge(50, range = c(  25,75,100), min=0, max=100)
+g2MeterGauge(50, range = c(  25,75,100), min=0, max=100, cfg=cfg)
+# FanGauge
+g2FanGauge(value=0.8)
+g2FanGauge(value=0.35, range=c(0, 0.35))
+g2FanGauge(value=0.35, range=c(0, 0.35), cfg=cfg)
+
+cfg = list(statistic=list(visible=TRUE,text='Good',color='#43E089'),
+           format=htmlwidgets::JS("(v) => {return v + '%';}"))
+g2FanGauge(value=35, range=c(0, 75), min=0, max=100,  cfg=cfg)
+
+#Funnel
+df = jsonlite::fromJSON('[
+{ "action": "浏览", "pv": 5000 },
+{ "action": "加购", "pv": 3500 },
+{ "action": "下单", "pv": 2500 },
+{ "action": "支付", "pv": 1500 },
+{ "action": "成交", "pv": 850 }]')
+g2Funnel(df, action, pv)
+g2Funnel(df, action, pv, dynamicHeight = TRUE)
+g2Funnel(df, action, pv, transpose = TRUE)
+df = jsonlite::fromJSON('[
+  { "action": "浏览", "pv": 50000, "quarter": "2020Q1" },
+  { "action": "加购", "pv": 35000, "quarter": "2020Q1" },
+  { "action": "下单", "pv": 25000, "quarter": "2020Q1" },
+  { "action": "支付", "pv": 15000, "quarter": "2020Q1" },
+  { "action": "成交", "pv": 11500, "quarter": "2020Q1" },
+  { "action": "浏览", "pv": 80000, "quarter": "2020Q2" },
+  { "action": "加购", "pv": 63000, "quarter": "2020Q2" },
+  { "action": "下单", "pv": 47000, "quarter": "2020Q2" },
+  { "action": "支付", "pv": 24000, "quarter": "2020Q2" },
+  { "action": "成交", "pv": 17500, "quarter": "2020Q2" }
+]')
+g2Funnel(df, action, pv, quarter)
+
+#GroupedBar
+g2GroupedBar(df, pv, action, quarter)
+g2GroupedBar(df, pv, action, quarter, 
+             cfg=list(legend=list(visible=TRUE,position='bottom-center')))
+
+#GroupedColumn
+g2GroupedColumn(df, action, pv, quarter)
+g2GroupedColumn(df, action, pv, quarter, 
+             cfg=list(legend=list(visible=TRUE,position='top-right')))
 
 
+# Rose
+df = jsonlite::fromJSON('[
+  {"type": "分类一","value": 27,"user": "用户一"},
+  {"type": "分类二","value": 25,"user": "用户一"},
+  {"type": "分类三","value": 18,"user": "用户一"},
+  {"type": "分类四","value": 15,"user": "用户一"},
+  {"type": "分类五","value": 10,"user": "用户一"},
+  {"type": "分类一","value": 7,"user": "用户二"},
+  {"type": "分类二","value": 5,"user": "用户二"},
+  {"type": "分类三","value": 38,"user": "用户二"},
+  {"type": "分类四","value": 5,"user": "用户二"},
+  {"type": "分类五","value": 20,"user": "用户二"}]')
+g2Rose(head(df, 5), value, type, type)
+g2StackedRose(df, value, type, user)
+g2GroupedRose(df, value, type, user)
 
-
-geoms = c(
-  'Bar',
-  'Line',
-  'StepLine',
-  'Treemap',
-  'Bar',
-  'StackedBar',
-  'GroupedBar',
-  'PercentStackedBar',
-  'RangeBar',
-  'Area',
-  'StackedArea',
-  'PercentStackedArea',
-  'Column',
-  'GroupedColumn',
-  'StackedColumn',
-  'StackedColumnLabel',
-  'RangeColumn',
-  'PercentStackedColumn',
-  'Pie',
-  'DensityHeatmap',
-  'Heatmap',
-  'WordCloud',
-  'Rose',
-  'Funnel',
-  'StackedRose',
-  'GroupedRose',
-  'Radar',
-  'Liquid',
-  'Histogram',
-  'Density',
-  'Donut',
-  'Waterfall',
-  'Scatter',
-  'Bubble',
-  'Bullet',
-  'Calendar',
-  'Gauge',
-  'FanGauge',
-  'MeterGauge'
-)
-
-
-for (geom in geoms) {
-  cat(paste0("\n          case '",geom,"':
-            chart = new G2Plot.",geom,"(el.id, x.cfg);
-            break;"))
-}
-
-
-for (geom in geoms) {
-  print(paste0(geom,'-',))
-}
-
-
-for (geom in geoms) {
-  writeLines(paste0("#' ",geom," chart
-#' 
-#' ",geom," chart
-#' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
-#' @inheritParams g2
-#' @family ",case_when(grepl('Area',geom) ~ 'area',grepl('Rose',geom) ~ 'rose',grepl('Gauge',geom) ~ 'gauge',grepl('Bar',geom) ~ 'bar',grepl('Line',geom) ~ 'line',grepl('Column',geom) ~ 'column',TRUE ~ ''),"
-#' 
-#' @export
-g2",geom," <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
-  # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
-  
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
-  }
-  data = subset(data, select = keep_col)
-  cfg$data = jsonlite::toJSON(data)
-  # pass the data and settings using 'x'
-  x <- list(
-    type = '",geom,"',
-    cfg = cfg
-  )
-  # create the widget
-  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
-}
-
-
-"),paste0('./R/g2',geom,'.R'))
-}
-
-
-
-test <- function(data, xField, yField, colorField=NULL, cfg = list(), width = NULL, height = NULL) {
-  # prep cfg
-  xField     = as.character(substitute(xField))
-  yField     = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))
-  print(xField)
-  print(yField)
-  print(colorField)
-  
-  if (!identical(colorField, character(0))) {
-    print('set color field')
-  }
-}
-
-test(df,pv)
-test(df,pv,action)
-test(df,'pv','action')
-test(df,pv,action,action)
+# Heatmap
+df = jsonlite::read_json('https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json', TRUE)
+df$AQHI = as.numeric(df$AQHI)
+g2Heatmap(df, 'Month of Year', 'District', colorField = 'AQHI',color=c('#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'))
 

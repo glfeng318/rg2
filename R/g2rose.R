@@ -2,20 +2,20 @@
 #' 
 #' Rose chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param radiusField,categoryField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
 #' @family rose
 #' 
 #' @export
-g2Rose <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Rose <- function(data, radiusField, categoryField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
+  radiusField = as.character(substitute(radiusField))
+  categoryField = as.character(substitute(categoryField))
   colorField = as.character(substitute(colorField))  # NULL returns character(0)
   
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
+  cfg$radiusField = radiusField
+  cfg$categoryField = categoryField
+  keep_col = c(radiusField, categoryField)
   if (!identical(colorField, character(0))) {
     cfg$colorField = as.character(colorField)
     keep_col = append(keep_col, colorField)

@@ -2,26 +2,19 @@
 #' 
 #' MeterGauge chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param value Numeric value
+#' @param range color range of the gauge, it separate the gauge to several parts by color, example: \code{range=c(0,25,50,75,100)}
+#' @param min,max minimum and maximum value of the chart
 #' @inheritParams g2
 #' @family gauge
 #' 
 #' @export
-g2MeterGauge <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2MeterGauge <- function(value, range, min=0, max=1, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
-  
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
-  }
-  data = subset(data, select = keep_col)
-  cfg$data = jsonlite::toJSON(data)
+  cfg$value = value
+  cfg$min = min
+  cfg$max = max
+  cfg$range = range
   # pass the data and settings using 'x'
   x <- list(
     type = 'MeterGauge',
