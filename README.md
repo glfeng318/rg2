@@ -1,5 +1,6 @@
 # rg2 <img src="man/figures/whale.128.png" align="right" width="128" />
 
+![R-CMD-check](https://github.com/13kay/rg2/workflows/R-CMD-check/badge.svg)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/rg2)](https://cran.r-project.org/package=rg2)
 
 ## Overview
