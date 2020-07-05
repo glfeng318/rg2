@@ -31,5 +31,3 @@ g2Scatter <- function(data, xField, yField, colorField = NULL, cfg = list(), wid
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
-
-

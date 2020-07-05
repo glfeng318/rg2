@@ -22,8 +22,8 @@ df = tibble(
   measures = c(83,13,45,83),
   targets = c(90,90,90,90),
   ranges = rep(list(ranges = c(0,0.25,0.5,0.75,1)),4)
-) 
-g2bullet(df, 
+)
+g2Bullet(df, 
          rangeMax = 100,
          cfg=list(title=list(visible=TRUE,text='Bullet chart'),
                   rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A'))
@@ -32,9 +32,12 @@ g2bullet(df,
 # density
 df = data.frame(x=rnorm(1000, mean = 50, sd=5))
 g2Density(df, x, binWidth = 2)
-                      
 
-#DensityHeatmap
+# Histogram
+df = data.frame(x=rnorm(1000, mean = 50, sd=5))
+g2Histogram(df, x, binWidth = 2)
+
+# DensityHeatmap
 df = jsonlite::read_json('https://antv-g2plot.gitee.io/zh/examples/data/jobpaying.json',TRUE)
 g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed')
 g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed', 
@@ -121,7 +124,53 @@ g2StackedRose(df, value, type, user)
 g2GroupedRose(df, value, type, user)
 
 # Heatmap
-df = jsonlite::read_json('https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json', TRUE)
-df$AQHI = as.numeric(df$AQHI)
-g2Heatmap(df, 'Month of Year', 'District', colorField = 'AQHI',color=c('#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'))
+data_url = 'https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json'
+jsonlite::read_json(data_url, TRUE) %>% 
+  mutate(AQHI = as.numeric(AQHI)) %>% 
+  g2Heatmap('Month of Year', 'District', colorField = 'AQHI',color=c('#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'))
+
+# Scatter
+mtcars %>% 
+  mutate(vs=as.character(vs)) %>% 
+  g2Scatter(mpg, disp, vs)
+
+# Line
+url = 'https://antv-g2plot.gitee.io/zh/examples/data/fireworks-sales.json'
+df = jsonlite::read_json(url, TRUE)
+df %>% g2Line(Date, scales)
+df %>% g2Line(Date, scales, smooth = TRUE)
+df %>% g2Line(Date, scales, point = TRUE)
+df %>% g2Line(Date, scales, smooth = TRUE, point = TRUE)
+
+# Liquid
+g2Liquid(75, 0, 100)
+g2Liquid(75, 0, 100, color='red')
+cfg = list(statistic=list(formatter=htmlwidgets::JS('(v) => (v).toFixed(2) + "%"')))
+g2Liquid(85.56, 0, 100, cfg = cfg)
+
+
+#
+url = 'https://antv-g2plot.gitee.io/zh/examples/data/oil.json'
+df = jsonlite::read_json(url, TRUE)
+g2Area(df, date, value, country)
+g2Area(df, date, value, country, color = c('#6897a7', '#8bc0d6', '#60d7a7', '#dedede', '#fedca9', '#fab36f', '#d96d6f'))
+
+g2StackedArea(df, date, value, country)
+g2StackedArea(df, date, value, country, smooth = TRUE)
+g2StackedArea(df, date, value, country, label = 'area')
+g2StackedArea(df, date, value, country, label = 'line')
+g2StackedArea(df, date, value, country, 
+              label = 'line',
+              color = c('#6897a7', '#8bc0d6', '#60d7a7', '#dedede', '#fedca9', '#fab36f', '#d96d6f'))
+
+
+g2PercentStackedArea(df, date, value, country)
+g2PercentStackedArea(df, date, value, country, smooth = TRUE)
+g2PercentStackedArea(df, date, value, country, label = 'area')
+g2PercentStackedArea(df, date, value, country, label = 'line')
+g2PercentStackedArea(df, date, value, country, 
+                     label = 'line',
+                     color = c('#6897a7', '#8bc0d6', '#60d7a7', '#dedede', '#fedca9', '#fab36f', '#d96d6f'))
+
+
 

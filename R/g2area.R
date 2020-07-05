@@ -3,11 +3,14 @@
 #' Area chart
 #' 
 #' @param xField,yField,seriesField column name in data for aesthetic mapping
+#' @param color Color vector or javascript function
 #' @inheritParams g2
 #' @family area
 #' 
 #' @export
-g2Area <- function(data, xField, yField, seriesField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Area <- function(data, xField, yField, seriesField = NULL,
+                   color = NULL,
+                   cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
@@ -15,6 +18,9 @@ g2Area <- function(data, xField, yField, seriesField = NULL, cfg = list(), width
   
   cfg$xField = xField
   cfg$yField = yField
+  if (!is.null(color)) {
+    cfg$color = color
+  }
   keep_col = c(xField, yField)
   if (!identical(seriesField, character(0))) {
     cfg$seriesField = as.character(seriesField)
