@@ -23,7 +23,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{binWidth, binNumber}{width/number of bins. you must specify at least one of these.}
 
-\item{color}{}
+\item{color}{color of histogram chart}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 

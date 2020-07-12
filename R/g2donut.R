@@ -31,7 +31,7 @@ g2Donut <- function(data, angleField, colorField = NULL,
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # make sure angleField and colorField get the right type
-  if (is.character(df[[angleField]]) | is.numeric(df[[colorField]])) {
+  if (is.character(data[[angleField]]) | is.numeric(data[[colorField]])) {
     stop('angleField should be numeric and colorField should be character')
   }
   # pass the data and settings using 'x'

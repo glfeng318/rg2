@@ -104,13 +104,22 @@ cfg = list(statistic=list(visible=TRUE,text='Good',color='#43E089'),
 g2FanGauge(value=35, range=c(0, 75), min=0, max=100,  cfg=cfg)
 readline("next <return>:")
 
-#Funnel
+
 df = jsonlite::fromJSON('[
 { "action": "浏览", "pv": 5000 },
 { "action": "加购", "pv": 3500 },
 { "action": "下单", "pv": 2500 },
 { "action": "支付", "pv": 1500 },
 { "action": "成交", "pv": 850 }]')
+
+# Bar
+g2Bar(df, pv, action)
+readline("next <return>:")
+
+g2Bar(df, pv, action, cfg = list(conversionTag=list(visible=TRUE)))
+readline("next <return>:")
+
+#Funnel
 g2Funnel(df, action, pv)
 readline("next <return>:")
 

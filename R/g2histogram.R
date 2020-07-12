@@ -4,7 +4,7 @@
 #' 
 #' @param binField column name in data for aesthetic mapping
 #' @param binWidth,binNumber width/number of bins. you must specify at least one of these.
-#' @param color 
+#' @param color color of histogram chart
 #' @inheritParams g2
 #' @family 
 #' 
