@@ -5,6 +5,7 @@
 #' @param xField,yField,seriesField column name in data for aesthetic mapping
 #' @param smooth smooth the line, default to `FALSE`
 #' @param color color vector or javascript function.
+#' @param interaction You can specify `'slider'` or `'scrollbar'` for a large dataset
 #' @param point display data point and the data label, default to `FALSE`. You can also configure the point
 #'   by cfg parameter using `point = list(...)`, see \url{https://antv-g2plot.gitee.io/zh/examples/line/basic/API} for detail.
 #' @inheritParams g2
@@ -13,6 +14,7 @@
 #' @export
 g2Line <- function(data, xField, yField, seriesField = NULL,
                    smooth = FALSE, point = FALSE, color = NULL,
+                   interaction = NULL,
                    cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
@@ -25,6 +27,9 @@ g2Line <- function(data, xField, yField, seriesField = NULL,
   if (!identical(seriesField, character(0))) {
     cfg$seriesField = as.character(seriesField)
     keep_col = append(keep_col, seriesField)
+  }
+  if (!is.null(interaction)) {
+    cfg$interactions = c(list(type=interaction, cfg=list(start=0.1,end=0.2)),list())
   }
   cfg$smooth = smooth
   if (!is.null(color)) {
