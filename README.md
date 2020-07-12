@@ -22,21 +22,22 @@ devtools::install_github("13kay/rg2")
 library(rg2)
 
 df = jsonlite::fromJSON('[
-{ "action": "浏览", "pv": 5000 },
-{ "action": "加购", "pv": 3500 },
-{ "action": "下单", "pv": 2500 },
-{ "action": "支付", "pv": 1500 },
-{ "action": "成交", "pv": 850 }]')
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
 
 cfg = list(
   title = list(
-    visible=TRUE, text='店铺转化率'
+    visible=TRUE, text='shopping funnel'
   ),
   description = list(
-    visible=TRUE, text='浏览->加购->下单->支付->成交'
+    visible=TRUE, text='site view -> product view -> add to cart -> checkout -> pruchase'
   ),
   conversionTag = list(visible=TRUE)
 )
+
 g2Bar(df, pv, action, cfg = cfg)
 ```
 

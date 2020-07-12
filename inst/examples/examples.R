@@ -441,6 +441,20 @@ g2PercentStackedColumn(df, year, value, 'type', color = c('#ae331b', '#f27957', 
 readline("next <return>:")
 
 g2PercentStackedColumn(df, year, value, type, connectedArea = TRUE)
+readline("next <return>:")
+
+df = jsonlite::fromJSON('[
+  {"type": "分类一","value": 27,"user": "用户一"},
+  {"type": "分类二","value": 25,"user": "用户一"},
+  {"type": "分类三","value": 18,"user": "用户一"},
+  {"type": "分类四","value": 15,"user": "用户一"},
+  {"type": "分类五","value": 10,"user": "用户一"},
+  {"type": "分类一","value": 7,"user": "用户二"},
+  {"type": "分类二","value": 5,"user": "用户二"},
+  {"type": "分类三","value": 38,"user": "用户二"},
+  {"type": "分类四","value": 5,"user": "用户二"},
+  {"type": "分类五","value": 20,"user": "用户二"}]')
+g2Treemap(df)
 
 cat("There's more coming next release.")
 

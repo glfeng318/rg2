@@ -2,26 +2,23 @@
 #' 
 #' Treemap chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param maxLevel Default to 2
 #' @inheritParams g2
 #' @family 
 #' 
 #' @export
-g2Treemap <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Treemap <- function(data, maxLevel = 2, cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  # sort N-1 colmuns by level
+  data_sort = subset(data, select=names(sort(apply(data, 2, function(x) length(unique(x))))))
+  data_json = list(name='root', value=sum(data_sort[, ncol(data_sort)]), children=df2treemap_json(data_sort))
   
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  if (dim(data_sort)[2] == 2){
+    cfg$colorField = 'name'
+  } else {
+    cfg$colorField = 'color'
   }
-  data = subset(data, select = keep_col)
-  cfg$data = jsonlite::toJSON(data)
+  cfg$data = jsonlite::toJSON(data_json, auto_unbox = TRUE)
   # pass the data and settings using 'x'
   x <- list(
     type = 'Treemap',
