@@ -18,6 +18,16 @@ devtools::install_github("13kay/rg2")
 
 ## quickstart
 
+``` r
+library(rg2)
+data(mpg, package = 'ggplot2')
+
+g2Scatter(mpg, displ, hwy, colorField = class)
+```
+<img src="man/figures/quickstart-0.png" width="640" />
+
+Configuration example:
+
 ```r
 library(rg2)
 
@@ -41,4 +51,4 @@ cfg = list(
 g2Bar(df, pv, action, cfg = cfg)
 ```
 
-<img src="man/figures/quickstart.png" width="639" />
+<img src="man/figures/quickstart-1.png" width="640" />

@@ -8,7 +8,6 @@ Maintainer: 13kay <funnng@gmail.com>
 Description: This package is a wrapper of G2Plot for R.
 License: MIT + file LICENSE
 Imports:
-    stringr,
     jsonlite,
     htmlwidgets
 RoxygenNote: 7.1.0
