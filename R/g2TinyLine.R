@@ -2,7 +2,7 @@
 #' 
 #' TinyLine chart
 #' 
-#' @param xField,yField,seriesField column name in data for aesthetic mapping
+#' @param xField,yField column name in data for aesthetic mapping
 #' @param size The width of line
 #' @param smooth smooth the line, default to `FALSE`
 #' @param color color or javascript function.
@@ -16,8 +16,7 @@ g2TinyLine <- function(data, xField, yField,
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
-  seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
-  
+
   cfg$xField = xField
   cfg$yField = yField
   keep_col = c(xField, yField)

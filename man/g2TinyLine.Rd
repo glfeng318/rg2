@@ -20,7 +20,7 @@ g2TinyLine(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, seriesField}{column name in data for aesthetic mapping}
+\item{xField, yField}{column name in data for aesthetic mapping}
 
 \item{size}{The width of line}
 
