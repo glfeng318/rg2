@@ -12,6 +12,7 @@ g2Line(
   smooth = FALSE,
   point = FALSE,
   color = NULL,
+  interaction = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -29,6 +30,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 by cfg parameter using `point = list(...)`, see \url{https://antv-g2plot.gitee.io/zh/examples/line/basic/API} for detail.}
 
 \item{color}{color vector or javascript function.}
+
+\item{interaction}{You can specify `'slider'` or `'scrollbar'` for a large dataset}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 
