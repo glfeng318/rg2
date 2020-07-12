@@ -4,7 +4,6 @@
 #' 
 #' @param maxLevel Default to 2
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Treemap <- function(data, maxLevel = 2, cfg = list(), width = NULL, height = NULL) {

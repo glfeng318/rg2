@@ -49,4 +49,3 @@ g2Calendar(df,date,commits,c('2017-05-01','2017-10-31'),color='#BAE7FF-#1890FF-#
 
 }
 }
-\concept{}

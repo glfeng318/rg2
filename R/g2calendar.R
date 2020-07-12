@@ -8,7 +8,6 @@
 #' @param months months name, default to c('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
 #' @param weeks weeks name, default to c('Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'), week start on sunday 
 #' @inheritParams g2
-#' @family 
 #' 
 #' @examples 
 #' \dontrun{

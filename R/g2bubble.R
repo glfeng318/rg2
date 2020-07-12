@@ -4,7 +4,6 @@
 #' 
 #' @param xField,yField,colorField,sizeField column name in data for aesthetic mapping
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Bubble <- function(data, xField, yField, colorField, sizeField, cfg = list(), width = NULL, height = NULL) {

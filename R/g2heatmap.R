@@ -8,7 +8,7 @@
 #' @param forceSquare Default to `FALSE`
 #' @param shapeSize the size range of shape, c(min, max), default to `c(5, 50)`
 #' @inheritParams g2
-#' @family 
+#' @family heatmap
 #' 
 #' @export
 g2Heatmap <- function(data, xField, yField, colorField, sizeField = NULL,

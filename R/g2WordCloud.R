@@ -18,7 +18,6 @@
 #' @param backgroundColor background color
 #' @param shuffle shuffle the data, default to `TRUE`
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2WordCloud <- function(data, maskImage = NULL, shape = 'circle', 

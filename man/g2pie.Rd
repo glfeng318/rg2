@@ -34,4 +34,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 \description{
 Pie chart
 }
-\concept{}
+\seealso{
+Other pie: 
+\code{\link{g2Donut}()}
+}
+\concept{pie}

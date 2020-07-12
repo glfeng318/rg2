@@ -6,7 +6,6 @@
 #' @param color color vector or a javascript function
 #' @param smooth smooth the line
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Radar <- function(data, angleField, radiusField, seriesField = NULL, 

@@ -8,7 +8,6 @@
 #'   * '#60d7a7'
 #'   * list(rising='#60d7a7', falling='#dedede', total='#fedca9')
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Waterfall <- function(data, xField, yField, colorField = NULL, 

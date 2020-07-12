@@ -38,4 +38,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 \description{
 DensityHeatmap chart
 }
-\concept{}
+\seealso{
+Other heatmap: 
+\code{\link{g2Heatmap}()}
+}
+\concept{heatmap}

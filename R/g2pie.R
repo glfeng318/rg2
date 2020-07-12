@@ -6,7 +6,7 @@
 #' @param radius default to 0.8
 #' @param color color vector or a javascript function
 #' @inheritParams g2
-#' @family 
+#' @family pie
 #' 
 #' @export
 g2Pie <- function(data, angleField, colorField = NULL, 

@@ -28,4 +28,3 @@ g2Liquid(
 \description{
 Liquid chart
 }
-\concept{}

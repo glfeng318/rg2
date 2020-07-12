@@ -9,7 +9,6 @@
 #' @param compareField Required by compare funnel. specified values will overwrite the dynamicHeight to `FALSE`.
 #'   you can configure the compare text style in `cfg` parameter with `compareText=list(...)`
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Funnel <- function(data, xField, yField, compareField = NULL,

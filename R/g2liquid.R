@@ -5,7 +5,6 @@
 #' @param value,min,max The current value / minimum value / maximum value
 #' @param color The color of liquid chart
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Liquid <- function(value, min, max, color = NULL, cfg = list(), width = NULL, height = NULL) {

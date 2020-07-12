@@ -4,7 +4,6 @@
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Scatter <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {

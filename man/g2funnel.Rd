@@ -39,4 +39,3 @@ you can configure the compare text style in `cfg` parameter with `compareText=li
 \description{
 Funnel chart
 }
-\concept{}

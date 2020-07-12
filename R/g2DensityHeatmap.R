@@ -7,7 +7,7 @@
 #' @param radius  Numeric heat radius. automatic calculation.
 #' @param intensity Numeric heat weight, default to 2.
 #' @inheritParams g2
-#' @family 
+#' @family heatmap
 #' 
 #' @export
 g2DensityHeatmap <- function(data, xField, yField, colorField, 

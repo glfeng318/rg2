@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2020-06-20
 Author: 13kay
 Maintainer: 13kay <funnng@gmail.com>
-Description: rg2 is a wrapper of G2Plot for R.
+Description: This package is a wrapper of G2Plot for R.
 License: MIT + file LICENSE
 Imports:
     stringr,

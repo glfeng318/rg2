@@ -35,4 +35,3 @@ data should only contains the necessary data for chart (reduce json/data transmi
 Waterfall chart
 It's not recommended to use colorField param for waterfall chart (such as basic the column chart)
 }
-\concept{}

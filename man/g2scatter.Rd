@@ -29,4 +29,3 @@ data should only contains the necessary data for chart (reduce json/data transmi
 \description{
 Scatter chart
 }
-\concept{}

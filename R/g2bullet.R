@@ -10,7 +10,6 @@
 #' @param rangeMax the max value of color range of the progress bar
 #' @param measureSize the height of progress bar, default to 20
 #' @inheritParams g2
-#' @family 
 #' 
 #' @examples
 #' \dontrun{

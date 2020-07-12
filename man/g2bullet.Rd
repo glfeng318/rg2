@@ -79,4 +79,3 @@ g2Bullet(df, rangeMax=100, cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C
 }
 
 }
-\concept{}

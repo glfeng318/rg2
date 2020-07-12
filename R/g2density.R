@@ -6,7 +6,6 @@
 #' @param kernel One of `'uniform'` or `'triangle'` or `'epanechnikov'` or `'quartic'` or `'triweight'` or `'gaussian'` or `'cosinus'`, default to `'epanechnikov'`.
 #' @param binWidth,binNumber width/number of bins. you must specify at least one of these.
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Density <- function(data, binField, binWidth = NULL, binNumber = NULL, kernel = 'epanechnikov', cfg = list(), width = NULL, height = NULL) {

@@ -6,7 +6,6 @@
 #' @param binWidth,binNumber width/number of bins. you must specify at least one of these.
 #' @param color color of histogram chart
 #' @inheritParams g2
-#' @family 
 #' 
 #' @export
 g2Histogram <- function(data, binField, binWidth, binNumber = NULL, color = NULL, 
