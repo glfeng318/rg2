@@ -1,0 +1,48 @@
+---
+title: "example"
+author: "13kay"
+date: "2020/7/6"
+output: html_document
+---
+```{r setup, include=FALSE}
+library(rg2)
+data("economics", package="ggplot2")
+df = jsonlite::fromJSON('[
+  { "region": "华东", "sales": 4684506.442 },
+  { "region": "中南", "sales": 4137415.0929999948 },
+  { "region": "东北", "sales": 2681567.469000001 },
+  { "region": "华北", "sales": 2447301.017000004 },
+  { "region": "西南", "sales": 1303124.508000002 },
+  { "region": "西北", "sales": 815039.5959999998 }
+]')
+```
+
+
+```{r}
+g2TinyLine(economics,date,uempmed)
+```
+
+```{r}
+g2TinyLine(economics,date,uempmed,color='red')
+```
+
+
+```{r}
+g2TinyColumn(df, region, sales)
+```
+
+```{r}
+g2TinyColumn(df, region, sales, color='red')
+```
+
+
+```{r}
+g2Progress(0.75)
+```
+
+```{r}
+g2RingProgress(0.9)
+```
+
+
+

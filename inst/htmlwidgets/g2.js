@@ -123,6 +123,22 @@ HTMLWidgets.widget({
           case 'MeterGauge':
             chart = new G2Plot.MeterGauge(el.id, x.cfg);
             break;
+          // mini chart (5)
+          case 'TinyArea':
+            chart = new G2Plot.TinyArea(el.id, x.cfg);
+            break;
+          case 'TinyColumn':
+            chart = new G2Plot.TinyColumn(el.id, x.cfg);
+            break;
+          case 'TinyLine':
+            chart = new G2Plot.TinyLine(el.id, x.cfg);
+            break;
+          case 'Progress':
+            chart = new G2Plot.Progress(el.id, x.cfg);
+            break;
+          case 'RingProgress':
+            chart = new G2Plot.RingProgress(el.id, x.cfg);
+            break;
           default:
             // code
         }

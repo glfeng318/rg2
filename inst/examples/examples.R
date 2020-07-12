@@ -455,6 +455,51 @@ df = jsonlite::fromJSON('[
   {"type": "分类四","value": 5,"user": "用户二"},
   {"type": "分类五","value": 20,"user": "用户二"}]')
 g2Treemap(df)
+readline("next <return>:")
+
+# TinyArea
+url = 'https://antv-g2plot.gitee.io/zh/examples/data/oil.json'
+df = jsonlite::read_json(url, TRUE)
+df %>% 
+  filter(country=='北美') %>% 
+  g2TinyArea(date, value)
+readline("next <return>:")
+
+# Column / TinyColumn
+df = jsonlite::fromJSON('[
+  { "region": "华东", "sales": 4684506.442 },
+  { "region": "中南", "sales": 4137415.0929999948 },
+  { "region": "东北", "sales": 2681567.469000001 },
+  { "region": "华北", "sales": 2447301.017000004 },
+  { "region": "西南", "sales": 1303124.508000002 },
+  { "region": "西北", "sales": 815039.5959999998 }
+]')
+g2Column(df, region, sales)
+readline("next <return>:")
+
+g2TinyColumn(df, region, sales)
+readline("next <return>:")
+
+g2TinyColumn(df, region, sales, color='red')
+readline("next <return>:")
+
+g2TinyLine(economics,date,uempmed)
+readline("next <return>:")
+
+g2TinyLine(economics,date,uempmed,color='red')
+readline("next <return>:")
+
+g2Progress(0.75)
+readline("next <return>:")
+
+g2Progress(0.75, color='red')
+readline("next <return>:")
+
+g2RingProgress(0.9)
+readline("next <return>:")
+
+g2RingProgress(0.9, color='red')
+readline("next <return>:")
 
 cat("There's more coming next release.")
 
