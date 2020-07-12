@@ -23,7 +23,7 @@ g2TinyLine(economics,date,uempmed)
 ```
 
 ```{r}
-g2TinyLine(economics,date,uempmed,color='red')
+g2TinyLine(economics,date,uempmed,color='#57CC99')
 ```
 
 
@@ -32,7 +32,7 @@ g2TinyColumn(df, region, sales)
 ```
 
 ```{r}
-g2TinyColumn(df, region, sales, color='red')
+g2TinyColumn(df, region, sales, color='#57CC99')
 ```
 
 
