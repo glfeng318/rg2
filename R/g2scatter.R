@@ -3,10 +3,16 @@
 #' Scatter chart
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param shape default to circle. Optional values: 'circle','square','bowtie','diamond',
+#'   'hexagon','triangle','triangle-down','cross','tick','plus','hyphen','line',
+#'   'hollow-circle','hollow-square','hollow-bowtie','hollow-diamond','hollow-hexagon',
+#'   'hollow-triangle','hollow-triangle-down'
 #' @inheritParams g2
 #' 
 #' @export
-g2Scatter <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Scatter <- function(data, xField, yField, colorField = NULL,
+                      shape = 'circle',
+                      cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
@@ -14,6 +20,7 @@ g2Scatter <- function(data, xField, yField, colorField = NULL, cfg = list(), wid
   
   cfg$xField = xField
   cfg$yField = yField
+  cfg$shape = shape
   keep_col = c(xField, yField)
   if (!identical(colorField, character(0))) {
     cfg$colorField = as.character(colorField)
