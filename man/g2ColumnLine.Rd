@@ -9,6 +9,7 @@ g2ColumnLine(
   xField,
   yField1,
   yField2,
+  lineSeriesField = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,7 +19,7 @@ g2ColumnLine(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField1, yField2}{column name in data for aesthetic mapping}
+\item{xField, yField1, yField2, lineSeriesField}{column name in data for aesthetic mapping}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 

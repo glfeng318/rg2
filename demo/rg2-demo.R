@@ -517,6 +517,26 @@ g2ColumnLine(df, year, value, count)
 readline("next <return>:")
 
 df = jsonlite::fromJSON('[
+    { "time": "2019-03", "count": 800, "name": "a", "value": 350 },
+    { "time": "2019-04", "count": 600, "name": "a", "value": 900 },
+    { "time": "2019-05", "count": 400, "name": "a", "value": 300 },
+    { "time": "2019-06", "count": 380, "name": "a", "value": 450 },
+    { "time": "2019-07", "count": 220, "name": "a", "value": 470 },
+    { "time": "2019-03", "count": 750, "name": "b", "value": 350 },
+    { "time": "2019-04", "count": 650, "name": "b", "value": 900 },
+    { "time": "2019-05", "count": 450, "name": "b", "value": 300 },
+    { "time": "2019-06", "count": 400, "name": "b", "value": 450 },
+    { "time": "2019-07", "count": 320, "name": "b", "value": 470 },
+    { "time": "2019-03", "count": 900, "name": "c", "value": 350 },
+    { "time": "2019-04", "count": 600, "name": "c", "value": 900 },
+    { "time": "2019-05", "count": 450, "name": "c", "value": 300 },
+    { "time": "2019-06", "count": 300, "name": "c", "value": 450 },
+    { "time": "2019-07", "count": 200, "name": "c", "value": 470 }
+]')
+g2ColumnLine(df, time, value, count, name)
+readline("next <return>:")
+
+df = jsonlite::fromJSON('[
 { "time": "2019-03", "value": 350, "count": 800, "type": "uv" },
 { "time": "2019-04", "value": 900, "count": 600, "type": "uv" },
 { "time": "2019-05", "value": 300, "count": 400, "type": "uv" },
