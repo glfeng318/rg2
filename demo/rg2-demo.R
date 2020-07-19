@@ -48,9 +48,9 @@ readline("next <return>:")
 
 # Donut
 df = jsonlite::fromJSON('[
- {"type": "分类一","value": 27},
- {"type": "分类二","value": 25},
- {"type": "分类三","value": 18}]')
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
 g2Donut(df, value, type)
 readline("next <return>:")
 
@@ -58,14 +58,14 @@ g2Donut(df, value, type, color=c('#8AD8D3','#02BABC','#FF5D30'))
 readline("next <return>:")
 
 g2Donut(df, value, type, 
-        color=htmlwidgets::JS("(color)=>{if(color==='分类一'){return '#FF5D30';} else {return '#02BABC';}}"))
+        color=htmlwidgets::JS("(color)=>{if(color==='cate1'){return '#FF5D30';} else {return '#02BABC';}}"))
 readline("next <return>:")
 
 g2Pie(df, value, type)
 readline("next <return>:")
 
 g2Pie(df, value, type, 
-      color=htmlwidgets::JS("(color)=>{if(color==='分类一'){return '#FF5D30';} else {return '#02BABC';}}"))
+      color=htmlwidgets::JS("(color)=>{if(color==='cate1'){return '#FF5D30';} else {return '#02BABC';}}"))
 readline("next <return>:")
 
 # Gauge
@@ -106,11 +106,11 @@ readline("next <return>:")
 
 
 df = jsonlite::fromJSON('[
-{ "action": "浏览", "pv": 5000 },
-{ "action": "加购", "pv": 3500 },
-{ "action": "下单", "pv": 2500 },
-{ "action": "支付", "pv": 1500 },
-{ "action": "成交", "pv": 850 }]')
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
 
 # Bar
 g2Bar(df, pv, action)
@@ -130,16 +130,16 @@ g2Funnel(df, action, pv, transpose = TRUE)
 readline("next <return>:")
 
 df = jsonlite::fromJSON('[
-  { "action": "浏览", "pv": 50000, "quarter": "2020Q1" },
-  { "action": "加购", "pv": 35000, "quarter": "2020Q1" },
-  { "action": "下单", "pv": 25000, "quarter": "2020Q1" },
-  { "action": "支付", "pv": 15000, "quarter": "2020Q1" },
-  { "action": "成交", "pv": 11500, "quarter": "2020Q1" },
-  { "action": "浏览", "pv": 80000, "quarter": "2020Q2" },
-  { "action": "加购", "pv": 63000, "quarter": "2020Q2" },
-  { "action": "下单", "pv": 47000, "quarter": "2020Q2" },
-  { "action": "支付", "pv": 24000, "quarter": "2020Q2" },
-  { "action": "成交", "pv": 17500, "quarter": "2020Q2" }
+  { "action": "site view", "pv": 50000, "quarter": "2020Q1" },
+  { "action": "product view", "pv": 35000, "quarter": "2020Q1" },
+  { "action": "add to cart", "pv": 25000, "quarter": "2020Q1" },
+  { "action": "checkout", "pv": 15000, "quarter": "2020Q1" },
+  { "action": "pruchase", "pv": 11500, "quarter": "2020Q1" },
+  { "action": "site view", "pv": 80000, "quarter": "2020Q2" },
+  { "action": "product view", "pv": 63000, "quarter": "2020Q2" },
+  { "action": "add to cart", "pv": 47000, "quarter": "2020Q2" },
+  { "action": "checkout", "pv": 24000, "quarter": "2020Q2" },
+  { "action": "pruchase", "pv": 17500, "quarter": "2020Q2" }
 ]')
 g2Funnel(df, action, pv, quarter)
 readline("next <return>:")
@@ -163,16 +163,16 @@ readline("next <return>:")
 
 # Rose
 df = jsonlite::fromJSON('[
-  {"type": "分类一","value": 27,"user": "用户一"},
-  {"type": "分类二","value": 25,"user": "用户一"},
-  {"type": "分类三","value": 18,"user": "用户一"},
-  {"type": "分类四","value": 15,"user": "用户一"},
-  {"type": "分类五","value": 10,"user": "用户一"},
-  {"type": "分类一","value": 7,"user": "用户二"},
-  {"type": "分类二","value": 5,"user": "用户二"},
-  {"type": "分类三","value": 38,"user": "用户二"},
-  {"type": "分类四","value": 5,"user": "用户二"},
-  {"type": "分类五","value": 20,"user": "用户二"}]')
+  {"type": "cate1","value": 27,"user": "user1"},
+  {"type": "cate2","value": 25,"user": "user1"},
+  {"type": "cate3","value": 18,"user": "user1"},
+  {"type": "cate4","value": 15,"user": "user1"},
+  {"type": "cate5","value": 10,"user": "user1"},
+  {"type": "cate1","value": 7,"user": "user2"},
+  {"type": "cate2","value": 5,"user": "user2"},
+  {"type": "cate3","value": 38,"user": "user2"},
+  {"type": "cate4","value": 5,"user": "user2"},
+  {"type": "cate5","value": 20,"user": "user2"}]')
 g2Rose(head(df, 5), value, type, type)
 readline("next <return>:")
 
@@ -298,13 +298,13 @@ readline("next <return>:")
 
 # Waterfall
 df = jsonlite::fromJSON('[
-{"type": "日用品", "money": 120},
-{"type": "伙食费", "money": 900},
-{"type": "交通费", "money": 200},
-{"type": "水电费", "money": 300},
-{"type": "房租", "money": 1200},
-{"type": "商场消费", "money": 1000},
-{"type": "应酬红包", "money": -2000}]')
+{"type": "type1", "money": 120},
+{"type": "type2", "money": 900},
+{"type": "type3", "money": 200},
+{"type": "type4", "money": 300},
+{"type": "type5", "money": 1200},
+{"type": "type6", "money": 1000},
+{"type": "type7", "money": -2000}]')
 
 g2Waterfall(df, type, money)
 readline("next <return>:")
@@ -324,13 +324,14 @@ readline("next <return>:")
 
 url = 'https://antv-g2plot.gitee.io/zh/examples/data/sales.json'
 df = jsonlite::read_json(url, TRUE)
-g2StepLine(df, 城市,销售额)
+colnames(df) = c('city','sales')
+g2StepLine(df, city, sales)
 readline("next <return>:")
 
-g2StepLine(df, 城市,销售额, interaction='slider')
+g2StepLine(df, city, sales, interaction='slider')
 readline("next <return>:")
 
-g2StepLine(df, 城市,销售额, interaction='scrollbar')
+g2StepLine(df, city, sales, interaction='scrollbar')
 readline("next <return>:")
 
 # RangeBar / RangeColumn
@@ -359,25 +360,25 @@ readline("next <return>:")
 
 # StackedBar / PercentStackedBar
 df = jsonlite::fromJSON('[
-  {"region": "华东","cate": "公司","sales": 1454715.807999998},
-  {"region": "华东","cate": "消费者","sales": 2287358.261999998},
-  {"region": "中南","cate": "公司","sales": 1335665.3239999984},
-  {"region": "中南","cate": "消费者","sales": 2057936.7620000008},
-  {"region": "东北","cate": "公司","sales": 834842.827},
-  {"region": "东北","cate": "消费者","sales": 1323985.6069999991},
-  {"region": "华北","cate": "公司","sales": 804769.4689999995},
-  {"region": "华北","cate": "消费者","sales": 1220430.5610000012},
-  {"region": "西南","cate": "公司","sales": 469341.684},
-  {"region": "西南","cate": "消费者","sales": 677302.8919999995},
-  {"region": "西北","cate": "公司","sales": 253458.1840000001},
-  {"region": "西北","cate": "消费者","sales": 458058.1039999998}
+  {"region": "region1","cate": "cate1","sales": 1454715.807999998},
+  {"region": "region1","cate": "cate2","sales": 2287358.261999998},
+  {"region": "region2","cate": "cate1","sales": 1335665.3239999984},
+  {"region": "region2","cate": "cate2","sales": 2057936.7620000008},
+  {"region": "region3","cate": "cate1","sales": 834842.827},
+  {"region": "region3","cate": "cate2","sales": 1323985.6069999991},
+  {"region": "region4","cate": "cate1","sales": 804769.4689999995},
+  {"region": "region4","cate": "cate2","sales": 1220430.5610000012},
+  {"region": "region5","cate": "cate1","sales": 469341.684},
+  {"region": "region5","cate": "cate2","sales": 677302.8919999995},
+  {"region": "region6","cate": "cate1","sales": 253458.1840000001},
+  {"region": "region6","cate": "cate2","sales": 458058.1039999998}
 ]')
 g2StackedBar(df, sales, region, cate)
 readline("next <return>:")
 
 g2StackedBar(df, sales, region, cate, 
              cfg = list(label=list(visible=TRUE,
-                                   formatter=htmlwidgets::JS("(v) => Math.round(v / 10000) + '万'"))))
+                                   formatter=htmlwidgets::JS("(v) => Math.round(v / 1000) + 'K'"))))
 readline("next <return>:")
 
 g2PercentStackedBar (df, sales, region, cate)
@@ -444,35 +445,32 @@ g2PercentStackedColumn(df, year, value, type, connectedArea = TRUE)
 readline("next <return>:")
 
 df = jsonlite::fromJSON('[
-  {"type": "分类一","value": 27,"user": "用户一"},
-  {"type": "分类二","value": 25,"user": "用户一"},
-  {"type": "分类三","value": 18,"user": "用户一"},
-  {"type": "分类四","value": 15,"user": "用户一"},
-  {"type": "分类五","value": 10,"user": "用户一"},
-  {"type": "分类一","value": 7,"user": "用户二"},
-  {"type": "分类二","value": 5,"user": "用户二"},
-  {"type": "分类三","value": 38,"user": "用户二"},
-  {"type": "分类四","value": 5,"user": "用户二"},
-  {"type": "分类五","value": 20,"user": "用户二"}]')
+  {"type": "cate1","value": 27,"user": "user1"},
+  {"type": "cate2","value": 25,"user": "user1"},
+  {"type": "cate3","value": 18,"user": "user1"},
+  {"type": "cate4","value": 15,"user": "user1"},
+  {"type": "cate5","value": 10,"user": "user1"},
+  {"type": "cate1","value": 7,"user": "user2"},
+  {"type": "cate2","value": 5,"user": "user2"},
+  {"type": "cate3","value": 38,"user": "user2"},
+  {"type": "cate4","value": 5,"user": "user2"},
+  {"type": "cate5","value": 20,"user": "user2"}]')
 g2Treemap(df)
 readline("next <return>:")
 
 # TinyArea
-url = 'https://antv-g2plot.gitee.io/zh/examples/data/oil.json'
-df = jsonlite::read_json(url, TRUE)
-df %>% 
-  filter(country=='北美') %>% 
-  g2TinyArea(date, value)
+g2TinyArea(economics, date, uempmed)
+
 readline("next <return>:")
 
 # Column / TinyColumn
 df = jsonlite::fromJSON('[
-  { "region": "华东", "sales": 4684506.442 },
-  { "region": "中南", "sales": 4137415.0929999948 },
-  { "region": "东北", "sales": 2681567.469000001 },
-  { "region": "华北", "sales": 2447301.017000004 },
-  { "region": "西南", "sales": 1303124.508000002 },
-  { "region": "西北", "sales": 815039.5959999998 }
+  { "region": "region1", "sales": 4684506.442 },
+  { "region": "region2", "sales": 4137415.0929999948 },
+  { "region": "region3", "sales": 2681567.469000001 },
+  { "region": "region4", "sales": 2447301.017000004 },
+  { "region": "region5", "sales": 1303124.508000002 },
+  { "region": "region6", "sales": 815039.5959999998 }
 ]')
 g2Column(df, region, sales)
 readline("next <return>:")

@@ -5,6 +5,7 @@ vignette: >
   %\VignetteIndexEntry{rg2 configuration}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r, include = FALSE}
