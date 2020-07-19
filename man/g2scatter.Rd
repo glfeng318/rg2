@@ -9,6 +9,7 @@ g2Scatter(
   xField,
   yField,
   colorField = NULL,
+  color = NULL,
   shape = "circle",
   cfg = list(),
   width = NULL,
@@ -20,6 +21,8 @@ g2Scatter(
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
 \item{xField, yField, colorField}{column name in data for aesthetic mapping}
+
+\item{color}{points color, overwritten by colorField parameter.}
 
 \item{shape}{default to circle. Optional values: 'circle','square','bowtie','diamond',
 'hexagon','triangle','triangle-down','cross','tick','plus','hyphen','line',

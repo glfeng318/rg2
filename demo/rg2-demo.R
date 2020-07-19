@@ -511,6 +511,64 @@ df = jsonlite::fromJSON('[
   { "year": "1999", "value": 13, "count": 20 }
 ]')
 g2DualLine(df, year, value, count)
+readline("next <return>:")
+
+g2ColumnLine(df, year, value, count)
+readline("next <return>:")
+
+df = jsonlite::fromJSON('[
+{ "time": "2019-03", "value": 350, "count": 800, "type": "uv" },
+{ "time": "2019-04", "value": 900, "count": 600, "type": "uv" },
+{ "time": "2019-05", "value": 300, "count": 400, "type": "uv" },
+{ "time": "2019-06", "value": 450, "count": 380, "type": "uv" },
+{ "time": "2019-07", "value": 470, "count": 220, "type": "uv" },
+{ "time": "2019-03", "value": 220, "count": 800, "type": "bill" },
+{ "time": "2019-04", "value": 300, "count": 600, "type": "bill" },
+{ "time": "2019-05", "value": 250, "count": 400, "type": "bill" },
+{ "time": "2019-06", "value": 220, "count": 380, "type": "bill" },
+{ "time": "2019-07", "value": 362, "count": 220, "type": "bill" }
+]')
+g2StackedColumnLine(df, time, value, count, type)
+readline("next <return>:")
+g2GroupedColumnLine(df, time, value, count, type)
+readline("next <return>:")
+
+
+df = jsonlite::fromJSON('[
+    {"time":"2019-03","value":350,"type":"uv","count":800,"name":"a"},
+    {"time":"2019-03","value":350,"type":"uv","count":900,"name":"c"},
+    {"time":"2019-03","value":350,"type":"uv","count":750,"name":"b"},
+    {"time":"2019-03","value":220,"type":"bill","count":800,"name":"a"},
+    {"time":"2019-03","value":220,"type":"bill","count":900,"name":"c"},
+    {"time":"2019-03","value":220,"type":"bill","count":750,"name":"b"},
+    {"time":"2019-04","value":900,"type":"uv","count":600,"name":"a"},
+    {"time":"2019-04","value":900,"type":"uv","count":650,"name":"b"},
+    {"time":"2019-04","value":900,"type":"uv","count":600,"name":"c"},
+    {"time":"2019-04","value":300,"type":"bill","count":600,"name":"a"},
+    {"time":"2019-04","value":300,"type":"bill","count":650,"name":"b"},
+    {"time":"2019-04","value":300,"type":"bill","count":600,"name":"c"},
+    {"time":"2019-05","value":300,"type":"uv","count":400,"name":"a"},
+    {"time":"2019-05","value":300,"type":"uv","count":450,"name":"b"},
+    {"time":"2019-05","value":300,"type":"uv","count":450,"name":"c"},
+    {"time":"2019-05","value":250,"type":"bill","count":400,"name":"a"},
+    {"time":"2019-05","value":250,"type":"bill","count":450,"name":"b"},
+    {"time":"2019-05","value":250,"type":"bill","count":450,"name":"c"},
+    {"time":"2019-06","value":450,"type":"uv","count":380,"name":"a"},
+    {"time":"2019-06","value":450,"type":"uv","count":400,"name":"b"},
+    {"time":"2019-06","value":450,"type":"uv","count":300,"name":"c"},
+    {"time":"2019-06","value":220,"type":"bill","count":380,"name":"a"},
+    {"time":"2019-06","value":220,"type":"bill","count":400,"name":"b"},
+    {"time":"2019-06","value":220,"type":"bill","count":300,"name":"c"},
+    {"time":"2019-07","value":470,"type":"uv","count":220,"name":"a"},
+    {"time":"2019-07","value":470,"type":"uv","count":320,"name":"b"},
+    {"time":"2019-07","value":470,"type":"uv","count":200,"name":"c"},
+    {"time":"2019-07","value":362,"type":"bill","count":220,"name":"a"},
+    {"time":"2019-07","value":362,"type":"bill","count":320,"name":"b"},
+    {"time":"2019-07","value":362,"type":"bill","count":200,"name":"c"}
+]')
+g2StackedColumnLine(df, time, value, count, type, name)
+readline("next <return>:")
+g2GroupedColumnLine(df, time, value, count, type, name)
 
 cat("There's more coming next release.")
 

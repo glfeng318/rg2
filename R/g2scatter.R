@@ -3,6 +3,7 @@
 #' Scatter chart
 #' 
 #' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param color points color, overwritten by colorField parameter.
 #' @param shape default to circle. Optional values: 'circle','square','bowtie','diamond',
 #'   'hexagon','triangle','triangle-down','cross','tick','plus','hyphen','line',
 #'   'hollow-circle','hollow-square','hollow-bowtie','hollow-diamond','hollow-hexagon',
@@ -11,16 +12,21 @@
 #' 
 #' @export
 g2Scatter <- function(data, xField, yField, colorField = NULL,
-                      shape = 'circle',
+                      color = NULL, shape = 'circle',
                       cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
   colorField = as.character(substitute(colorField))  # NULL returns character(0)
   
+  cfg$shape = shape
+  if (!is.null(color)) {
+    cfg$color = color
+  }
+  
   cfg$xField = xField
   cfg$yField = yField
-  cfg$shape = shape
+  
   keep_col = c(xField, yField)
   if (!identical(colorField, character(0))) {
     cfg$colorField = as.character(colorField)

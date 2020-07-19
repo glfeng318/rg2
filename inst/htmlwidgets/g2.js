@@ -143,6 +143,15 @@ HTMLWidgets.widget({
           case 'DualLine':
             chart = new G2Plot.DualLine(el.id, x.cfg);
             break;
+          case 'ColumnLine':
+            chart = new G2Plot.ColumnLine(el.id, x.cfg);
+            break;
+          case 'StackedColumnLine':
+            chart = new G2Plot.StackedColumnLine(el.id, x.cfg);
+            break;
+          case 'GroupedColumnLine':
+            chart = new G2Plot.GroupedColumnLine(el.id, x.cfg);
+            break;
           default:
             // code
         }
