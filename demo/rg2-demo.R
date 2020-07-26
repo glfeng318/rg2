@@ -24,6 +24,7 @@ g2Bullet(df,
          rangeMax = 100,
          cfg=list(title=list(visible=TRUE,text='Bullet chart'),
                   rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A')))
+
 readline("next <return>:")
 
 # density

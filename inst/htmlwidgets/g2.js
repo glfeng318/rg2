@@ -5,6 +5,7 @@ HTMLWidgets.widget({
     var chart;
     return {
       renderValue: function(x) {
+        window.cfg = x.cfg;
         switch (x.type) {
           case 'Bar':
             chart = new G2Plot.Bar(el.id, x.cfg);
@@ -154,6 +155,7 @@ HTMLWidgets.widget({
             break;
           default:
             // code
+            break;
         }
         chart.render();
       }
