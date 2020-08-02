@@ -8,6 +8,47 @@
 #' @param transpose `TRUE` for horizontal funnel, and `FALSE` for vertical funnel
 #' @param compareField Required by compare funnel. specified values will overwrite the dynamicHeight to `FALSE`.
 #'   you can configure the compare text style in `cfg` parameter with `compareText=list(...)`
+#' 
+#' @section percentage configuration:
+#' In the funnel chart, the conversion rate display consists of three parts: 
+#' \enumerate{
+#'   \item fixed line
+#'   \item fixed text
+#'   \item numeric text
+#' }
+#'  
+#'  The style and content can be configured by `line`, `text` and `value` respectively.
+#'  
+#'  See example for a full configuration of percentage.
+#'
+#' @examples 
+#'  \dontrun{
+#'  
+#'  cfg = list(
+#'    percentage = list(
+#'      visible = TRUE,
+#'      offsetX = 40,
+#'      offsetY = 40,
+#'      spacing = 4,
+#'      line = list(
+#'        visible = TRUE,
+#'        style = list()  # lineStyle
+#'      ),
+#'      text = list(
+#'        visible = TRUE,
+#'        content = 'conversion rate'
+#'        style = list()  # textStyle
+#'      ),
+#'      value = list(
+#'        visible = TRUE,
+#'        style = list()  # textStyle
+#'      )
+#'    )
+#'  )
+#'  
+#'  }
+#' 
+#' 
 #' @inheritParams g2
 #' 
 #' @export
@@ -18,6 +59,9 @@ g2Funnel <- function(data, xField, yField, compareField = NULL,
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
   compareField = as.character(substitute(compareField))
+  
+  # param?
+  cfg$percentage = list(text=list(content='conversion rate'))
   
   cfg$xField = xField
   cfg$yField = yField

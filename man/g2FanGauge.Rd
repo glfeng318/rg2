@@ -9,6 +9,8 @@ g2FanGauge(
   range,
   min = 0,
   max = 1,
+  color = NULL,
+  rangeSize = 70,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -20,6 +22,10 @@ g2FanGauge(
 \item{range}{color range of the gauge, it separate the gauge to several parts by color, example: \code{range=c(0,25,50,75,100)}}
 
 \item{min, max}{minimum and maximum value of the chart}
+
+\item{color}{color vector, support gradient color: `c('l(0) 0:#5d7cef 1:#e35767')`}
+
+\item{rangeSize}{The width of gauge}
 
 \item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
 

@@ -13,7 +13,8 @@
 #' 
 #' @examples
 #' \dontrun{
-# basic example for one sample
+#' 
+#' # basic example for one sample
 #' df = tibble(title='satisfaction', 
 #'             measures=83,
 #'             targets=90

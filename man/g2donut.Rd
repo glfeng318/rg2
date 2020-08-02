@@ -9,7 +9,7 @@ g2Donut(
   angleField,
   colorField = NULL,
   radius = 0.8,
-  innerRadius = 0.8,
+  innerRadius = 0.6,
   color = NULL,
   cfg = list(),
   width = NULL,

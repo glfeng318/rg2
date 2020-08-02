@@ -10,7 +10,7 @@
 #' 
 #' @export
 g2Donut <- function(data, angleField, colorField = NULL, 
-                    radius = 0.8, innerRadius = 0.8, 
+                    radius = 0.8, innerRadius = 0.6, 
                     color = NULL,
                     cfg = list(), width = NULL, height = NULL) {
   # prep cfg

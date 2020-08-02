@@ -39,3 +39,46 @@ you can configure the compare text style in `cfg` parameter with `compareText=li
 \description{
 Funnel chart
 }
+\section{percentage configuration}{
+
+In the funnel chart, the conversion rate display consists of three parts: 
+\enumerate{
+  \item fixed line
+  \item fixed text
+  \item numeric text
+}
+ 
+ The style and content can be configured by `line`, `text` and `value` respectively.
+ 
+ See example for a full configuration of percentage.
+}
+
+\examples{
+ \dontrun{
+ 
+ cfg = list(
+   percentage = list(
+     visible = TRUE,
+     offsetX = 40,
+     offsetY = 40,
+     spacing = 4,
+     line = list(
+       visible = TRUE,
+       style = list()  # lineStyle
+     ),
+     text = list(
+       visible = TRUE,
+       content = 'conversion rate'
+       style = list()  # textStyle
+     ),
+     value = list(
+       visible = TRUE,
+       style = list()  # textStyle
+     )
+   )
+ )
+ 
+ }
+
+
+}

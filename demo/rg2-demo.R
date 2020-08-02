@@ -19,7 +19,7 @@ df = tibble(
   measures = c(83,13,45,83),
   targets = c(90,90,90,90),
   ranges = rep(list(ranges = c(0,0.25,0.5,0.75,1)),4)
-) %>% mutate_at(all_of(c('measures','targets','ranges')), as.list)
+)
 g2Bullet(df, 
          rangeMax = 100,
          cfg=list(title=list(visible=TRUE,text='Bullet chart'),
@@ -61,6 +61,8 @@ cfg = list(
 )
 df %>% 
   g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg = cfg)
+readline("next <return>:")
+
 # density
 df = data.frame(x = rnorm(1000, mean = 50, sd = 5))
 g2Density(df, x, binWidth = 2)
@@ -128,7 +130,7 @@ readline("next <return>:")
 g2FanGauge(value=0.8, range = c(0, 0.8))
 readline("next <return>:")
 
-g2FanGauge(value=0.35, range=c(0, 0.35))
+g2FanGauge(value=0.35, range=c(0, 0.35), rangeSize = 50)
 readline("next <return>:")
 
 g2FanGauge(value=0.35, range=c(0, 0.35), cfg=cfg)

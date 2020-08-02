@@ -1,5 +1,5 @@
 ---
-title: "Row Orientation"
+title: "rg2 demo"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -8,6 +8,7 @@ output:
 
 ```{r init, include=FALSE}
 library(rg2)
+library(tibble)
 library(dplyr)
 
 data("economics", package="ggplot2")
@@ -67,34 +68,33 @@ economics_long %>%
   filter(variable %in% c('psavert','uempmed')) %>% 
   g2Line('date','value','variable',cfg=list(theme='dark'))
 ```
+
 Row{data-height=200}
 -------------------------------------
 
 ### 
     
 ```{r}
-data.frame(
+tibble(
   title='satisfaction',
-  measures=list(measures=83),
-  targets=list(targets=90)
+  measures=83,
+  targets=90
 ) %>% 
-  mutate_at(all_of(c('measures','targets')), as.list) %>% 
   g2Bullet(rangeMax = 100)
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
-data.frame(
+tibble(
   title='satisfaction',
-  measures=list(measures=83),
-  targets=list(targets=90)
+  measures=83,
+  targets=90
 ) %>% 
-  mutate_at(all_of(c('measures','targets')), as.list) %>% 
   g2Bullet(rangeMax = 100)
 ```
 
-Row
+Row{data-height=250}
 -------------------------------------
 
 ### 
@@ -106,18 +106,21 @@ tibble(
   targets=list(targets=90),
   ranges=list(ranges=c(0, 0.6, 0.9, 1))
 ) %>%
-  g2Bullet(rangeMax=100, cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C')))
+  g2Bullet(rangeMax=100, 
+           cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C')))
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
-tibble(title='satisfaction', 
-       measures=list(measures=83),
-       targets=list(targets=90),
-       ranges=list(ranges=c(0, 0.6, 0.9, 1))
+tibble(
+  title='satisfaction', 
+  measures=list(measures=83),
+  targets=list(targets=90),
+  ranges=list(ranges=c(0, 0.6, 0.9, 1))
 ) %>%
-  g2Bullet(rangeMax=100, cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C')))
+  g2Bullet(rangeMax=100, 
+           cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C')))
 ```
 
 Row{data-height=300}
@@ -153,96 +156,773 @@ tibble(
              rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A')))
 ```
 
+Row
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::read_json('https://antv-g2plot.gitee.io/zh/examples/data/life-expectancy.json',TRUE)
+cfg = list(
+  interactions = list(
+    list(
+      type ='timeline',
+      cfg = list(
+        field =  'year',
+        key = 'country',
+        loop = TRUE,
+        speed = 0.5
+      )
+    )
+  ),
+  legend = list(visible=FALSE),
+  xAxis = list(max=100000,min=300,type='log'),
+  yAxis = list(max=100,min=0),
+  pointSize=c(4, 80),
+  forceFit=TRUE,
+  label = list(visible=TRUE,field='country'),
+  color = c(
+    '#5B8FF9',
+    '#5AD8A6',
+    '#f03838',
+    '#35d1d1',
+    '#E8684A',
+    '#6DC8EC',
+    '#9270CA',
+    '#FF9D4D',
+    '#F6BD16',
+    '#FF99C3'
+  )
+)
+df %>% 
+  g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg = cfg)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+url = 'https://antv-g2plot.gitee.io/zh/examples/data/life-expectancy.json'
+df = jsonlite::read_json(url, TRUE)
+cfg = list(
+  interactions = list(
+    list(type ='timeline',
+         cfg = list(field =  'year',key = 'country',loop = TRUE,speed = 0.5)
+    )
+  ),
+  legend = list(visible=FALSE),
+  xAxis = list(max=100000,min=300,type='log'),
+  yAxis = list(max=100,min=0),
+  pointSize=c(4, 80),
+  forceFit=TRUE,
+  label = list(visible=TRUE,field='country'),
+  color = c(
+    '#5B8FF9','#5AD8A6','#f03838','#35d1d1','#E8684A',
+    '#6DC8EC','#9270CA','#FF9D4D','#F6BD16','#FF99C3'
+  )
+)
+df %>% 
+  g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg = cfg)
+
+```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+df = tibble(x = rnorm(1000, mean = 50, sd = 5))
+g2Density(df, x, binWidth = 2)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = tibble(x = rnorm(1000, mean = 50, sd = 5))
+g2Density(df, x, binWidth = 2)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = tibble(x=rnorm(1000, mean = 50, sd=5))
+g2Histogram(df, x, binWidth = 2)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = tibble(x=rnorm(1000, mean = 50, sd=5))
+g2Histogram(df, x, binWidth = 2)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+url = 'https://antv-g2plot.gitee.io/zh/examples/data/jobpaying.json'
+df = jsonlite::read_json(url,TRUE)
+g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed')
+readline("next <return>:")
+
+g2DensityHeatmap(
+  df, 
+  xField = 'prob',
+  yField = 'Average annual wage',
+  colorField = 'numbEmployed',
+  radius=15,
+  color=c('#295599', '#3e94c0', '#78c6d0', '#b4d9e4', '#fffef0', '#f9cdac', '#ec7d92', '#bc448c'))
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+url = 'https://antv-g2plot.gitee.io/zh/examples/data/jobpaying.json'
+df = jsonlite::read_json(url,TRUE)
+g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed')
+readline("next <return>:")
+
+g2DensityHeatmap(
+  df, 
+  xField = 'prob',
+  yField = 'Average annual wage',
+  colorField = 'numbEmployed',
+  radius=15,
+  color=c('#295599', '#3e94c0', '#78c6d0', '#b4d9e4', '#fffef0', '#f9cdac', '#ec7d92', '#bc448c'))
+
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Donut(df, value, type)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Donut(df, value, type)
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Donut(df, value, type, color=c('#8AD8D3','#02BABC','#FF5D30'))
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Donut(df, value, type, color=c('#8AD8D3','#02BABC','#FF5D30'))
+```
+
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Donut(df, value, type, 
+        color=htmlwidgets::JS("(color)=>{if(color==='cate1'){return '#FF5D30';} else {return '#02BABC';}}"))
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Donut(df, value, type, 
+        color=htmlwidgets::JS("(t)=>{if(t==='cate1'){return '#FF5D30';} else {return '#02BABC';}}"))
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Pie(df, value, type)
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = jsonlite::fromJSON('[
+ {"type": "cate1","value": 27},
+ {"type": "cate2","value": 25},
+ {"type": "cate3","value": 18}]')
+g2Pie(df, value, type)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+cfg = list(statistic=list(visible=TRUE,text='Good',color='#43E089'))
+g2Gauge(50, range = c(0,25,75,100), min=0, max=100,cfg=cfg)
+
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+cfg = list(statistic=list(visible=TRUE,text='Good',color='#43E089'))
+g2Gauge(50, range = c(0,25,75,100), min=0, max=100,cfg=cfg)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+g2Gauge(50, range = c(  25,75,100), min=0, max=100)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+g2Gauge(50, range = c(  25,75,100), min=0, max=100)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+g2Gauge(85, range = c(  25,75,100), min=0, max=100, cfg=cfg)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+g2Gauge(85, range = c(  25,75,100), min=0, max=100, cfg=cfg)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+g2MeterGauge(70, range = c(0,25,75,100), min=0, max=100)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+g2MeterGauge(70, range = c(0,25,75,100), min=0, max=100)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+g2MeterGauge(45, range = c(  25,75,100), min=0, max=100)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+g2MeterGauge(45, range = c(  25,75,100), min=0, max=100)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+g2MeterGauge(75, range = c(  25,75,100), min=0, max=100, cfg=cfg)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+g2MeterGauge(75, range = c(  25,75,100), min=0, max=100, cfg=cfg)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+g2FanGauge(value=0.8, range = c(0, 0.8), rangeSize = 35)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+g2FanGauge(value=0.8, range = c(0, 0.8), rangeSize = 35)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+cfg = list(statistic=list(visible=TRUE,text='75%',color='#43E089'),
+           format=htmlwidgets::JS("(v) => {return v + '%';}"))
+g2FanGauge(value=75, range=c(0, 75), min=0, max=100, rangeSize = 35,  cfg=cfg)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+cfg = list(statistic=list(visible=TRUE,text='75%',color='#43E089'),
+           format=htmlwidgets::JS("(v) => {return v + '%';}"))
+g2FanGauge(value=75, range=c(0, 75), min=0, max=100, rangeSize = 35,  cfg=cfg)
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
+g2Bar(df, pv, action)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = jsonlite::fromJSON('[
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
+g2Bar(df, pv, action)
+```
+
+Row{data-height=470}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
+g2Bar(df, pv, action, cfg = list(conversionTag=list(visible=TRUE)))
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+df = jsonlite::fromJSON('[
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
+g2Bar(df, pv, action, cfg = list(conversionTag=list(visible=TRUE)))
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+df = jsonlite::fromJSON('[
+{ "action": "site view", "pv": 5000 },
+{ "action": "product view", "pv": 3500 },
+{ "action": "add to cart", "pv": 2500 },
+{ "action": "checkout", "pv": 1500 },
+{ "action": "pruchase", "pv": 850 }]')
+g2Funnel(df, action, pv)
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
 ```
     
 ### 
 
 ```{r eval=FALSE,echo=TRUE}
 ```
+
 Row{data-height=300}
 -------------------------------------
 
 ### 
     
 ```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+
 ```
     
 ### 
