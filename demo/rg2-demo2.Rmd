@@ -1,0 +1,251 @@
+---
+title: "Row Orientation"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+---
+
+```{r init, include=FALSE}
+library(rg2)
+library(dplyr)
+
+data("economics", package="ggplot2")
+data("economics_long", package="ggplot2")
+```
+
+    
+Row{data-height=300}
+-------------------------------------
+    
+### 
+    
+```{r}
+g2Line(economics,date,uempmed)
+```
+ 
+### 
+    
+```{r eval=FALSE,echo=TRUE}
+g2Line(economics,date,uempmed)
+
+``` 
+
+Row{data-height=300}
+-------------------------------------
+    
+### 
+    
+```{r}
+economics_long %>% 
+  filter(variable %in% c('psavert','uempmed')) %>% 
+  g2Line('date','value','variable')
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+economics_long %>% 
+  filter(variable %in% c('psavert','uempmed')) %>% 
+  g2Line(df_tmp,'date','value','variable')
+```
+Row{data-height=300}
+-------------------------------------
+    
+### 
+    
+```{r}
+economics_long %>% 
+  filter(variable %in% c('psavert','uempmed')) %>% 
+  g2Line('date','value','variable',cfg=list(theme='dark'))
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+economics_long %>% 
+  filter(variable %in% c('psavert','uempmed')) %>% 
+  g2Line('date','value','variable',cfg=list(theme='dark'))
+```
+Row{data-height=200}
+-------------------------------------
+
+### 
+    
+```{r}
+data.frame(
+  title='satisfaction',
+  measures=list(measures=83),
+  targets=list(targets=90)
+) %>% 
+  mutate_at(all_of(c('measures','targets')), as.list) %>% 
+  g2Bullet(rangeMax = 100)
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+data.frame(
+  title='satisfaction',
+  measures=list(measures=83),
+  targets=list(targets=90)
+) %>% 
+  mutate_at(all_of(c('measures','targets')), as.list) %>% 
+  g2Bullet(rangeMax = 100)
+```
+
+Row
+-------------------------------------
+
+### 
+    
+```{r}
+tibble(
+  title='satisfaction', 
+  measures=list(measures=83),
+  targets=list(targets=90),
+  ranges=list(ranges=c(0, 0.6, 0.9, 1))
+) %>%
+  g2Bullet(rangeMax=100, cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C')))
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+tibble(title='satisfaction', 
+       measures=list(measures=83),
+       targets=list(targets=90),
+       ranges=list(ranges=c(0, 0.6, 0.9, 1))
+) %>%
+  g2Bullet(rangeMax=100, cfg=list(rangeColors=c('#EE484C', '#F4A53C', '#84C14C')))
+```
+
+Row{data-height=300}
+-------------------------------------
+    
+### 
+    
+```{r}
+tibble(
+  title = c('A','B','C','D'),
+  measures = c(83,13,45,83),
+  targets = c(90,90,90,90),
+  ranges = rep(list(ranges = c(0,0.25,0.5,0.75,1)),4)
+) %>% mutate_at(all_of(c('measures','targets','ranges')), as.list) %>% 
+  g2Bullet(
+    rangeMax = 100,
+    cfg=list(title=list(visible=TRUE,text='Bullet chart'),
+             rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A')))
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+tibble(
+  title = c('A','B','C','D'),
+  measures = c(83,13,45,83),
+  targets = c(90,90,90,90),
+  ranges = rep(list(ranges = c(0,0.25,0.5,0.75,1)),4)
+) %>% mutate_at(all_of(c('measures','targets','ranges')),as.list) %>% 
+  g2Bullet(
+    rangeMax = 100,
+    cfg=list(title=list(visible=TRUE,text='Bullet chart'),
+             rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A')))
+```
+
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```
+Row{data-height=300}
+-------------------------------------
+
+### 
+    
+```{r}
+```
+    
+### 
+
+```{r eval=FALSE,echo=TRUE}
+```

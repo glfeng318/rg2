@@ -56,13 +56,13 @@ cfg = list(
     '#9270CA',
     '#FF9D4D',
     '#F6BD16',
-    '#FF99C3',
+    '#FF99C3'
   )
 )
 df %>% 
-  g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg= cfg)
+  g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg = cfg)
 # density
-df = data.frame(x=rnorm(1000, mean = 50, sd=5))
+df = data.frame(x = rnorm(1000, mean = 50, sd = 5))
 g2Density(df, x, binWidth = 2)
 readline("next <return>:")
 
