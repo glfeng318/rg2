@@ -6,6 +6,7 @@ HTMLWidgets.widget({
     return {
       renderValue: function(x) {
         window.cfg = x.cfg;
+        $(el).empty();  // clear out the previous chart, fix #3
         switch (x.type) {
           case 'Bar':
             chart = new G2Plot.Bar(el.id, x.cfg);
