@@ -7,8 +7,6 @@
 
 rg2 is a wrapper of [G2Plot](https://g2plot.antv.vision/) for R.
 
-![cover](man/figures/cover.png)
-
 ## Installation
 
 ```
@@ -24,7 +22,6 @@ data(mpg, package = 'ggplot2')
 
 g2Scatter(mpg, displ, hwy, colorField = class)
 ```
-<img src="man/figures/quickstart-0.png" width="640" />
 
 Configuration example:
 
@@ -39,16 +36,8 @@ df = jsonlite::fromJSON('[
 { "action": "pruchase", "pv": 850 }]')
 
 cfg = list(
-  title = list(
-    visible=TRUE, text='shopping funnel'
-  ),
-  description = list(
-    visible=TRUE, text='site view -> product view -> add to cart -> checkout -> pruchase'
-  ),
   conversionTag = list(visible=TRUE)
 )
 
 g2Bar(df, pv, action, cfg = cfg)
 ```
-
-<img src="man/figures/quickstart-1.png" width="640" />
