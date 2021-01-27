@@ -1,5 +1,5 @@
 
-[](https://g2plot.antv.vision/en/docs/manual/upgrade/)
+[G2Plot 2.0 Upgrade guide](https://g2plot.antv.vision/en/docs/manual/upgrade/)
 
 
 ## Abandoned charts
@@ -33,12 +33,12 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 - [x] forceFit     deprecated, use `autoFit` instead
 - [x] responsive   deprecated, built-in
 - [x] guideLine    deprecated，use `annotations` instead
-- [] label	       label.type may has compatibility issues, if the error is reported, modify/remove the type configuration
-- [] slider	       Syntax change
-- [] scrollbar	   Syntax change
-- [] events	       Syntax change
-- [] visible   	   Syntax change
-- [] animation	   Syntax change
+- [ ] label	       label.type may has compatibility issues, if the error is reported, modify/remove the type configuration
+- [ ] slider	       Syntax change
+- [ ] scrollbar	   Syntax change
+- [ ] events	       Syntax change
+- [ ] visible   	   Syntax change
+- [ ] animation	   Syntax change
 
 
 ## Private configuration
