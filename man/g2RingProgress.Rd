@@ -11,7 +11,7 @@ g2RingProgress(percent, color = NULL, cfg = list(), width = 200, height = 50)
 
 \item{color}{The color of chart}
 
-\item{cfg}{configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 
 \item{width}{width of the chart}
 

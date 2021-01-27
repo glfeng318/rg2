@@ -2,32 +2,27 @@
 #' 
 #' Gauge chart
 #' 
-#' @param value Numeric value
-#' @param range color range of the gauge, it separate the gauge to several parts by color, example: \code{range=c(0,25,50,75,100)}
-#' @param min,max minimum and maximum value of the chart
-#' @param color color vector, support gradient color: `c('l(0) 0:#5d7cef 1:#e35767')`
-#' @param rangeSize The width of gauge
+#' @param percent percent value [0, 1]
+#' @param radius,innerRadius default 0.95, 0.9
+#' @param startAngle,endAngle default `(-7/6)*pi`, `(1/6)*pi`
+#' @param range a list contains `ticks`(numeric vector [0, 1]) and `color`(color string vector)
+#' @param indicator NULL to disable indicator, or a list contains `pointer` and `pin`, which both have the same style configuration \url{https://g2plot.antv.vision/en/docs/api/plots/gauge#indicator}
 #' @inheritParams g2
 #' @family gauge
 #' 
 #' @section TODO: make statistic as parameter
 #' 
 #' @export
-g2Gauge <- function(value, range, min=0, max=1, 
-                    color = NULL, rangeSize=24,
+g2Gauge <- function(percent, radius=0.95, innerRadius=0.9, startAngle=(-7/6)*pi, endAngle=(1/6)*pi, 
+                    range=list(),indicator=list(),
                     cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  cfg$value = value
-  cfg$min = min
-  cfg$max = max
+  cfg$percent = percent
+  cfg$radius = radius
+  cfg$innerRadius = innerRadius
+  cfg$startAngle = startAngle
+  cfg$endAngle = endAngle
   cfg$range = range
-  cfg$rangeSize = rangeSize
-  if (!is.null(color)) {
-    cfg$color = ifelse(length(color)==1, list(color), color)
-    if (length(range) != length(color)) {
-      warning('The length of color vector should match the color-range separated by param range.')
-    }
-  }
   # pass the data and settings using 'x'
   x <- list(
     type = 'Gauge',

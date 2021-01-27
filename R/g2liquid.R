@@ -2,16 +2,21 @@
 #' 
 #' Liquid chart
 #' 
-#' @param value,min,max The current value / minimum value / maximum value
+#' @param percent percent value 
+#' @param radius radius [0, 1]
 #' @param color The color of liquid chart
+#' @param outline default `list(border=2, distance=0)`
+#' @param wave default `list(count=3, length=192)`
 #' @inheritParams g2
 #' 
 #' @export
-g2Liquid <- function(value, min, max, color = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Liquid <- function(percent, radius=0.9, color = NULL, 
+                     outline=list(border=2, distance=0), wave=list(count=3, length=192),
+                     cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  cfg$value = value
-  cfg$min = min
-  cfg$max = max
+  cfg$percent = percent
+  cfg$outline = outline
+  cfg$outline = outline
   if (!is.null(color)) {
     cfg$color = color
   }

@@ -5,7 +5,7 @@ dependencies:
     script:
       - jquery.slim.min.js
   - name: g2plot
-    version: 1.1.7
-    src: htmlwidgets/lib/g2plot-1.1.7
+    version: 2.3.9
+    src: htmlwidgets/lib/g2plot-2.3.9
     script: 
       - g2plot.min.js

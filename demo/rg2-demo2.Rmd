@@ -162,40 +162,7 @@ Row
 ### 
     
 ```{r}
-df = jsonlite::read_json('https://antv-g2plot.gitee.io/zh/examples/data/life-expectancy.json',TRUE)
-cfg = list(
-  interactions = list(
-    list(
-      type ='timeline',
-      cfg = list(
-        field =  'year',
-        key = 'country',
-        loop = TRUE,
-        speed = 0.5
-      )
-    )
-  ),
-  legend = list(visible=FALSE),
-  xAxis = list(max=100000,min=300,type='log'),
-  yAxis = list(max=100,min=0),
-  pointSize=c(4, 80),
-  forceFit=TRUE,
-  label = list(visible=TRUE,field='country'),
-  color = c(
-    '#5B8FF9',
-    '#5AD8A6',
-    '#f03838',
-    '#35d1d1',
-    '#E8684A',
-    '#6DC8EC',
-    '#9270CA',
-    '#FF9D4D',
-    '#F6BD16',
-    '#FF99C3'
-  )
-)
-df %>% 
-  g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg = cfg)
+cat('remove Bubble chart')
 ```
     
 ### 

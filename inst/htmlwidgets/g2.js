@@ -6,7 +6,7 @@ HTMLWidgets.widget({
     return {
       renderValue: function(x) {
         window.cfg = x.cfg;
-        $(el).empty();  // clear out the previous chart, fix #3
+        $(el).empty();  // clear out the previous chart, fixed #3
         switch (x.type) {
           case 'Bar':
             chart = new G2Plot.Bar(el.id, x.cfg);
@@ -14,53 +14,23 @@ HTMLWidgets.widget({
           case 'Line':
             chart = new G2Plot.Line(el.id, x.cfg);
             break;
-          case 'StepLine':
-            chart = new G2Plot.StepLine(el.id, x.cfg);
-            break;
           case 'Treemap':
             chart = new G2Plot.Treemap(el.id, x.cfg);
             break;
           case 'Bar':
             chart = new G2Plot.Bar(el.id, x.cfg);
             break;
-          case 'StackedBar':
-            chart = new G2Plot.StackedBar(el.id, x.cfg);
-            break;
           case 'GroupedBar':
             chart = new G2Plot.GroupedBar(el.id, x.cfg);
-            break;
-          case 'PercentStackedBar':
-            chart = new G2Plot.PercentStackedBar(el.id, x.cfg);
-            break;
-          case 'RangeBar':
-            chart = new G2Plot.RangeBar(el.id, x.cfg);
             break;
           case 'Area':
             chart = new G2Plot.Area(el.id, x.cfg);
             break;
-          case 'StackedArea':
-            chart = new G2Plot.StackedArea(el.id, x.cfg);
-            break;
-          case 'PercentStackedArea':
-            chart = new G2Plot.PercentStackedArea(el.id, x.cfg);
-            break;
           case 'Column':
             chart = new G2Plot.Column(el.id, x.cfg);
             break;
-          case 'GroupedColumn':
-            chart = new G2Plot.GroupedColumn(el.id, x.cfg);
-            break;
-          case 'StackedColumn':
-            chart = new G2Plot.StackedColumn(el.id, x.cfg);
-            break;
           case 'StackedColumnLabel':
             chart = new G2Plot.StackedColumnLabel(el.id, x.cfg);
-            break;
-          case 'RangeColumn':
-            chart = new G2Plot.RangeColumn(el.id, x.cfg);
-            break;
-          case 'PercentStackedColumn':
-            chart = new G2Plot.PercentStackedColumn(el.id, x.cfg);
             break;
           case 'Pie':
             chart = new G2Plot.Pie(el.id, x.cfg);
@@ -98,17 +68,11 @@ HTMLWidgets.widget({
           case 'Density':
             chart = new G2Plot.Density(el.id, x.cfg);
             break;
-          case 'Donut':
-            chart = new G2Plot.Donut(el.id, x.cfg);
-            break;
           case 'Waterfall':
             chart = new G2Plot.Waterfall(el.id, x.cfg);
             break;
           case 'Scatter':
             chart = new G2Plot.Scatter(el.id, x.cfg);
-            break;
-          case 'Bubble':
-            chart = new G2Plot.Bubble(el.id, x.cfg);
             break;
           case 'Bullet':
             chart = new G2Plot.Bullet(el.id, x.cfg);
@@ -140,19 +104,6 @@ HTMLWidgets.widget({
             break;
           case 'RingProgress':
             chart = new G2Plot.RingProgress(el.id, x.cfg);
-            break;
-          // combine chart
-          case 'DualLine':
-            chart = new G2Plot.DualLine(el.id, x.cfg);
-            break;
-          case 'ColumnLine':
-            chart = new G2Plot.ColumnLine(el.id, x.cfg);
-            break;
-          case 'StackedColumnLine':
-            chart = new G2Plot.StackedColumnLine(el.id, x.cfg);
-            break;
-          case 'GroupedColumnLine':
-            chart = new G2Plot.GroupedColumnLine(el.id, x.cfg);
             break;
           default:
             // code

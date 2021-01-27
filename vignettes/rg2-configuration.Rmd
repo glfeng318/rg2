@@ -253,51 +253,7 @@ cfg = list(
 ```
 
 ## state
-## guideLine
 
-You can setup one or more guidelines at a time.
-
-```{r eval=FALSE}
-cfg = list(
-  guideLine = list(list(start = c('2010-01-01', 100),
-                     end = c('2010-01-10', 50),
-                     lineStyle = list(),
-                     text = list()
-                     ),
-                list(start = c('0%','50%'),
-                     end = c('100%','80%')),
-                list(type = 'mean')
-  )
-)
-```
-
-Full configuration items for guidline:
-
---------------------------------------------------------------
- items        typeof    description
------------- ---------- --------------------------------------
-type          string    Type of guideline with statistical significance.<br>
-                        Optional values: mean, median, min, max  
-
-start         vector    Start position of guideline
-
-end           vector    end position of guideline
-
-lineStyle     list      line style of guideline
-
-text          list      text of guideline.
-                        Items:<br/>
-                        - position: string, The text position, optional values: start, center, end
-                        - content: string, The text
-                        - offsetX: number, offset of text in x axis
-                        - offsetY: number, Offset of text in y axis
-                        - style: list, The __textStyle__ of the text
-You can specify `type` for standar guideline or specified both `start` and `end` for custom guideline. 
-
-Two forms of configuration are supported on `start` and `end` and  they cannot be mixed.
-
-- form 1(original data value): `c('2010-01-01', 100)`, `c(20, 25)`
-- form 2(location percentage of plotted area): `c('50%', '50%')`
 
 ## tooltip
 

@@ -2,57 +2,72 @@
 #'
 #' @param data a data object.Currently supported object is data.frame, 
 #'    data should only contains the necessary data for chart (reduce json/data transmission)
-#' @param cfg configuration of G2Plot. See \url{https://antv-g2plot.gitee.io/zh/examples/general/axis} and \url{https://antv-g2plot.gitee.io/zh/docs/manual/graphic-style} for more details. 
+#' @param cfg configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details. 
 #' @param width width of the chart
 #' @param height height of the chart
 #' @name g2
 NULL
 
-#' base configuration class
+#' Base configuration
+#' \url{https://g2plot.antv.vision/en/docs/api/plots/bar}
 #' 
-#' @section width and height:
-#' Both width and height are default to 400
-#' 
-#' @section forceFit:
-#' if `TRUE`, the default, width and height in cfg will be ignored
-#' 
-#' @section pixelRatio: 
-#' default to 2
-#' 
-#' @section renderer:
-#' One of the following:
+#' @section Plot Container:
 #' \itemize{
-#'    \item "canvas"
-#'    \item "svg"
+#'    \item width
+#'    \item height
+#'    \item autoFit
+#'    \item padding
+#'    \item appendPadding
+#'    \item renderer
+#'    \item pixelRatio
+#'    \item limitInPlot
 #' }
 #' 
-#' @section theme:
-#' chart theme. One of the following:
-#' \itemize{
-#'   \item "default" (the default)
-#'   \item "dark"
-#' }
+#' - width
+#' optional number default: 400
+#' Set the width of the chart.
 #' 
-#' @section title and description:
-#' Both title and description in cfg should be list.
+#' - height
+#' optional number default: 400
+#' Set the height of the chart.
+#' 
+#' - autoFit
+#' optional boolean default: true
+#' Whether the chart automatically adjusts to fit the container. If it is set to true, width and height configuration would fail.
+#' 
+#' - padding
+#' optional number[] | number | 'auto'
+#' Set padding value of the canvas. You can also use auto.
+#' 
+#' - appendPadding
+#' optional number[] | number
+#' Extra appendPadding value.
+#' 
+#' - renderer
+#' optional string default: canvas
+#' Set the render way to canvas or svg.
+#' 
+#' - pixelRatio
+#' optional number default: window.devicePixelRatio
+#' Set the pixel ratio of the chart.
+#' 
+#' - limitInPlot
+#' optional boolean
+#' Whether clip the Geometry beyond the coordinate system。
+#' 
+#' @section Components: 
+#' \url{https://g2plot.antv.vision/en/docs/api/components/axis}
+#' 
+#' 
+#' @section Graphic Style:
+#' \url{https://g2plot.antv.vision/en/docs/api/graphic-style}
 #' 
 #' @examples
 #' \dontrun{
-#' # Default cfg for title and description
 #' cfg = list(
-#'   title = list(visible = FALSE,
-#'                alignTo = 'left',
-#'                text    = '',
-#'                style   = list(fontSize=18, fill='black')
-#'   ),
-#'   description = list(visible = FALSE,
-#'                      alignTo = 'left',
-#'                      text    = '',
-#'                      style   = list(fontSize=12, fill='grey')
-#'   )
+#'   legend = list(position = 'top-left')
 #' )
-#' g2bar(df, 'x', 'y', cfg=cfg)
-#' 
+#' g2bar(df, x, y, cfg = cfg)
 #' 
 #' }
 #' @name cfg

@@ -5,11 +5,13 @@
 #' @param data data should contain the following columns:
 #'   * title: title character of each sample
 #'   * measures: number vector, measure of one or multiple stages
-#'   * targets: number vector, target values
+#'   * target: number vector, target values
 #'   * ranges: (optional) number vector, color range of the progress bar, value should be a number between 0 and 1
-#' @param rangeMax the max value of color range of the progress bar
-#' @param measureSize the height of progress bar, default to 20
+#' @param measureField,rangeField,targetField,xField column name in data for aesthetic mapping
+#' @param layout optional 'horizontal' | 'vertical' default: 'horizontal'
 #' @inheritParams g2
+#' 
+#' \url{https://g2plot.antv.vision/en/docs/api/plots/bullet#geometry-style}
 #' 
 #' @examples
 #' \dontrun{
@@ -58,22 +60,36 @@
 #' }
 #' 
 #' @export
-g2Bullet <- function(data, rangeMax, measureSize=20, cfg = list(), width = NULL, height = NULL) {
-  colnames(data) = tolower(colnames(data))
-  if (!(identical(sort(colnames(data)), sort(c('title','measures','targets','ranges'))) |
-        identical(sort(colnames(data)), sort(c('title','measures','targets'))))) {
-    stop('data for g2Bullet should contain the following columns:title/measures/targets/ranges(optional)')
-  }
+g2Bullet <- function(data, measureField,rangeField,targetField,xField=NULL,
+                     layout='horizontal', cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  cfg$rangeMax = rangeMax
-  cfg$measureSize = measureSize
-  
-  data$measures = as.list(data$measures)
-  data$targets = as.list(data$targets)
-  if ('ranges' %in% colnames(data)) {
-    data$ranges = as.list(data$ranges)
+  measureField = as.character(substitute(measureField))
+  rangeField = as.character(substitute(rangeField))
+  targetField = as.character(substitute(targetField))
+  xField = as.character(substitute(xField))
+  cfg$layout = layout
+  if (typeof(data[[measureField]]) != 'list') {
+    data[[measureField]] = as.list(data[[measureField]])  
   }
+  if (typeof(data[[rangeField]]) != 'list') {
+    data[[rangeField]] = as.list(data[[rangeField]])
+  }
+  
+  cfg$measureField = measureField
+  cfg$rangeField = rangeField
+  cfg$targetField = targetField
+  keep_col = c(measureField, rangeField, targetField)
+  if (!identical(xField, character(0))) {
+    cfg$xField = as.character(xField)
+    keep_col = append(keep_col, xField)
+  }
+  data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
+  
+  # default style for Bullet
+  cfg$xAxis = list(line=NULL)
+  cfg$yAxis = FALSE
+  cfg$label = list(measure=list(position='middle',style=list(fill='#fff')))
   # pass the data and settings using 'x'
   x <- list(
     type = 'Bullet',

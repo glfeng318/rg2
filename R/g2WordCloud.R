@@ -2,35 +2,44 @@
 #' 
 #' WordCloud chart
 #' 
-#' @param maskImage The mask image, black-white pixel image will be better, can be specified with a `url` or `base64`.
-#' @param shape One of the following: 
-#'   * circle
-#'   * square
-#'   * cardioid
-#'   * diamond
-#'   * triangle
-#'   * triangle-forward
-#'   * triangle-backward
-#'   * triangle-up
-#'   * triangle-down
-#'   * pentagon
-#'   * star
-#' @param backgroundColor background color
-#' @param shuffle shuffle the data, default to `TRUE`
+#' @param wordField,weightField,colorField column name in data for aesthetic mapping
+#' @param random number range (0, 1]
+#' @param spiral optional 'archimedean' | 'rectangular' default: 'archimedean'
+#' @param imageMask The mask image, black-white pixel image will be better, can be specified with a `url` or `base64`.
+#' @param color Configure the color. If there is no colorField configured, 
+#'   set one single color. Otherwise you can set a series of colors, or you can use callback function.
+#'   Default: The color board of the theme.
 #' @inheritParams g2
 #' 
 #' @export
-g2WordCloud <- function(data, maskImage = NULL, shape = 'circle', 
-                        backgroundColor = '#ffffff', shuffle = TRUE,
+g2WordCloud <- function(data, wordField,weightField,colorField=NULL,
+                        random=NULL, spiral='archimedean', imageMask=NULL, color=NULL,
                         cfg = list(), width = NULL, height = NULL) {
+  # field name of data mapping
+  wordField = as.character(substitute(wordField))
+  weightField = as.character(substitute(weightField))
+  colorField = as.character(substitute(colorField))
   # prep cfg
-  if (!is.null(maskImage)) {
-    cfg$maskImage = maskImage
+  cfg$spiral = spiral
+  if (!is.null(random)) {
+    cfg$random = random
   }
-  cfg$shape = shape
-  cfg$backgroundColor = backgroundColor
-  cfg$shuffle = shuffle
-  cfg$wordStyle = list() # required wordStyle
+  if (!is.null(imageMask)) {
+    cfg$imageMask = imageMask
+  }
+  if (!is.null(color)) {
+    cfg$color = color
+  }
+  
+  cfg$wordField = wordField
+  cfg$weightField = weightField
+  keep_col = c(wordField, weightField)
+  if (!identical(colorField, character(0))) {
+    cfg$colorField = as.character(colorField)
+    keep_col = append(keep_col, colorField)
+  }
+  data = subset(data, select = keep_col)
+  
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(

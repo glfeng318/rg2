@@ -2,65 +2,74 @@
 % Please edit documentation in R/g2.R
 \name{cfg}
 \alias{cfg}
-\title{base configuration class}
+\title{Base configuration
+\url{https://g2plot.antv.vision/en/docs/api/plots/bar}}
 \description{
-base configuration class
+Base configuration
+\url{https://g2plot.antv.vision/en/docs/api/plots/bar}
 }
-\section{width and height}{
+\section{Plot Container}{
 
-Both width and height are default to 400
+\itemize{
+   \item width
+   \item height
+   \item autoFit
+   \item padding
+   \item appendPadding
+   \item renderer
+   \item pixelRatio
+   \item limitInPlot
 }
 
-\section{forceFit}{
+- width
+optional number default: 400
+Set the width of the chart.
 
-if `TRUE`, the default, width and height in cfg will be ignored
+- height
+optional number default: 400
+Set the height of the chart.
+
+- autoFit
+optional boolean default: true
+Whether the chart automatically adjusts to fit the container. If it is set to true, width and height configuration would fail.
+
+- padding
+optional number[] | number | 'auto'
+Set padding value of the canvas. You can also use auto.
+
+- appendPadding
+optional number[] | number
+Extra appendPadding value.
+
+- renderer
+optional string default: canvas
+Set the render way to canvas or svg.
+
+- pixelRatio
+optional number default: window.devicePixelRatio
+Set the pixel ratio of the chart.
+
+- limitInPlot
+optional boolean
+Whether clip the Geometry beyond the coordinate system。
 }
 
-\section{pixelRatio}{
+\section{Components}{
  
-default to 2
+\url{https://g2plot.antv.vision/en/docs/api/components/axis}
 }
 
-\section{renderer}{
+\section{Graphic Style}{
 
-One of the following:
-\itemize{
-   \item "canvas"
-   \item "svg"
-}
-}
-
-\section{theme}{
-
-chart theme. One of the following:
-\itemize{
-  \item "default" (the default)
-  \item "dark"
-}
-}
-
-\section{title and description}{
-
-Both title and description in cfg should be list.
+\url{https://g2plot.antv.vision/en/docs/api/graphic-style}
 }
 
 \examples{
 \dontrun{
-# Default cfg for title and description
 cfg = list(
-  title = list(visible = FALSE,
-               alignTo = 'left',
-               text    = '',
-               style   = list(fontSize=18, fill='black')
-  ),
-  description = list(visible = FALSE,
-                     alignTo = 'left',
-                     text    = '',
-                     style   = list(fontSize=12, fill='grey')
-  )
+  legend = list(position = 'top-left')
 )
-g2bar(df, 'x', 'y', cfg=cfg)
-
+g2bar(df, x, y, cfg = cfg)
 
 }
 }

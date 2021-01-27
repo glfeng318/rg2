@@ -18,49 +18,10 @@ df = tibble(
   title = c('A','B','C','D'),
   measures = c(83,13,45,83),
   targets = c(90,90,90,90),
-  ranges = rep(list(ranges = c(0,0.25,0.5,0.75,1)),4)
+  ranges = rep(list(ranges = c(0,10,50,75,100)),4)
 )
-g2Bullet(df, 
-         rangeMax = 100,
-         cfg=list(title=list(visible=TRUE,text='Bullet chart'),
-                  rangeColors=c('#F8DA41','#F3C173','#EE8C51','#E0605A')))
+g2Bullet(df, measureField = 'measures', rangeField = 'ranges', targetField = 'targets', xField = 'title')
 
-readline("next <return>:")
-
-df = jsonlite::read_json('https://antv-g2plot.gitee.io/zh/examples/data/life-expectancy.json',TRUE)
-cfg = list(
-  interactions = list(
-    list(
-      type ='timeline',
-      cfg = list(
-        field =  'year',
-        key = 'country',
-        loop = TRUE,
-        speed = 0.5
-      )
-    )
-  ),
-  legend = list(visible=FALSE),
-  xAxis = list(max=100000,min=300,type='log'),
-  yAxis = list(max=100,min=0),
-  pointSize=c(4, 80),
-  forceFit=TRUE,
-  label = list(visible=TRUE,field='country'),
-  color = c(
-    '#5B8FF9',
-    '#5AD8A6',
-    '#f03838',
-    '#35d1d1',
-    '#E8684A',
-    '#6DC8EC',
-    '#9270CA',
-    '#FF9D4D',
-    '#F6BD16',
-    '#FF99C3'
-  )
-)
-df %>% 
-  g2Bubble(income, lifeExpectancy, colorField = country, sizeField = population, cfg = cfg)
 readline("next <return>:")
 
 # density
