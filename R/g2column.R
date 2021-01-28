@@ -2,23 +2,50 @@
 #' 
 #' Column chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param xField,yField,seriesField,groupField column name in data for aesthetic mapping.
+#' @param isGroup,isStack,isRange,isPercent
+#' @param color 
 #' @inheritParams g2
 #' @family column
 #' 
 #' @export
-g2Column <- function(data, xField, yField, colorField = NULL, cfg = list(), width = NULL, height = NULL) {
+g2Column <- function(data, xField, yField, seriesField=NULL,groupField=NULL,
+                     isGroup=FALSE, isStack=FALSE, isRange=FALSE, isPercent=FALSE,color=NULL,
+                     cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
-  colorField = as.character(substitute(colorField))  # NULL returns character(0)
+  seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
+  groupField = as.character(substitute(groupField))
+  
+  cfg$isGroup=isGroup
+  cfg$isStack=isStack
+  cfg$isRange=isRange
+  cfg$isPercent=isPercent
+  
+  # if isGroup=TRUE, isStack must be TRUE
+  if (isGroup) {
+    cfg$isStack=TRUE
+  }
+  
+  if (isRange && !all(lapply(data[[yField]], length) == 2)) {
+    stop("column [yField] for range column should be a length-two numeric vector")
+  }
+  
+  if (isPercent || isStack || isPercent) {
+    cfg$interactions = c(list(type='element-highlight-by-color'),list(type='element-link'))
+  }
   
   cfg$xField = xField
   cfg$yField = yField
   keep_col = c(xField, yField)
-  if (!identical(colorField, character(0))) {
-    cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
+  if (!identical(seriesField, character(0))) {
+    cfg$seriesField = as.character(seriesField)
+    keep_col = append(keep_col, seriesField)
+  }
+  if (!identical(groupField, character(0))) {
+    cfg$groupField = as.character(groupField)
+    keep_col = append(keep_col, groupField)
   }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)

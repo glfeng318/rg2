@@ -3,14 +3,14 @@
 #' Pie chart
 #' 
 #' @param angleField,colorField column name in data for aesthetic mapping
-#' @param radius default to 0.8
+#' @param radius,innerRadius radius default to 0.8
 #' @param color color vector or a javascript function
 #' @inheritParams g2
 #' @family pie
 #' 
 #' @export
 g2Pie <- function(data, angleField, colorField = NULL, 
-                  radius = 0.8, color = NULL,
+                  radius = 0.8, innerRadius=0, color = NULL,
                   cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   angleField = as.character(substitute(angleField))
@@ -23,6 +23,7 @@ g2Pie <- function(data, angleField, colorField = NULL,
     keep_col = append(keep_col, colorField)
   }
   cfg$radius = radius
+  cfg$innerRadius = innerRadius
   if (!is.null(color)){
     cfg$color = color
   }

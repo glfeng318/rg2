@@ -13,14 +13,22 @@
 - [x] g2PercentStackedBar      ->  g2Bar
 - [x] g2RangeBar               ->  g2Bar
 - [x] g2Donut                  ->  g2Pie
-- [x] g2DualLine               ->  g2Demos
-- [x] g2ColumnLine             ->  g2Demos
-- [x] g2StackedColumnLine      ->  g2Demos
-- [x] g2GroupedColumnLine      ->  g2Demos
+- [x] g2DualLine               ->  g2DualAxes
+- [x] g2ColumnLine             ->  g2DualAxes
+- [x] g2StackedColumnLine      ->  g2DualAxes
+- [x] g2GroupedColumnLine      ->  g2DualAxes
 - [x] g2StackedArea            ->  g2Area
 - [x] g2PercentStackedArea     ->  g2Area
 - [x] g2StepLine               ->  g2Line
 
+## parameter
+
+- [x] g2Column
+- [x] g2Bar
+- [x] g2Pie
+- [ ] g2Area
+- [ ] g2Line
+- [ ] g2DualAxes
 
 ## Configuration change
 
@@ -32,12 +40,12 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 - [x] description  deprecated
 - [x] forceFit     deprecated, use `autoFit` instead
 - [x] responsive   deprecated, built-in
-- [x] guideLine    deprecated，use `annotations` instead
+- [x] guideLine    deprecated, use `annotations` instead
 - [ ] label	       label.type may has compatibility issues, if the error is reported, modify/remove the type configuration
-- [ ] slider	       Syntax change
+- [ ] slider	     Syntax change
 - [ ] scrollbar	   Syntax change
-- [ ] events	       Syntax change
-- [ ] visible   	   Syntax change
+- [ ] events	     Syntax change
+- [ ] visible   	 Syntax change
 - [ ] animation	   Syntax change
 
 

@@ -44,18 +44,18 @@ g2DensityHeatmap(df, 'prob', 'Average annual wage', 'numbEmployed',
                  color=c('#295599', '#3e94c0', '#78c6d0', '#b4d9e4', '#fffef0', '#f9cdac', '#ec7d92', '#bc448c'))
 readline("next <return>:")
 
-# Donut
+# pie
 df = jsonlite::fromJSON('[
  {"type": "cate1","value": 27},
  {"type": "cate2","value": 25},
  {"type": "cate3","value": 18}]')
-g2Donut(df, value, type)
+g2Pie(df, value, type)
 readline("next <return>:")
 
-g2Donut(df, value, type, color=c('#8AD8D3','#02BABC','#FF5D30'))
+g2Pie(df, value, type, color=c('#8AD8D3','#02BABC','#FF5D30'))
 readline("next <return>:")
 
-g2Donut(df, value, type, 
+g2Pie(df, value, type, 
         color=htmlwidgets::JS("(color)=>{if(color==='cate1'){return '#FF5D30';} else {return '#02BABC';}}"))
 readline("next <return>:")
 
@@ -424,13 +424,13 @@ df = jsonlite::fromJSON('[
   { "year": "2014", "type": "oranges", "value": 9 },
   { "year": "2014", "type": "pears", "value": 5 }
 ]')
-g2StackedColumn(df, year, value, type)
+g2Column(df, year, value, type, isStack = T)
 readline("next <return>:")
 
-g2StackedColumn(df, year, value, 'type', color = c('#ae331b', '#f27957', '#dadada', '#609db7', '#1a6179'))
+g2Column(df, year, value, 'type',isGroup =T, color = c('#ae331b', '#f27957', '#dadada', '#609db7', '#1a6179'))
 readline("next <return>:")
 
-g2StackedColumn(df, year, value, type, connectedArea = TRUE)
+g2Column(df, year, value, type, connectedArea = TRUE)
 readline("next <return>:")
 
 g2PercentStackedColumn(df, year, value, type)
