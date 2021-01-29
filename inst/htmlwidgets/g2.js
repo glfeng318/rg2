@@ -108,6 +108,9 @@ HTMLWidgets.widget({
           case 'DualAxes':
             chart = new G2Plot.DualAxes(el.id, x.cfg);
             break;
+          case 'Sunburst':
+            chart = new G2Plot.Sunburst(el.id, x.cfg);
+            break;
           default:
             // code
             break;

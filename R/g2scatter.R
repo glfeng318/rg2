@@ -14,8 +14,7 @@
 #' @inheritParams g2
 #' 
 #' @export
-g2Scatter <- function(data, xField, yField, 
-                      colorField = NULL, sizeField = NULL, shapeField = NULL,
+g2Scatter <- function(data, xField, yField, colorField = NULL, sizeField = NULL, shapeField = NULL,
                       color = NULL, size = NULL, shape = 'circle',
                       regression = NULL,
                       cfg = list(), width = NULL, height = NULL) {

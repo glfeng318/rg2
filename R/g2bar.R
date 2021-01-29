@@ -4,12 +4,13 @@
 #' 
 #' @param xField,yField,seriesField,groupField column name in data for aesthetic mapping.
 #' @param isGroup,isStack,isRange,isPercent default to FALSE
+#' @param color color
 #' @inheritParams g2
 #' @family bar
 #' 
 #' @export
 g2Bar <- function(data, xField, yField, seriesField=NULL,groupField=NULL,
-                  isGroup=FALSE, isStack=FALSE, isRange=FALSE, isPercent=FALSE,color=NULL,
+                  isGroup=FALSE, isStack=FALSE, isRange=FALSE, isPercent=FALSE, color=NULL,
                   cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
@@ -17,6 +18,9 @@ g2Bar <- function(data, xField, yField, seriesField=NULL,groupField=NULL,
   seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
   groupField = as.character(substitute(groupField))
   
+  if (!is.null(color)) {
+    cfg$color = color
+  }
   cfg$isGroup=isGroup
   cfg$isStack=isStack
   cfg$isRange=isRange

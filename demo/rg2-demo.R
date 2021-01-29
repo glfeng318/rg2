@@ -320,16 +320,14 @@ df = jsonlite::read_json(url, TRUE)
 g2StepLine(df, Date, scales)
 readline("next <return>:")
 
-url = 'https://antv-g2plot.gitee.io/zh/examples/data/sales.json'
+url = 'https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json'
 df = jsonlite::read_json(url, TRUE)
-colnames(df) = c('city','sales')
-g2StepLine(df, city, sales)
+g2Line(df, Date, scales)
 readline("next <return>:")
 
-g2StepLine(df, city, sales, interaction='slider')
-readline("next <return>:")
-
-g2StepLine(df, city, sales, interaction='scrollbar')
+g2Line(df, Date, scales, cfg=list(slider=list()))
+g2Line(df, Date, scales, cfg=list(slider=list(start=0.1, end=0.5)))
+g2Line(df, Date, scales, cfg=list(scrollbar=list()))
 readline("next <return>:")
 
 # RangeBar / RangeColumn

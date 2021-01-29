@@ -4,13 +4,14 @@
 #' 
 #' @param angleField,colorField column name in data for aesthetic mapping
 #' @param radius,innerRadius radius default to 0.8
+#' @param startAngle,endAngle optional number, startAngle=pi,endAngle=pi*1.5
 #' @param color color vector or a javascript function
 #' @inheritParams g2
 #' @family pie
 #' 
 #' @export
 g2Pie <- function(data, angleField, colorField = NULL, 
-                  radius = 0.8, innerRadius=0, color = NULL,
+                  radius = 0.8, innerRadius=0, startAngle=NULL,endAngle=NULL,color = NULL,
                   cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   angleField = as.character(substitute(angleField))
@@ -27,10 +28,16 @@ g2Pie <- function(data, angleField, colorField = NULL,
   if (!is.null(color)){
     cfg$color = color
   }
+  if (!is.null(startAngle)) {
+    cfg$startAngle = startAngle
+  }
+  if (!is.null(endAngle)) {
+    cfg$endAngle = endAngle
+  }
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # make sure angleField and colorField get the right type
-  if (is.character(data[[angleField]]) | is.numeric(data[[colorField]])) {
+  if (all(is.character(data[[angleField]])) || all(is.numeric(data[[colorField]]))) {
     stop('angleField should be numeric and colorField should be character')
   }
   # pass the data and settings using 'x'

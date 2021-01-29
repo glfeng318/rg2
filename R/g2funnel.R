@@ -2,66 +2,24 @@
 #' 
 #' Funnel chart
 #' 
-#' @param xField,yField column name in data for aesthetic mapping
+#' @param xField,yField,compareField,seriesField column name in data for aesthetic mapping
+#' @param isTransposed default to FALSE
 #' @param dynamicHeight `TRUE` for mapping xField to width/angle of funnel with a fixed height, 
 #'   `FALSE` for mapping xField to height of funnel with a fixed angle.
-#' @param transpose `TRUE` for horizontal funnel, and `FALSE` for vertical funnel
-#' @param compareField Required by compare funnel. specified values will overwrite the dynamicHeight to `FALSE`.
-#'   you can configure the compare text style in `cfg` parameter with `compareText=list(...)`
-#' 
-#' @section percentage configuration:
-#' In the funnel chart, the conversion rate display consists of three parts: 
-#' \enumerate{
-#'   \item fixed line
-#'   \item fixed text
-#'   \item numeric text
-#' }
-#'  
-#'  The style and content can be configured by `line`, `text` and `value` respectively.
-#'  
-#'  See example for a full configuration of percentage.
-#'
-#' @examples 
-#'  \dontrun{
-#'  
-#'  cfg = list(
-#'    percentage = list(
-#'      visible = TRUE,
-#'      offsetX = 40,
-#'      offsetY = 40,
-#'      spacing = 4,
-#'      line = list(
-#'        visible = TRUE,
-#'        style = list()  # lineStyle
-#'      ),
-#'      text = list(
-#'        visible = TRUE,
-#'        content = 'conversion rate'
-#'        style = list()  # textStyle
-#'      ),
-#'      value = list(
-#'        visible = TRUE,
-#'        style = list()  # textStyle
-#'      )
-#'    )
-#'  )
-#'  
-#'  }
-#' 
-#' 
+#' @param maxSize,minSize these fields are invalid when dynamicHeight=true
+#' @param conversionTag FALSE for hide the conversion info or specify a `htmlwidgets::JS` \url{https://g2plot.antv.vision/en/docs/api/plots/funnel#conversiontag}
+#' @param color color
 #' @inheritParams g2
 #' 
 #' @export
-g2Funnel <- function(data, xField, yField, compareField = NULL,
-                     dynamicHeight = FALSE, transpose = FALSE,
+g2Funnel <- function(data, xField, yField, compareField = NULL,seriesField=NULL,
+                     isTransposed=FALSE, dynamicHeight = FALSE,maxSize=1,minSize=1,conversionTag=NULL,color=NULL,
                      cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
   yField = as.character(substitute(yField))
   compareField = as.character(substitute(compareField))
-  
-  # param?
-  cfg$percentage = list(text=list(content='conversion rate'))
+  seriesField = as.character(substitute(seriesField))
   
   cfg$xField = xField
   cfg$yField = yField
@@ -70,9 +28,19 @@ g2Funnel <- function(data, xField, yField, compareField = NULL,
     cfg$compareField = as.character(compareField)
     keep_col = append(keep_col, compareField)
   }
+  if (!identical(seriesField, character(0))) {
+    cfg$seriesField = as.character(seriesField)
+    keep_col = append(keep_col, seriesField)
+  }
   
   cfg$dynamicHeight = dynamicHeight
-  cfg$transpose = transpose
+  cfg$isTransposed = isTransposed
+  cfg$maxSize = maxSize
+  cfg$minSize = minSize
+  cfg$color = color
+  cfg$conversionTag = list(offsetX=10, offsetY=0, formatter: htmlwidgets::JS("(datum) => 'conversion rate' + datum.$$percentage$$ * 100 + '%'"))
+  
+  
   data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'

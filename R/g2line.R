@@ -8,9 +8,7 @@
 #' @param connectNulls default to TRUE
 #' @param isStack default to FALSE
 #' @param color color vector or javascript function.
-#' @param interaction You can specify `'slider'` or `'scrollbar'` for a large dataset
-#' @param point display data point and the data label, default to `FALSE`. You can also configure the point
-#'   by cfg parameter using `point = list(...)`, see \url{https://g2plot.antv.vision/en/docs/api/plots/line#point} for detail.
+#' @param point `point=list()` to display data point, Or you can specify color,size,shape and style: \url{https://g2plot.antv.vision/en/examples/line/basic}
 #' @inheritParams g2
 #' @family line
 #' 
@@ -18,7 +16,6 @@
 g2Line <- function(data, xField, yField, seriesField = NULL,
                    smooth = FALSE, stepType = NULL, connectNulls=TRUE, 
                    isStack=FALSE, point=NULL, color = NULL,
-                   interaction=NULL,
                    cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
@@ -33,10 +30,10 @@ g2Line <- function(data, xField, yField, seriesField = NULL,
     keep_col = append(keep_col, seriesField)
   }
   
-  if (!is.null(interaction)) {
-    cfg$interactions = c(list(type=interaction, cfg=list(start=0.1,end=0.2)),list())
-  }
   cfg$smooth = smooth
+  cfg$isStack = isStack
+  cfg$connectNulls = connectNulls
+  
   if (!is.null(stepType)) {
     cfg$stepType = stepType
   }

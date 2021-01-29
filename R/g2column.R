@@ -4,7 +4,7 @@
 #' 
 #' @param xField,yField,seriesField,groupField column name in data for aesthetic mapping.
 #' @param isGroup,isStack,isRange,isPercent default to FALSE
-#' @param color 
+#' @param color color
 #' @inheritParams g2
 #' @family column
 #' 
@@ -18,6 +18,10 @@ g2Column <- function(data, xField, yField, seriesField=NULL,groupField=NULL,
   seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
   groupField = as.character(substitute(groupField))
   
+  
+  if (!is.null(color)) {
+    cfg$color = color
+  }
   cfg$isGroup=isGroup
   cfg$isStack=isStack
   cfg$isRange=isRange

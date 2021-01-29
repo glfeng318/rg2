@@ -50,7 +50,7 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 - [ ] animation	   Syntax change
 
 
-## Private configuration
+### Private configuration
 
 - [x] Scatter
 - [x] Rose
@@ -61,6 +61,28 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 - [x] Radar
 - [x] TinyArea, TinyColumn, TinyLine
 
+
+## re-check
+
+- [ ] doc and demo
+- [x] g2Line
+- [x] g2Column
+- [x] g2Bar
+- [x] g2Pie
+- [x] g2Scatter
+- [x] g2DualAxes
+- [x] g2Radar
+- [x] g2WordCloud
+- [x] g2Funnel
+- [x] g2Bullet
+- [x] g2Histogram
+- [x] g2Liquid
+- [x] g2Rose
+- [x] g2TinyLine
+- [x] g2TinyArea
+- [x] g2TinyColumn
+
+- [x] g2Funnel
 
 
 
