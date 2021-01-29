@@ -3,7 +3,7 @@
 #' Column chart
 #' 
 #' @param xField,yField,seriesField,groupField column name in data for aesthetic mapping.
-#' @param isGroup,isStack,isRange,isPercent
+#' @param isGroup,isStack,isRange,isPercent default to FALSE
 #' @param color 
 #' @inheritParams g2
 #' @family column

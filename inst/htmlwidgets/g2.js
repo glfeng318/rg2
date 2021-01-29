@@ -105,6 +105,9 @@ HTMLWidgets.widget({
           case 'RingProgress':
             chart = new G2Plot.RingProgress(el.id, x.cfg);
             break;
+          case 'DualAxes':
+            chart = new G2Plot.DualAxes(el.id, x.cfg);
+            break;
           default:
             // code
             break;

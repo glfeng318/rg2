@@ -5,27 +5,28 @@
 \title{Gauge chart}
 \usage{
 g2Gauge(
-  value,
-  range,
-  min = 0,
-  max = 1,
-  color = NULL,
-  rangeSize = 24,
+  percent,
+  radius = 0.95,
+  innerRadius = 0.9,
+  startAngle = (-7/6) * pi,
+  endAngle = (1/6) * pi,
+  range = list(),
+  indicator = list(),
   cfg = list(),
   width = NULL,
   height = NULL
 )
 }
 \arguments{
-\item{value}{Numeric value}
+\item{percent}{percent value [0, 1]}
 
-\item{range}{color range of the gauge, it separate the gauge to several parts by color, example: \code{range=c(0,25,50,75,100)}}
+\item{radius, innerRadius}{default 0.95, 0.9}
 
-\item{min, max}{minimum and maximum value of the chart}
+\item{startAngle, endAngle}{default `(-7/6)*pi`, `(1/6)*pi`}
 
-\item{color}{color vector, support gradient color: `c('l(0) 0:#5d7cef 1:#e35767')`}
+\item{range}{a list contains `ticks`(numeric vector [0, 1]) and `color`(color string vector)}
 
-\item{rangeSize}{The width of gauge}
+\item{indicator}{NULL to disable indicator, or a list contains `pointer` and `pin`, which both have the same style configuration \url{https://g2plot.antv.vision/en/docs/api/plots/gauge#indicator}}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

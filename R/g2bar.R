@@ -3,7 +3,7 @@
 #' Bar chart
 #' 
 #' @param xField,yField,seriesField,groupField column name in data for aesthetic mapping.
-#' @param isGroup,isStack,isRange,isPercent
+#' @param isGroup,isStack,isRange,isPercent default to FALSE
 #' @inheritParams g2
 #' @family bar
 #' 

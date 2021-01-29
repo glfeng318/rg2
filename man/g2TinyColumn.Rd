@@ -6,9 +6,7 @@
 \usage{
 g2TinyColumn(
   data,
-  xField,
-  yField,
-  colorField = NULL,
+  columnWidthRatio = 0.5,
   color = NULL,
   cfg = list(),
   width = 200,
@@ -16,10 +14,9 @@ g2TinyColumn(
 )
 }
 \arguments{
-\item{data}{a data object.Currently supported object is data.frame, 
-data should only contains the necessary data for chart (reduce json/data transmission)}
+\item{data}{numeric vector}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{columnWidthRatio}{optional number default: 0.5}
 
 \item{color}{color character, color vector or javascript function}
 

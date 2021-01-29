@@ -26,9 +26,10 @@
 - [x] g2Column
 - [x] g2Bar
 - [x] g2Pie
-- [ ] g2Area
-- [ ] g2Line
-- [ ] g2DualAxes
+- [x] g2Area
+- [x] g2Line
+- [x] g2DualAxes
+
 
 ## Configuration change
 

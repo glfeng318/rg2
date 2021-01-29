@@ -6,10 +6,8 @@
 \usage{
 g2TinyLine(
   data,
-  xField,
-  yField,
-  size = 2,
   smooth = FALSE,
+  connectNulls = FALSE,
   color = NULL,
   cfg = list(),
   width = 200,
@@ -17,14 +15,11 @@ g2TinyLine(
 )
 }
 \arguments{
-\item{data}{a data object.Currently supported object is data.frame, 
-data should only contains the necessary data for chart (reduce json/data transmission)}
-
-\item{xField, yField}{column name in data for aesthetic mapping}
-
-\item{size}{The width of line}
+\item{data}{numeric vector}
 
 \item{smooth}{smooth the line, default to `FALSE`}
+
+\item{connectNulls}{The width of line}
 
 \item{color}{color or javascript function.}
 

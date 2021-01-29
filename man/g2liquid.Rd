@@ -5,19 +5,26 @@
 \title{Liquid chart}
 \usage{
 g2Liquid(
-  value,
-  min,
-  max,
+  percent,
+  radius = 0.9,
   color = NULL,
+  outline = list(border = 2, distance = 0),
+  wave = list(count = 3, length = 192),
   cfg = list(),
   width = NULL,
   height = NULL
 )
 }
 \arguments{
-\item{value, min, max}{The current value / minimum value / maximum value}
+\item{percent}{percent value}
+
+\item{radius}{radius [0, 1]}
 
 \item{color}{The color of liquid chart}
+
+\item{outline}{default `list(border=2, distance=0)`}
+
+\item{wave}{default `list(count=3, length=192)`}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

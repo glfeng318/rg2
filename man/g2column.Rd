@@ -8,7 +8,13 @@ g2Column(
   data,
   xField,
   yField,
-  colorField = NULL,
+  seriesField = NULL,
+  groupField = NULL,
+  isGroup = FALSE,
+  isStack = FALSE,
+  isRange = FALSE,
+  isPercent = FALSE,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -18,7 +24,11 @@ g2Column(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, seriesField, groupField}{column name in data for aesthetic mapping.}
+
+\item{isGroup, isStack, isRange, isPercent}{default to FALSE}
+
+\item{color}{}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

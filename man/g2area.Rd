@@ -9,6 +9,8 @@ g2Area(
   xField,
   yField,
   seriesField = NULL,
+  isStack = TRUE,
+  isPercent = TRUE,
   color = NULL,
   cfg = list(),
   width = NULL,
@@ -21,6 +23,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{xField, yField, seriesField}{column name in data for aesthetic mapping}
 
+\item{isStack, isPercent}{default to TRUE}
+
 \item{color}{Color vector or javascript function}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
@@ -31,5 +35,9 @@ data should only contains the necessary data for chart (reduce json/data transmi
 }
 \description{
 Area chart
+}
+\seealso{
+Other area: 
+\code{\link{g2DualAxes}()}
 }
 \concept{area}

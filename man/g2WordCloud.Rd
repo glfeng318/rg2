@@ -6,10 +6,13 @@
 \usage{
 g2WordCloud(
   data,
-  maskImage = NULL,
-  shape = "circle",
-  backgroundColor = "#ffffff",
-  shuffle = TRUE,
+  wordField,
+  weightField,
+  colorField = NULL,
+  random = NULL,
+  spiral = "archimedean",
+  imageMask = NULL,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -19,24 +22,17 @@ g2WordCloud(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{maskImage}{The mask image, black-white pixel image will be better, can be specified with a `url` or `base64`.}
+\item{wordField, weightField, colorField}{column name in data for aesthetic mapping}
 
-\item{shape}{One of the following: 
-* circle
-* square
-* cardioid
-* diamond
-* triangle
-* triangle-forward
-* triangle-backward
-* triangle-up
-* triangle-down
-* pentagon
-* star}
+\item{random}{number range (0, 1]}
 
-\item{backgroundColor}{background color}
+\item{spiral}{optional 'archimedean' | 'rectangular' default: 'archimedean'}
 
-\item{shuffle}{shuffle the data, default to `TRUE`}
+\item{imageMask}{The mask image, black-white pixel image will be better, can be specified with a `url` or `base64`.}
+
+\item{color}{Configure the color. If there is no colorField configured, 
+set one single color. Otherwise you can set a series of colors, or you can use callback function.
+Default: The color board of the theme.}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

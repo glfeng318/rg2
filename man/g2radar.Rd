@@ -6,9 +6,10 @@
 \usage{
 g2Radar(
   data,
-  angleField,
-  radiusField,
+  xField,
+  yField,
   seriesField = NULL,
+  radius = NULL,
   color = NULL,
   smooth = FALSE,
   cfg = list(),
@@ -20,7 +21,9 @@ g2Radar(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{angleField, radiusField, seriesField}{column name in data for aesthetic mapping}
+\item{xField, yField, seriesField}{column name in data for aesthetic mapping}
+
+\item{radius}{range (0, 1]}
 
 \item{color}{color vector or a javascript function}
 

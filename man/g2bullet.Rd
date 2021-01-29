@@ -6,8 +6,11 @@
 \usage{
 g2Bullet(
   data,
-  rangeMax,
-  measureSize = 20,
+  measureField,
+  rangeField,
+  targetField,
+  xField = NULL,
+  layout = "horizontal",
   cfg = list(),
   width = NULL,
   height = NULL
@@ -17,12 +20,12 @@ g2Bullet(
 \item{data}{data should contain the following columns:
 * title: title character of each sample
 * measures: number vector, measure of one or multiple stages
-* targets: number vector, target values
+* target: number vector, target values
 * ranges: (optional) number vector, color range of the progress bar, value should be a number between 0 and 1}
 
-\item{rangeMax}{the max value of color range of the progress bar}
+\item{measureField, rangeField, targetField, xField}{column name in data for aesthetic mapping}
 
-\item{measureSize}{the height of progress bar, default to 20}
+\item{layout}{optional 'horizontal' | 'vertical' default: 'horizontal'}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 
@@ -32,6 +35,7 @@ g2Bullet(
 }
 \description{
 Bullet chart
+\url{https://g2plot.antv.vision/en/docs/api/plots/bullet#geometry-style}
 }
 \examples{
 \dontrun{

@@ -10,7 +10,10 @@ g2Line(
   yField,
   seriesField = NULL,
   smooth = FALSE,
-  point = FALSE,
+  stepType = NULL,
+  connectNulls = TRUE,
+  isStack = FALSE,
+  point = NULL,
   color = NULL,
   interaction = NULL,
   cfg = list(),
@@ -26,8 +29,14 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{smooth}{smooth the line, default to `FALSE`}
 
+\item{stepType}{optional hv | vh | hvh | vhv, smooth will be disabled.}
+
+\item{connectNulls}{default to TRUE}
+
+\item{isStack}{default to FALSE}
+
 \item{point}{display data point and the data label, default to `FALSE`. You can also configure the point
-by cfg parameter using `point = list(...)`, see \url{https://antv-g2plot.gitee.io/zh/examples/line/basic/API} for detail.}
+by cfg parameter using `point = list(...)`, see \url{https://g2plot.antv.vision/en/docs/api/plots/line#point} for detail.}
 
 \item{color}{color vector or javascript function.}
 

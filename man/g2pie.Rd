@@ -9,6 +9,7 @@ g2Pie(
   angleField,
   colorField = NULL,
   radius = 0.8,
+  innerRadius = 0,
   color = NULL,
   cfg = list(),
   width = NULL,
@@ -21,7 +22,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{angleField, colorField}{column name in data for aesthetic mapping}
 
-\item{radius}{default to 0.8}
+\item{radius, innerRadius}{radius default to 0.8}
 
 \item{color}{color vector or a javascript function}
 

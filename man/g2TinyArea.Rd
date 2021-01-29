@@ -6,8 +6,6 @@
 \usage{
 g2TinyArea(
   data,
-  xField,
-  yField,
   smooth = FALSE,
   color = NULL,
   cfg = list(),
@@ -16,10 +14,7 @@ g2TinyArea(
 )
 }
 \arguments{
-\item{data}{a data object.Currently supported object is data.frame, 
-data should only contains the necessary data for chart (reduce json/data transmission)}
-
-\item{xField, yField}{column name in data for aesthetic mapping}
+\item{data}{numeric vector}
 
 \item{smooth}{smooth the line, default to `FALSE`}
 

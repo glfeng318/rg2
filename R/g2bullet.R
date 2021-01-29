@@ -1,6 +1,7 @@
 #' Bullet chart
 #' 
 #' Bullet chart
+#' \url{https://g2plot.antv.vision/en/docs/api/plots/bullet#geometry-style}
 #' 
 #' @param data data should contain the following columns:
 #'   * title: title character of each sample
@@ -11,7 +12,6 @@
 #' @param layout optional 'horizontal' | 'vertical' default: 'horizontal'
 #' @inheritParams g2
 #' 
-#' \url{https://g2plot.antv.vision/en/docs/api/plots/bullet#geometry-style}
 #' 
 #' @examples
 #' \dontrun{
@@ -68,10 +68,10 @@ g2Bullet <- function(data, measureField,rangeField,targetField,xField=NULL,
   targetField = as.character(substitute(targetField))
   xField = as.character(substitute(xField))
   cfg$layout = layout
-  if (typeof(data[[measureField]]) != 'list') {
+  if (class(data[[measureField]]) != 'list') {
     data[[measureField]] = as.list(data[[measureField]])  
   }
-  if (typeof(data[[rangeField]]) != 'list') {
+  if (class(data[[rangeField]]) != 'list') {
     data[[rangeField]] = as.list(data[[rangeField]])
   }
   
