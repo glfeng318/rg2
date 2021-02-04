@@ -15,7 +15,6 @@ g2TinyLine <- function(data, smooth = FALSE, connectNulls=FALSE, color = NULL,
   # prep cfg
   cfg$smooth = smooth
   cfg$connectNulls = connectNulls
-  cfg$size = size
   if (!is.null(color)) {
     cfg$color = color
   }
