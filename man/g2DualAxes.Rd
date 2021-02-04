@@ -37,8 +37,50 @@ line geometry can specify: seriesField,smooth and some other param in g2Line, fo
 \description{
 DualAxes chart
 }
-\seealso{
-Other area: 
-\code{\link{g2Area}()}
-}
-\concept{area}
+\concept{area
+
+
+#' @examples
+\dontrun{
+
+df = jsonlite::fromJSON(' [
+{ "year": "1991", "value": 3,   "count": 10 },
+{ "year": "1992", "value": 4,   "count": 4 },
+{ "year": "1993", "value": 3.5, "count": 5 },
+{ "year": "1994", "value": 5,   "count": 5 },
+{ "year": "1995", "value": 4.9, "count": 4.9 },
+{ "year": "1996", "value": 6,   "count": 35 },
+{ "year": "1997", "value": 7,   "count": 7 },
+{ "year": "1998", "value": 9,   "count": 1 },
+{ "year": "1999", "value": 13,  "count": 20 }
+]')
+g2DualAxes(df, year, value, count)
+g2DualAxes(df, year, value, count, type='cl')
+g2DualAxes(df, year, value, count, type='lc')
+df = list(jsonlite::fromJSON('[
+  { "time": "2019-03", "value": 35 },
+  { "time": "2019-04", "value": 90 },
+  { "time": "2019-05", "value": 30 },
+  { "time": "2019-06", "value": 45 },
+  { "time": "2019-07", "value": 47 }
+]'),jsonlite::fromJSON('[
+  { "time": "2019-03", "count": 800, "name": "a" },
+  { "time": "2019-04", "count": 600, "name": "a" },
+  { "time": "2019-05", "count": 400, "name": "a" },
+  { "time": "2019-06", "count": 380, "name": "a" },
+  { "time": "2019-07", "count": 220, "name": "a" },
+  { "time": "2019-03", "count": 750, "name": "b" },
+  { "time": "2019-04", "count": 650, "name": "b" },
+  { "time": "2019-05", "count": 450, "name": "b" },
+  { "time": "2019-06", "count": 400, "name": "b" },
+  { "time": "2019-07", "count": 320, "name": "b" },
+  { "time": "2019-03", "count": 900, "name": "c" },
+  { "time": "2019-04", "count": 600, "name": "c" },
+  { "time": "2019-05", "count": 450, "name": "c" },
+  { "time": "2019-06", "count": 300, "name": "c" },
+  { "time": "2019-07", "count": 200, "name": "c" }
+]'))
+g2DualAxes(df, time, value, count, type='lc', geometryOptions = list(list(geometry='column'), list(geometry='line',seriesField='name')))
+
+
+}}

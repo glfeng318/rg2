@@ -8,12 +8,13 @@ g2Heatmap(
   data,
   xField,
   yField,
-  colorField,
+  colorField = NULL,
   sizeField = NULL,
+  type = "polygon",
+  reflect = "x",
   color = NULL,
-  shapeType = "rect",
-  forceSquare = FALSE,
-  shapeSize = c(5, 50),
+  shape = "rect",
+  sizeRatio = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -25,13 +26,15 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{xField, yField, colorField, sizeField}{column name in data for aesthetic mapping}
 
+\item{type}{optional polygon | density default: polygon}
+
+\item{reflect}{Axis mapping, optional x | y}
+
 \item{color}{color range vector}
 
-\item{shapeType}{specified one of 'rect' and 'circle', default to `'rect'`}
+\item{shape}{optional rect | square | circle}
 
-\item{forceSquare}{Default to `FALSE`}
-
-\item{shapeSize}{the size range of shape, c(min, max), default to `c(5, 50)`}
+\item{sizeRatio}{The scale of the shapes in the thermal lattice, optional, takes effect only if the shape and sizeField specify at least one of these.}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

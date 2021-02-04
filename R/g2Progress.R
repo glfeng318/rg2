@@ -3,17 +3,17 @@
 #' Progress chart
 #' 
 #' @param percent The percent of progress, value should between 0 and 1.
-#' @param color The color of chart
-#' @param size The height of progress bar, default to 10.
+#' @param barWidthRatio Ragne [0, 1], defualt 0.5
+#' @param color The color of chart, single color or length-two color vector
 #' @inheritParams g2
 #' @family tiny-chart
 #' 
 #' @export
-g2Progress <- function(percent, color = NULL, size = 10, 
+g2Progress <- function(percent, barWidthRatio = 10, color = NULL, 
                      cfg = list(), width = 200, height = 50) {
   # prep cfg
   cfg$percent = percent
-  cfg$size = size
+  cfg$barWidthRatio = barWidthRatio
   if (!is.null(color)) {
     cfg$color = color
   }

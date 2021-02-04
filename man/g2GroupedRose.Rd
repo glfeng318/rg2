@@ -32,6 +32,7 @@ GroupedRose chart
 \seealso{
 Other rose: 
 \code{\link{g2Rose}()},
-\code{\link{g2StackedRose}()}
+\code{\link{g2StackedRose}()},
+\code{\link{g2Sunburst}()}
 }
 \concept{rose}

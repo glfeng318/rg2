@@ -8,7 +8,12 @@ g2Waterfall(
   data,
   xField,
   yField,
-  colorField = NULL,
+  labelMode = "difference",
+  total = NULL,
+  leaderLine = NULL,
+  columnWidthRatio = NULL,
+  risingFill = "#f4664a",
+  fallingFill = "#30bf78",
   color = NULL,
   cfg = list(),
   width = NULL,
@@ -19,7 +24,17 @@ g2Waterfall(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField}{column name in data for aesthetic mapping}
+
+\item{labelMode}{Label data mode, optional values: 'absolute' (absolute value of data), 'difference' (relative difference of data).}
+
+\item{total}{Whether to display totals (automatic statistics, add a column with totals).}
+
+\item{leaderLine}{Whether to show leader line.}
+
+\item{columnWidthRatio}{Width ratio of histogram [0-1].}
+
+\item{risingFill, risingFill}{Rising/Drop color configuration.}
 
 \item{color}{color can be a character, list or javascript function:
 * '#60d7a7'
@@ -33,5 +48,4 @@ data should only contains the necessary data for chart (reduce json/data transmi
 }
 \description{
 Waterfall chart
-It's not recommended to use colorField param for waterfall chart (such as basic the column chart)
 }

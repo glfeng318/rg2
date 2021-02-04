@@ -81,7 +81,16 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 - [x] g2TinyLine
 - [x] g2TinyArea
 - [x] g2TinyColumn
-
+- [x] g2Sunburst
+- [x] g2Stock
+- [x] g2RingProgress
+- [x] g2Box
+- [x] g2Gauage
+- [x] g2Heatmap
+- [x] g2Waterfall
+- [x] g2RadialBar
+- [x] g2Sankey
+- [x] g2Treemap
 - [x] g2Funnel
 
 

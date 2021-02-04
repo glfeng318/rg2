@@ -111,6 +111,21 @@ HTMLWidgets.widget({
           case 'Sunburst':
             chart = new G2Plot.Sunburst(el.id, x.cfg);
             break;
+          case 'Stock':
+            chart = new G2Plot.Stock(el.id, x.cfg)
+            break;
+          case 'Box':
+            chart = new G2Plot.Box(el.id, x.cfg)
+            break;
+          case 'RadialBar':
+            chart = new G2Plot.RadialBar(el.id, x.cfg)
+            break;
+          case 'BidirectionalBar':
+            chart = new G2Plot.BidirectionalBar(el.id, x.cfg)
+            break;
+          case 'Sankey':
+            chart = new G2Plot.Sankey(el.id, x.cfg)
+            break;
           default:
             // code
             break;

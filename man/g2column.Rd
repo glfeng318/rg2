@@ -28,7 +28,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{isGroup, isStack, isRange, isPercent}{default to FALSE}
 
-\item{color}{}
+\item{color}{color}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

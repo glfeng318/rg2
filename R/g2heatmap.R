@@ -3,17 +3,17 @@
 #' Heatmap chart
 #' 
 #' @param xField,yField,colorField,sizeField column name in data for aesthetic mapping
-#' @param shapeType specified one of 'rect' and 'circle', default to `'rect'`
+#' @param type optional polygon | density default: polygon
+#' @param reflect Axis mapping, optional x | y
 #' @param color color range vector
-#' @param forceSquare Default to `FALSE`
-#' @param shapeSize the size range of shape, c(min, max), default to `c(5, 50)`
+#' @param shape optional rect | square | circle
+#' @param sizeRatio The scale of the shapes in the thermal lattice, optional, takes effect only if the shape and sizeField specify at least one of these.
 #' @inheritParams g2
 #' @family heatmap
 #' 
 #' @export
-g2Heatmap <- function(data, xField, yField, colorField, sizeField = NULL,
-                      color = NULL, shapeType = 'rect', 
-                      forceSquare = FALSE, shapeSize = c(5, 50),
+g2Heatmap <- function(data, xField, yField, colorField=NULL, sizeField=NULL,
+                      type='polygon',reflect='x',color = NULL, shape = 'rect', sizeRatio=NULL,
                       cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))
@@ -21,18 +21,29 @@ g2Heatmap <- function(data, xField, yField, colorField, sizeField = NULL,
   colorField = as.character(substitute(colorField))
   sizeField = as.character(substitute(sizeField)) # NULL returns character(0)
   
+  cfg$type = type
+  cfg$reflect = reflect
+  cfg$shape = shape
+  if (!is.null(color)) {
+    cfg$color = color
+  }
+  if (!is.null(sizeRatio)) {
+    cfg$sizeRatio = sizeRatio
+  }
+  
+  
   cfg$xField = xField
   cfg$yField = yField
-  cfg$colorField = colorField
-  keep_col = c(xField, yField, colorField)
+  keep_col = c(xField, yField)
+  if (!identical(colorField, character(0))) {
+    cfg$colorField = as.character(colorField)
+    keep_col = append(keep_col, colorField)
+  }
   if (!identical(sizeField, character(0))) {
     cfg$sizeField = as.character(sizeField)
     keep_col = append(keep_col, sizeField)
   }
-  cfg$color = color
-  cfg$shapeType = shapeType
-  cfg$forceSquare = forceSquare
-  cfg$shapeSize = shapeSize
+
   # meta, make sure x and y are all category
   cfg$meta = list()
   cfg$meta[[xField]] = list(type='cat')

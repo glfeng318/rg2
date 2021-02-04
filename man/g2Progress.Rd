@@ -6,8 +6,8 @@
 \usage{
 g2Progress(
   percent,
+  barWidthRatio = 10,
   color = NULL,
-  size = 10,
   cfg = list(),
   width = 200,
   height = 50
@@ -16,9 +16,9 @@ g2Progress(
 \arguments{
 \item{percent}{The percent of progress, value should between 0 and 1.}
 
-\item{color}{The color of chart}
+\item{barWidthRatio}{Ragne [0, 1], defualt 0.5}
 
-\item{size}{The height of progress bar, default to 10.}
+\item{color}{The color of chart, single color or length-two color vector}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

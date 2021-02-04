@@ -4,12 +4,22 @@
 \alias{g2RingProgress}
 \title{RingProgress chart}
 \usage{
-g2RingProgress(percent, color = NULL, cfg = list(), width = 200, height = 50)
+g2RingProgress(
+  percent,
+  color = NULL,
+  radius = 0.98,
+  innerRadius = 0.8,
+  cfg = list(),
+  width = 200,
+  height = 50
+)
 }
 \arguments{
 \item{percent}{The percent of RingProgress, value should between 0 and 1.}
 
 \item{color}{The color of chart}
+
+\item{radius, innerRadius}{the radius/innerRadius for the RingProgress, range [0, 1]}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

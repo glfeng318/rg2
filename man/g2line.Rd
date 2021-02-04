@@ -15,7 +15,6 @@ g2Line(
   isStack = FALSE,
   point = NULL,
   color = NULL,
-  interaction = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -35,12 +34,9 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{isStack}{default to FALSE}
 
-\item{point}{display data point and the data label, default to `FALSE`. You can also configure the point
-by cfg parameter using `point = list(...)`, see \url{https://g2plot.antv.vision/en/docs/api/plots/line#point} for detail.}
+\item{point}{`point=list()` to display data point, Or you can specify color,size,shape and style: \url{https://g2plot.antv.vision/en/examples/line/basic}}
 
 \item{color}{color vector or javascript function.}
-
-\item{interaction}{You can specify `'slider'` or `'scrollbar'` for a large dataset}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 

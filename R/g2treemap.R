@@ -2,22 +2,36 @@
 #' 
 #' Treemap chart
 #' 
-#' @param maxLevel Default to 2
+#' @param nameField,valueField column name in data for aesthetic mapping.
+#' @param color color
 #' @inheritParams g2
 #' 
 #' @export
-g2Treemap <- function(data, maxLevel = 2, cfg = list(), width = NULL, height = NULL) {
-  # prep cfg
-  # sort N-1 colmuns by level
-  data_sort = subset(data, select=names(sort(apply(data, 2, function(x) length(unique(x))))))
-  data_json = list(name='root', value=sum(data_sort[, ncol(data_sort)]), children=df2treemap_json(data_sort))
-  
-  if (dim(data_sort)[2] == 2){
-    cfg$colorField = 'name'
-  } else {
-    cfg$colorField = 'color'
+g2Treemap <- function(data, colorField=NULL,
+                      color = NULL, 
+                      cfg = list(), width = NULL, height = NULL) {
+  if (!'name' %in% colnames(data) || !'value' %in% colnames(data)) {
+    stop("data should at least have [`name`, `value`] columns")
   }
-  cfg$data = jsonlite::toJSON(data_json, auto_unbox = TRUE)
+  # prep cfg
+  colorField = as.character(substitute(colorField))
+
+  if (!is.null(color)) {
+    cfg$color = color
+  }
+
+  data = list(name='root', children=data)
+  
+  if (!identical(colorField, character(0))) {
+    cfg$colorField = colorField
+  } else {
+    cfg$colorField='name'
+  }
+  if (TRUE) {
+    cfg$interactions = list(list(type='treemap-drill-down'))
+  }
+  
+  cfg$data = jsonlite::toJSON(data, auto_unbox = TRUE)
   # pass the data and settings using 'x'
   x <- list(
     type = 'Treemap',

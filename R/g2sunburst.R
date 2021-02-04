@@ -13,17 +13,17 @@
 #' 
 #' @export
 g2Sunburst <- function(data, seriesField=NULL,colorField=NULL, type = 'partition',
-                       radius=1,innerRadius=0, reflect = NULL, color = NULL,
+                       radius=1,innerRadius=0.1, reflect = NULL, color = NULL,
                        cfg = list(), width = NULL, height = NULL) {
   # prep cfg
-  xField = as.character(substitute(xField))
-  yField = as.character(substitute(yField))
   seriesField = as.character(substitute(seriesField))  # NULL returns character(0)
+  colorField = as.character(substitute(colorField))
   
-  cfg$isGroup = isGroup
-  cfg$isStack = isStack
-  if (!is.null(radius)) {
-    cfg$radius = radius
+  cfg$type = type
+  cfg$radius = radius
+  cfg$innerRadius = innerRadius
+  if (!is.null(reflect)) {
+    cfg$reflect = reflect
   }
   if (!is.null(innerRadius)) {
     cfg$innerRadius = innerRadius
@@ -32,18 +32,16 @@ g2Sunburst <- function(data, seriesField=NULL,colorField=NULL, type = 'partition
     cfg$color = color
   }
   
-  cfg$xField = xField
-  cfg$yField = yField
-  keep_col = c(xField, yField)
   if (!identical(seriesField, character(0))) {
     cfg$seriesField = as.character(seriesField)
-    keep_col = append(keep_col, seriesField)
   }
-  data = subset(data, select = keep_col)
-  cfg$data = jsonlite::toJSON(data)
+  if (!identical(colorField, character(0))) {
+    cfg$colorField = as.character(colorField)
+  }
+  cfg$data = jsonlite::toJSON(data, auto_unbox = TRUE)
   # pass the data and settings using 'x'
   x <- list(
-    type = 'Rose',
+    type = 'Sunburst',
     cfg = cfg
   )
   # create the widget

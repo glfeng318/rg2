@@ -9,8 +9,13 @@ g2Funnel(
   xField,
   yField,
   compareField = NULL,
+  seriesField = NULL,
+  isTransposed = FALSE,
   dynamicHeight = FALSE,
-  transpose = FALSE,
+  maxSize = 1,
+  minSize = 1,
+  conversionTag = NULL,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -20,15 +25,18 @@ g2Funnel(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField}{column name in data for aesthetic mapping}
+\item{xField, yField, compareField, seriesField}{column name in data for aesthetic mapping}
 
-\item{compareField}{Required by compare funnel. specified values will overwrite the dynamicHeight to `FALSE`.
-you can configure the compare text style in `cfg` parameter with `compareText=list(...)`}
+\item{isTransposed}{default to FALSE}
 
 \item{dynamicHeight}{`TRUE` for mapping xField to width/angle of funnel with a fixed height, 
 `FALSE` for mapping xField to height of funnel with a fixed angle.}
 
-\item{transpose}{`TRUE` for horizontal funnel, and `FALSE` for vertical funnel}
+\item{maxSize, minSize}{these fields are invalid when dynamicHeight=true}
+
+\item{conversionTag}{FALSE for hide the conversion info or specify a `htmlwidgets::JS` \url{https://g2plot.antv.vision/en/docs/api/plots/funnel#conversiontag}}
+
+\item{color}{color}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 
@@ -38,47 +46,4 @@ you can configure the compare text style in `cfg` parameter with `compareText=li
 }
 \description{
 Funnel chart
-}
-\section{percentage configuration}{
-
-In the funnel chart, the conversion rate display consists of three parts: 
-\enumerate{
-  \item fixed line
-  \item fixed text
-  \item numeric text
-}
- 
- The style and content can be configured by `line`, `text` and `value` respectively.
- 
- See example for a full configuration of percentage.
-}
-
-\examples{
- \dontrun{
- 
- cfg = list(
-   percentage = list(
-     visible = TRUE,
-     offsetX = 40,
-     offsetY = 40,
-     spacing = 4,
-     line = list(
-       visible = TRUE,
-       style = list()  # lineStyle
-     ),
-     text = list(
-       visible = TRUE,
-       content = 'conversion rate'
-       style = list()  # textStyle
-     ),
-     value = list(
-       visible = TRUE,
-       style = list()  # textStyle
-     )
-   )
- )
- 
- }
-
-
 }

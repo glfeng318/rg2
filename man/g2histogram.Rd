@@ -7,6 +7,7 @@
 g2Histogram(
   data,
   binField,
+  stackField = NULL,
   binWidth,
   binNumber = NULL,
   color = NULL,
@@ -19,7 +20,7 @@ g2Histogram(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{binField}{column name in data for aesthetic mapping}
+\item{binField, stackField}{column name in data for aesthetic mapping}
 
 \item{binWidth, binNumber}{width/number of bins. you must specify at least one of these.}
 
