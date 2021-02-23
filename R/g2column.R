@@ -37,7 +37,7 @@ g2Column <- function(data, xField, yField, seriesField=NULL,groupField=NULL,
   }
   
   if (isPercent || isStack || isPercent) {
-    cfg$interactions = c(list(type='element-highlight-by-color'),list(type='element-link'))
+    cfg$interactions = list(list(type='element-highlight-by-color'),list(type='element-link'))
   }
   
   cfg$xField = xField
