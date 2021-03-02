@@ -9,3 +9,4 @@ dependencies:
     src: htmlwidgets/lib/g2plot-2.3.9
     script: 
       - g2plot.min.js
+      - shape.js

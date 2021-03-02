@@ -5,7 +5,6 @@ HTMLWidgets.widget({
     var chart;
     return {
       renderValue: function(x) {
-        window.cfg = x.cfg;
         $(el).empty();  // clear out the previous chart, fixed #3
         switch (x.type) {
           case 'Bar':
@@ -130,7 +129,13 @@ HTMLWidgets.widget({
             // code
             break;
         }
+        // global cfg
+        if (x.cfg.reflect) {
+          chart.chart.coordinate().reflect(x.cfg.reflect);
+        }
         chart.render();
+        console.log(x.cfg);
+        console.log(chart);
       }
     };
   }

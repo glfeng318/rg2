@@ -34,14 +34,11 @@ g2Heatmap <- function(data, xField, yField, colorField=NULL, sizeField=NULL,
   
   cfg$xField = xField
   cfg$yField = yField
-  keep_col = c(xField, yField)
   if (!identical(colorField, character(0))) {
     cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
   }
   if (!identical(sizeField, character(0))) {
     cfg$sizeField = as.character(sizeField)
-    keep_col = append(keep_col, sizeField)
   }
 
   # meta, make sure x and y are all category
@@ -49,7 +46,6 @@ g2Heatmap <- function(data, xField, yField, colorField=NULL, sizeField=NULL,
   cfg$meta[[xField]] = list(type='cat')
   cfg$meta[[yField]] = list(type='cat')
   
-  data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(
