@@ -10,6 +10,7 @@ g2BidirectionalBar(
   yField,
   layout = "horizontal",
   yAxis = NULL,
+  color = NULL,
   cfg = list(),
   width = NULL,
   height = NULL
@@ -25,13 +26,13 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{yAxis}{yAxis is a list, Keys are the fields defined in yField, values is the configuration of axis.}
 
+\item{color}{color}
+
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 
 \item{width}{width of the chart}
 
 \item{height}{height of the chart}
-
-\item{color}{color}
 }
 \description{
 BidirectionalBar chart

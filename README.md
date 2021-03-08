@@ -41,3 +41,7 @@ cfg = list(
 
 g2Bar(df, pv, action, cfg = cfg)
 ```
+
+
+
+

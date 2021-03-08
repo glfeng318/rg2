@@ -51,7 +51,7 @@ Set the pixel ratio of the chart.
 
 - limitInPlot
 optional boolean
-Whether clip the Geometry beyond the coordinate system。
+Whether clip the Geometry beyond the coordinate system.
 }
 
 \section{Components}{

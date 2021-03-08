@@ -53,7 +53,7 @@ NULL
 #' 
 #' - limitInPlot
 #' optional boolean
-#' Whether clip the Geometry beyond the coordinate system。
+#' Whether clip the Geometry beyond the coordinate system.
 #' 
 #' @section Components: 
 #' \url{https://g2plot.antv.vision/en/docs/api/components/axis}

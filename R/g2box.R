@@ -35,7 +35,7 @@ g2Box <- function(data, xField,yField,groupField=NULL,outliersField=NULL,
   data = subset(data, select = keep_col)
   # ungroup data
   if (any(duplicated(data[xField]))){
-    q = tapply(data[[yField]], data[[xField]], quantile)
+    q = tapply(data[[yField]], data[[xField]], stats::quantile)
     m = matrix(unlist(q), ncol=5, byrow = T)
     data = data.frame(m)
     data[xField] = names(q)

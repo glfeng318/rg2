@@ -11,7 +11,7 @@
 #' 
 #' @export
 g2BidirectionalBar <- function(data, xField, yField,
-                               layout='horizontal', yAxis=NULL,
+                               layout='horizontal', yAxis=NULL, color=NULL,
                                cfg = list(), width = NULL, height = NULL) {
   # prep cfg
   xField = as.character(substitute(xField))

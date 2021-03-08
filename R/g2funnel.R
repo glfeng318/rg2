@@ -37,8 +37,10 @@ g2Funnel <- function(data, xField, yField, compareField = NULL,seriesField=NULL,
   cfg$isTransposed = isTransposed
   cfg$maxSize = maxSize
   cfg$minSize = minSize
-  cfg$color = color
-  cfg$conversionTag = list(offsetX=10, offsetY=0, formatter: htmlwidgets::JS("(datum) => 'conversion rate' + datum.$$percentage$$ * 100 + '%'"))
+  if (!is.null(color)) {
+    cfg$color = color
+  }
+  cfg$conversionTag = list(offsetX=10, offsetY=0, formatter=htmlwidgets::JS("(datum) => 'conversion rate' + datum.$$percentage$$ * 100 + '%'"))
   
   
   data = subset(data, select = keep_col)

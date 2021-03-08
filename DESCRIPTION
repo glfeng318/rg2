@@ -2,7 +2,7 @@ Package: rg2
 Type: Package
 Title: G2Plot for R
 Version: 1.0
-Date: 2020-06-20
+Date: 2021-03-08
 Author: 13kay
 Maintainer: 13kay <funnng@gmail.com>
 Description: This package is a wrapper of G2Plot for R.
