@@ -4,19 +4,28 @@
 \alias{g2Treemap}
 \title{Treemap chart}
 \usage{
-g2Treemap(data, maxLevel = 2, cfg = list(), width = NULL, height = NULL)
+g2Treemap(
+  data,
+  colorField = NULL,
+  color = NULL,
+  cfg = list(),
+  width = NULL,
+  height = NULL
+)
 }
 \arguments{
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{maxLevel}{Default to 2}
+\item{color}{color}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 
 \item{width}{width of the chart}
 
 \item{height}{height of the chart}
+
+\item{nameField, valueField}{column name in data for aesthetic mapping.}
 }
 \description{
 Treemap chart
