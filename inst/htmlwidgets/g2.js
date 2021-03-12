@@ -16,9 +16,6 @@ HTMLWidgets.widget({
           case 'Treemap':
             chart = new G2Plot.Treemap(el.id, x.cfg);
             break;
-          case 'Bar':
-            chart = new G2Plot.Bar(el.id, x.cfg);
-            break;
           case 'GroupedBar':
             chart = new G2Plot.GroupedBar(el.id, x.cfg);
             break;
@@ -125,6 +122,9 @@ HTMLWidgets.widget({
           case 'Sankey':
             chart = new G2Plot.Sankey(el.id, x.cfg)
             break;
+          case 'MultiView':
+            chart = new G2Plot.MultiView(el.id, x.cfg)
+            break;
           default:
             // code
             break;
@@ -133,9 +133,11 @@ HTMLWidgets.widget({
         if (x.cfg.reflect) {
           chart.chart.coordinate().reflect(x.cfg.reflect);
         }
-        chart.render();
         console.log(x.cfg);
         console.log(chart);
+        window.cfg = x.cfg;
+        window.chart = chart;
+        chart.render();
       }
     };
   }

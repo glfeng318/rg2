@@ -41,4 +41,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 \description{
 Sankey chart
 }
+\seealso{
+Other g2: 
+\code{\link{g2MultiView}()}
+}
 \concept{g2}
