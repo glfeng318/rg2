@@ -4,12 +4,9 @@
 \alias{g2MultiView}
 \title{MultiView chart}
 \usage{
-g2MultiView(data, cfg = list(), width = NULL, height = NULL)
+g2MultiView(cfg = list(), width = NULL, height = NULL)
 }
 \arguments{
-\item{data}{a data object.Currently supported object is data.frame, 
-data should only contains the necessary data for chart (reduce json/data transmission)}
-
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
 
 \item{width}{width of the chart}
