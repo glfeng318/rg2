@@ -37,10 +37,7 @@ line geometry can specify: seriesField,smooth and some other param in g2Line, fo
 \description{
 DualAxes chart
 }
-\concept{area
-
-
-#' @examples
+\examples{
 \dontrun{
 
 df = jsonlite::fromJSON(' [
@@ -83,4 +80,11 @@ df = list(jsonlite::fromJSON('[
 g2DualAxes(df, time, value, count, type='lc', geometryOptions = list(list(geometry='column'), list(geometry='line',seriesField='name')))
 
 
-}}
+}
+
+}
+\seealso{
+Other area: 
+\code{\link{g2Area}()}
+}
+\concept{area}

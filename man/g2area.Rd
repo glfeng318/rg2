@@ -36,4 +36,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 \description{
 Area chart
 }
+\seealso{
+Other area: 
+\code{\link{g2DualAxes}()}
+}
 \concept{area}

@@ -34,7 +34,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{columnWidthRatio}{Width ratio of histogram [0-1].}
 
-\item{risingFill, risingFill}{Rising/Drop color configuration.}
+\item{risingFill, fallingFill}{Rising/Drop color configuration.}
 
 \item{color}{color can be a character, list or javascript function:
 * '#60d7a7'

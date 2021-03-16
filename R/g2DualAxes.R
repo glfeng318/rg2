@@ -11,7 +11,7 @@
 #' @family area
 #' 
 #' 
-#' #' @examples
+#' @examples
 #' \dontrun{
 #' 
 #' df = jsonlite::fromJSON(' [

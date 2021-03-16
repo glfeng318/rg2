@@ -24,7 +24,11 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{seriesField, colorField}{column name in data for aesthetic mapping}
 
+\item{type}{type}
+
 \item{radius, innerRadius}{range (0, 1]}
+
+\item{reflect}{reflect}
 
 \item{color}{Configure the color. If there is no colorField configured, 
 set one single color. Otherwise you can set a series of colors, or you can use callback function.
@@ -35,8 +39,6 @@ Default: The color board of the theme.}
 \item{width}{width of the chart}
 
 \item{height}{height of the chart}
-
-\item{isGroup, isStack}{default to FALSE}
 }
 \description{
 Sunburst chart

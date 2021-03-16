@@ -7,7 +7,7 @@
 #' @param total Whether to display totals (automatic statistics, add a column with totals).
 #' @param leaderLine Whether to show leader line.
 #' @param columnWidthRatio Width ratio of histogram [0-1].
-#' @param risingFill,risingFill Rising/Drop color configuration.
+#' @param risingFill,fallingFill Rising/Drop color configuration.
 #' @param color color can be a character, list or javascript function:
 #'   * '#60d7a7'
 #'   * list(rising='#60d7a7', falling='#dedede', total='#fedca9')

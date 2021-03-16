@@ -2,7 +2,7 @@
 #' 
 #' Treemap chart
 #' 
-#' @param nameField,valueField column name in data for aesthetic mapping.
+#' @param colorField column name in data for aesthetic mapping.
 #' @param color color
 #' @inheritParams g2
 #' 

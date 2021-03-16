@@ -6,6 +6,7 @@
 #' @param color points color, overwritten by colorField parameter. If there is no colorField configured, 
 #'   set one single color. Otherwise you can set a series of colors, or you can use callback function.
 #'   Default: The color board of the theme.
+#' @param size points size
 #' @param shape default to 'circle', Optional values: 'circle','square','bowtie','diamond',
 #'   'hexagon','triangle','triangle-down','cross','tick','plus','hyphen','line',
 #'   'hollow-circle','hollow-square','hollow-bowtie','hollow-diamond','hollow-hexagon',

@@ -23,13 +23,11 @@ g2Rose(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
-\item{xField, yField, colorField}{column name in data for aesthetic mapping}
+\item{xField, yField, seriesField}{column name in data for aesthetic mapping}
 
 \item{radius, innerRadius}{range (0, 1]}
 
-\item{color}{Configure the color. If there is no colorField configured, 
-set one single color. Otherwise you can set a series of colors, or you can use callback function.
-Default: The color board of the theme.}
+\item{color}{Configure the color.set one single color. Otherwise you can set a series of colors, or you can use callback function.Default: The color board of the theme.}
 
 \item{isGroup, isStack}{default to FALSE}
 

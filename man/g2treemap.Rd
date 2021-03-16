@@ -17,6 +17,8 @@ g2Treemap(
 \item{data}{a data object.Currently supported object is data.frame, 
 data should only contains the necessary data for chart (reduce json/data transmission)}
 
+\item{colorField}{column name in data for aesthetic mapping.}
+
 \item{color}{color}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
@@ -24,8 +26,6 @@ data should only contains the necessary data for chart (reduce json/data transmi
 \item{width}{width of the chart}
 
 \item{height}{height of the chart}
-
-\item{nameField, valueField}{column name in data for aesthetic mapping.}
 }
 \description{
 Treemap chart

@@ -30,6 +30,8 @@ data should only contains the necessary data for chart (reduce json/data transmi
 set one single color. Otherwise you can set a series of colors, or you can use callback function.
 Default: The color board of the theme.}
 
+\item{size}{points size}
+
 \item{shape}{default to 'circle', Optional values: 'circle','square','bowtie','diamond',
 'hexagon','triangle','triangle-down','cross','tick','plus','hyphen','line',
 'hollow-circle','hollow-square','hollow-bowtie','hollow-diamond','hollow-hexagon',

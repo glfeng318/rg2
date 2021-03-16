@@ -2,12 +2,10 @@
 #' 
 #' Rose chart
 #' 
-#' @param xField,yField,colorField column name in data for aesthetic mapping
+#' @param xField,yField,seriesField column name in data for aesthetic mapping
 #' @param radius,innerRadius range (0, 1]
 #' @param isGroup,isStack default to FALSE
-#' @param color Configure the color. If there is no colorField configured, 
-#'   set one single color. Otherwise you can set a series of colors, or you can use callback function.
-#'   Default: The color board of the theme.
+#' @param color Configure the color.set one single color. Otherwise you can set a series of colors, or you can use callback function.Default: The color board of the theme.
 #' @inheritParams g2
 #' @family rose
 #' 
