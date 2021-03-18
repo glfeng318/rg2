@@ -1,0 +1,38 @@
+---
+title: "rg2"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+library(rg2)
+library(dplyr)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Parameters
+
+There are 3 types of parameters for rg2:
+
+1. aesthetic mapping
+1. plot style
+1. cfg
+
+`cfg` parameter in rg2 is a object of list, a full supported options document: [G2Plot API](https://antv-g2plot.gitee.io/en/docs/api/plot-api)
+
+## Example
+
+a basic example
+
+```{r}
+ggplot2::economics_long %>% 
+  filter(variable %in% c('psavert', 'uempmed')) %>% 
+  g2Line(date, value, seriesField = variable)
+```
+

@@ -1,0 +1,58 @@
+---
+title: "cfg"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+library(dplyr)
+library(rg2)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## label
+
+show label
+
+```{r}
+mtcars %>% 
+  g2Scatter(mpg, disp, cfg = list(label=list()))
+```
+label text style
+
+```{r}
+cfg = list(
+  label = list(
+    rotate=45,
+    style = list(
+      fill='#fc9845',
+      fontSize = 18
+    )
+  )
+)
+
+mtcars %>% 
+  g2Scatter(mpg, disp, cfg = cfg)
+```
+
+label formatter
+```{r}
+cfg = list(
+  label = list(
+    formatter = htmlwidgets::JS('(v) => `[${v.mpg}, ${v.disp}]`')
+  )
+)
+mtcars %>% 
+  g2Scatter(mpg, disp, cfg = cfg)
+```
+
+
+## tooltip
+
