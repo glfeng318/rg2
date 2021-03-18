@@ -1,5 +1,4 @@
-
-[G2Plot 2.0 Upgrade guide](https://g2plot.antv.vision/en/docs/manual/upgrade/)
+# rg2 1.0
 
 
 ## Abandoned charts
@@ -92,6 +91,8 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 - [x] g2Sankey
 - [x] g2Treemap
 - [x] g2Funnel
+
+[G2Plot 2.0 Upgrade guide](https://g2plot.antv.vision/en/docs/manual/upgrade/)
 
 
 

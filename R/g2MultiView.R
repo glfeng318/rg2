@@ -5,7 +5,7 @@
 #' @inheritParams g2
 #' @family g2
 #' 
-#' @example 
+#' @examples 
 #' \dontrun{
 #' 
 #' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/fKTgtjKdaN/association-pie.json')

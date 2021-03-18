@@ -77,7 +77,9 @@ df = list(jsonlite::fromJSON('[
   { "time": "2019-06", "count": 300, "name": "c" },
   { "time": "2019-07", "count": 200, "name": "c" }
 ]'))
-g2DualAxes(df, time, value, count, type='lc', geometryOptions = list(list(geometry='column'), list(geometry='line',seriesField='name')))
+g2DualAxes(df, time, value, count, type='lc', 
+           geometryOptions = list(list(geometry='column'), 
+           list(geometry='line',seriesField='name')))
 
 
 }
