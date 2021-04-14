@@ -2,7 +2,7 @@
 title: "rg2"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{rg2}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -31,8 +31,5 @@ There are 3 types of parameters for rg2:
 a basic example
 
 ```{r}
-ggplot2::economics_long %>% 
-  filter(variable %in% c('psavert', 'uempmed')) %>% 
-  g2Line(date, value, seriesField = variable)
 ```
 
