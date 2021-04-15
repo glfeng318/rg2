@@ -133,10 +133,6 @@ HTMLWidgets.widget({
         if (x.cfg.reflect) {
           chart.chart.coordinate().reflect(x.cfg.reflect);
         }
-        console.log(x.cfg);
-        console.log(chart);
-        window.cfg = x.cfg;
-        window.chart = chart;
         chart.render();
       }
     };
