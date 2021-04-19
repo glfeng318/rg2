@@ -2,14 +2,14 @@
 #'
 #' @param data a data object.Currently supported object is data.frame, 
 #'    data should only contains the necessary data for chart (reduce json/data transmission)
-#' @param cfg configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details. 
+#' @param cfg configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details. 
 #' @param width width of the chart
 #' @param height height of the chart
 #' @name g2
 NULL
 
 #' Base configuration
-#' \url{https://g2plot.antv.vision/en/docs/api/plots/bar}
+#' \url{https://g2plot.antv.vision/en/docs/api/plots/bar/}
 #' 
 #' @section Plot Container:
 #' \itemize{
@@ -56,11 +56,11 @@ NULL
 #' Whether clip the Geometry beyond the coordinate system.
 #' 
 #' @section Components: 
-#' \url{https://g2plot.antv.vision/en/docs/api/components/axis}
+#' \url{https://g2plot.antv.vision/en/docs/api/components/axis/}
 #' 
 #' 
 #' @section Graphic Style:
-#' \url{https://g2plot.antv.vision/en/docs/api/graphic-style}
+#' \url{https://g2plot.antv.vision/en/docs/api/graphic-style/}
 #' 
 #' @examples
 #' \dontrun{

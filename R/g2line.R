@@ -8,7 +8,7 @@
 #' @param connectNulls default to TRUE
 #' @param isStack default to FALSE
 #' @param color color vector or javascript function.
-#' @param point `point=list()` to display data point, Or you can specify color,size,shape and style: \url{https://g2plot.antv.vision/en/examples/line/basic}
+#' @param point `point=list()` to display data point, Or you can specify color,size,shape and style: \url{https://g2plot.antv.vision/en/examples/line/basic/}
 #' @inheritParams g2
 #' @family line
 #' 

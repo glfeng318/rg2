@@ -21,7 +21,7 @@ g2RingProgress(
 
 \item{radius, innerRadius}{the radius/innerRadius for the RingProgress, range [0, 1]}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

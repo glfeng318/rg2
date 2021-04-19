@@ -27,7 +27,7 @@ g2Bullet(
 
 \item{layout}{optional 'horizontal' | 'vertical' default: 'horizontal'}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 
@@ -35,7 +35,7 @@ g2Bullet(
 }
 \description{
 Bullet chart
-\url{https://g2plot.antv.vision/en/docs/api/plots/bullet#geometry-style}
+\url{https://g2plot.antv.vision/en/docs/api/plots/bullet/}
 }
 \examples{
 \dontrun{

@@ -30,7 +30,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{color}{color vector or a javascript function}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

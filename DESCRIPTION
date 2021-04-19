@@ -2,11 +2,13 @@ Package: rg2
 Type: Package
 Title: G2Plot for R
 Version: 1.0
-Date: 2021-03-08
+Date: 2021-04-19
 Author: 13kay
-Maintainer: 13kay <funnng@gmail.com>
-Description: This package is a wrapper of G2Plot for R.
+Maintainer: feng yuan <funnng@gmail.com>
+Description: R interface to the javaScript library G2plot 
+    for interactive and responsive charting.
 License: MIT + file LICENSE
+URL: https://github.com/13kay/rg2
 Imports:
     jsonlite,
     htmlwidgets

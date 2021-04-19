@@ -32,7 +32,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{weeks}{weeks name, default to c('Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'), week start on sunday}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

@@ -34,7 +34,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 set one single color. Otherwise you can set a series of colors, or you can use callback function.
 Default: The color board of the theme.}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

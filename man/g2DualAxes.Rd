@@ -28,7 +28,7 @@ data should only contains the necessary data for chart (reduce json/data transmi
 column geometry can specify: seriesField,groupField,isStack,isGroup and some other param in g2Column, for example `list(list(geometry='column', isStack=TRUE), list(geometry='line'))`
 line geometry can specify: seriesField,smooth and some other param in g2Line, for example `list(list(geometry='column'), list(geometry='line',seriesField='cate'))`}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

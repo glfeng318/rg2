@@ -34,11 +34,11 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{maxSize, minSize}{these fields are invalid when dynamicHeight=true}
 
-\item{conversionTag}{FALSE for hide the conversion info or specify a `htmlwidgets::JS` \url{https://g2plot.antv.vision/en/docs/api/plots/funnel#conversiontag}}
+\item{conversionTag}{FALSE for hide the conversion info or specify a `htmlwidgets::JS` \url{https://g2plot.antv.vision/en/docs/api/plots/funnel/}}
 
 \item{color}{color}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

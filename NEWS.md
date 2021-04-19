@@ -94,6 +94,9 @@ G2Plot 2.0 is compatible with most of the chart functions and configuration item
 
 [G2Plot 2.0 Upgrade guide](https://g2plot.antv.vision/en/docs/manual/upgrade/)
 
+# rg2 0.1
+
+init rg2
 
 
 

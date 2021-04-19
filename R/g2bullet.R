@@ -1,7 +1,7 @@
 #' Bullet chart
 #' 
 #' Bullet chart
-#' \url{https://g2plot.antv.vision/en/docs/api/plots/bullet#geometry-style}
+#' \url{https://g2plot.antv.vision/en/docs/api/plots/bullet/}
 #' 
 #' @param data data should contain the following columns:
 #'   * title: title character of each sample

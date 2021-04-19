@@ -34,11 +34,11 @@ data should only contains the necessary data for chart (reduce json/data transmi
 
 \item{isStack}{default to FALSE}
 
-\item{point}{`point=list()` to display data point, Or you can specify color,size,shape and style: \url{https://g2plot.antv.vision/en/examples/line/basic}}
+\item{point}{`point=list()` to display data point, Or you can specify color,size,shape and style: \url{https://g2plot.antv.vision/en/examples/line/basic/}}
 
 \item{color}{color vector or javascript function.}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

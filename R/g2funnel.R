@@ -7,7 +7,7 @@
 #' @param dynamicHeight `TRUE` for mapping xField to width/angle of funnel with a fixed height, 
 #'   `FALSE` for mapping xField to height of funnel with a fixed angle.
 #' @param maxSize,minSize these fields are invalid when dynamicHeight=true
-#' @param conversionTag FALSE for hide the conversion info or specify a `htmlwidgets::JS` \url{https://g2plot.antv.vision/en/docs/api/plots/funnel#conversiontag}
+#' @param conversionTag FALSE for hide the conversion info or specify a `htmlwidgets::JS` \url{https://g2plot.antv.vision/en/docs/api/plots/funnel/}
 #' @param color color
 #' @inheritParams g2
 #' 

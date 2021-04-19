@@ -3,10 +3,10 @@
 \name{cfg}
 \alias{cfg}
 \title{Base configuration
-\url{https://g2plot.antv.vision/en/docs/api/plots/bar}}
+\url{https://g2plot.antv.vision/en/docs/api/plots/bar/}}
 \description{
 Base configuration
-\url{https://g2plot.antv.vision/en/docs/api/plots/bar}
+\url{https://g2plot.antv.vision/en/docs/api/plots/bar/}
 }
 \section{Plot Container}{
 
@@ -56,12 +56,12 @@ Whether clip the Geometry beyond the coordinate system.
 
 \section{Components}{
  
-\url{https://g2plot.antv.vision/en/docs/api/components/axis}
+\url{https://g2plot.antv.vision/en/docs/api/components/axis/}
 }
 
 \section{Graphic Style}{
 
-\url{https://g2plot.antv.vision/en/docs/api/graphic-style}
+\url{https://g2plot.antv.vision/en/docs/api/graphic-style/}
 }
 
 \examples{

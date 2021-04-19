@@ -26,9 +26,9 @@ g2Gauge(
 
 \item{range}{a list contains `ticks`(numeric vector [0, 1]) and `color`(color string vector)}
 
-\item{indicator}{NULL to disable indicator, or a list contains `pointer` and `pin`, which both have the same style configuration \url{https://g2plot.antv.vision/en/docs/api/plots/gauge#indicator}}
+\item{indicator}{NULL to disable indicator, or a list contains `pointer` and `pin`, which both have the same style configuration \url{https://g2plot.antv.vision/en/docs/api/plots/gauge/}}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 

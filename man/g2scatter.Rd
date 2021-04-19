@@ -39,7 +39,7 @@ Default: The color board of the theme.}
 
 \item{regression}{type of regression line, exp | linear | loess | log | poly | pow | quad}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api} for more details.}
+\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.vision/en/docs/api/plot-api/} for more details.}
 
 \item{width}{width of the chart}
 
