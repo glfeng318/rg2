@@ -24,10 +24,8 @@ g2Line <- function(data, xField, yField, seriesField = NULL,
   
   cfg$xField = xField
   cfg$yField = yField
-  keep_col = c(xField, yField)
   if (!identical(seriesField, character(0))) {
     cfg$seriesField = as.character(seriesField)
-    keep_col = append(keep_col, seriesField)
   }
   
   cfg$smooth = smooth
@@ -44,7 +42,6 @@ g2Line <- function(data, xField, yField, seriesField = NULL,
     cfg$color = color
   }
   
-  data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(
