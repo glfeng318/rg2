@@ -90,25 +90,7 @@ g2DualAxes <- function(data, xField, yField1, yField2, type='ll',geometryOptions
     cfg$geometryOptions = geometryOptions
     # make data
     if (class(data) == 'list' && length(data)==2) {
-      keep_col1 = c(xField, yField1)
-      if (!is.null(geometryOptions[[1]]$seriesField)) {
-        keep_col1 = append(keep_col1, geometryOptions[[1]]$seriesField)
-      }
-      if (!is.null(geometryOptions[[1]]$groupField)) {
-        keep_col1 = append(keep_col1, geometryOptions[[1]]$groupField)
-      }
-      data1 = subset(data[[1]], select=keep_col1)
-      
-      keep_col2 = c(xField, yField2)
-      if (!is.null(geometryOptions[[2]]$seriesField)) {
-        keep_col2 = append(keep_col2, geometryOptions[[2]]$seriesField)
-      }
-      if (!is.null(geometryOptions[[2]]$groupField)) {
-        keep_col2 = append(keep_col2, geometryOptions[[2]]$groupField)
-      }
-      data2 = subset(data[[2]], select=keep_col2)
-      
-      cfg$data = jsonlite::toJSON(list(data1, data2))
+      cfg$data = jsonlite::toJSON(list(data[[1]], data[[2]]))
     } else {
       stop('data should be a lenth-two list with two data.frame')
     }
