@@ -39,8 +39,6 @@ g2Waterfall <- function(data, xField, yField,
   }
   cfg$xField = xField
   cfg$yField = yField
-  keep_col = c(xField, yField)
-  data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(
