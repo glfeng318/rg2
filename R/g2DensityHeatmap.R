@@ -20,10 +20,8 @@ g2DensityHeatmap <- function(data, xField, yField, colorField,
   
   cfg$xField = xField
   cfg$yField = yField
-  keep_col = c(xField, yField)
   if (!identical(colorField, character(0))) {
     cfg$colorField = as.character(colorField)
-    keep_col = append(keep_col, colorField)
   }
   if (!is.null(color)){
     cfg$color = color
@@ -32,7 +30,6 @@ g2DensityHeatmap <- function(data, xField, yField, colorField,
     cfg$radius = radius
   }
   cfg$intensity = intensity
-  data = subset(data, select = keep_col)
   cfg$data = jsonlite::toJSON(data)
   # pass the data and settings using 'x'
   x <- list(
