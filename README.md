@@ -5,13 +5,13 @@
 
 ## Overview
 
-rg2 is a wrapper of [G2Plot](https://g2plot.antv.vision/) for R.
+rg2 is a wrapper of [G2Plot](https://g2plot.antv.antgroup.com/) for R.
 
 ## Installation
 
 ```
 # install the development version from GitHub:
-devtools::install_github("13kay/rg2")
+pak::pkg_install("13kay/rg2")
 ```
 
 ## quickstart
@@ -42,6 +42,5 @@ cfg = list(
 g2Bar(df, pv, action, cfg = cfg)
 ```
 
-
-
-
+## changelog
+[news](NEWS.md)
