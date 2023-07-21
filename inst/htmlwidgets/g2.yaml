@@ -1,12 +1,12 @@
 dependencies:
   - name: jquery
-    version: 3.5.1
+    version: 3.7.0
     src: htmlwidgets/lib/jquery
     script:
       - jquery.slim.min.js
   - name: g2plot
-    version: 2.3.15
-    src: htmlwidgets/lib/g2plot-2.3.15
+    version: 2.4.31
+    src: htmlwidgets/lib/g2plot
     script: 
       - g2plot.min.js
       - shape.js
