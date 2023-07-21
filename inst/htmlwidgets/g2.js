@@ -134,6 +134,10 @@ HTMLWidgets.widget({
           case 'Sankey':
             chart = new G2Plot.Sankey(el.id, x.cfg)
             break;
+          // Chord 弦图
+          case 'Chord':
+            chart = new G2Plot.Chord(el.id, x.cfg)
+            break;
           // Treemap 矩阵树图
           case 'Treemap':
             chart = new G2Plot.Treemap(el.id, x.cfg);
