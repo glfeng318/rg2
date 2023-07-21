@@ -2,6 +2,7 @@
 #' 
 #' Mix(MultiView) chart
 #' 
+#' @params cfg for more detail: https://g2plot.antv.antgroup.com/en/api/advanced-plots/mix
 #' @inheritParams g2
 #' @family g2
 #' 
