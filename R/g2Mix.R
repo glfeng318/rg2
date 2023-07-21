@@ -1,6 +1,6 @@
-#' MultiView chart
+#' Mix chart
 #' 
-#' MultiView chart
+#' Mix(MultiView) chart
 #' 
 #' @inheritParams g2
 #' @family g2
@@ -49,15 +49,15 @@
 #'   )
 #' )
 #' 
-#' g2MultiView(cfg)
+#' g2Mix(cfg)
 #' 
 #' }
 #' 
 #' @export
-g2MultiView <- function(cfg = list(), width = NULL, height = NULL) {
+g2Mix <- function(cfg = list(), width = NULL, height = NULL) {
   # pass the data and settings using 'x'
   x <- list(
-    type = 'MultiView',
+    type = 'Mix',
     cfg = cfg
   )
   # create the widget
