@@ -1,0 +1,36 @@
+#' Chord chart
+#' 
+#' Chord chart
+#' 
+#' @param sourceField,targetField,weightField column name in data for aesthetic mapping.
+#' @param color color
+#' @inheritParams g2
+#' @family relation-plots
+#' 
+#' @export
+g2Chord <- function(data, sourceField, targetField, weightField,
+                  color=NULL,
+                  cfg = list(), width = NULL, height = NULL) {
+  # prep cfg
+  sourceField = as.character(substitute(sourceField))
+  targetField = as.character(substitute(targetField))
+  weightField = as.character(substitute(weightField))
+  
+  if (!is.null(color)) {
+    cfg$color = color
+  }
+  
+  cfg$sourceField = sourceField
+  cfg$targetField = targetField
+  cfg$weightField = weightField
+  keep_col = c(sourceField, targetField, weightField)
+  data = subset(data, select = keep_col)
+  cfg$data = jsonlite::toJSON(data)
+  # pass the data and settings using 'x'
+  x <- list(
+    type = 'Chord',
+    cfg = cfg
+  )
+  # create the widget
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
+}
