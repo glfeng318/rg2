@@ -1,4 +1,19 @@
 
+#' g2 plot
+#' 
+#' all g2 plots can be configed in cfg param
+#' 
+#' @param type G2Plot plot name
+#' @inheritParams g2
+#' @family line
+#' 
+#' @export
+g2 <- function(data, type, cfg = list(), width = NULL, height = NULL) {  
+  cfg$data = jsonlite::toJSON(data)
+  x <- list(type = type, cfg = cfg)
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
+}
+
 #' Line chart
 #' 
 #' Line chart
