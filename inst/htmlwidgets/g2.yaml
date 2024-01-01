@@ -7,6 +7,5 @@ dependencies:
   - name: g2plot
     version: 2.4.31
     src: htmlwidgets/lib/g2plot
-    script: 
+    script:
       - g2plot.min.js
-      - shape.js

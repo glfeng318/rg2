@@ -2,161 +2,260 @@ HTMLWidgets.widget({
   name: "g2",
   type: "output",
   factory: function(el, width, height) {
+    /**/
+    G2Plot.G2.registerShape('polygon', 'boundary-polygon', {
+      draw(cfg, container) {
+        const group = container.addGroup();
+        const attrs = {
+          stroke: '#fff',
+          lineWidth: 1,
+          fill: cfg.color,
+          paht: [],
+        };
+        const points = cfg.points;
+        const path = [
+          ['M', points[0].x, points[0].y],
+          ['L', points[1].x, points[1].y],
+          ['L', points[2].x, points[2].y],
+          ['L', points[3].x, points[3].y],
+          ['Z'],
+        ];
+        // @ts-ignore
+        attrs.path = this.parsePath(path);
+        group.addShape('path', {
+          attrs,
+        });
+
+        if (cfg.data.lastWeek) {
+          const linePath = [
+            ['M', points[2].x, points[2].y],
+            ['L', points[3].x, points[3].y],
+          ];
+          // add right border to the last week
+          group.addShape('path', {
+            attrs: {
+              path: this.parsePath(linePath),
+              lineWidth: 4,
+              stroke: '#404040',
+            },
+          });
+          if (cfg.data.lastDay) {
+            group.addShape('path', {
+              attrs: {
+                path: this.parsePath([
+                  ['M', points[1].x, points[1].y],
+                  ['L', points[2].x, points[2].y],
+                ]),
+                lineWidth: 4,
+                stroke: '#404040',
+              },
+            });
+          }
+        }
+        return group;
+      },
+    });
+
+    G2Plot.G2.registerShape('point', 'breath-point', {
+      draw(cfg, container) {
+        const data = cfg.data;
+        const point = { x: cfg.x, y: cfg.y };
+        const group = container.addGroup();
+        if (data.time === '14.20' && data.date === 'today') {
+          const decorator1 = group.addShape('circle', {
+            attrs: {
+              x: point.x,
+              y: point.y,
+              r: 10,
+              fill: cfg.color,
+              opacity: 0.5,
+            },
+          });
+          const decorator2 = group.addShape('circle', {
+            attrs: {
+              x: point.x,
+              y: point.y,
+              r: 10,
+              fill: cfg.color,
+              opacity: 0.5,
+            },
+          });
+          const decorator3 = group.addShape('circle', {
+            attrs: {
+              x: point.x,
+              y: point.y,
+              r: 10,
+              fill: cfg.color,
+              opacity: 0.5,
+            },
+          });
+          decorator1.animate(
+            {
+              r: 20,
+              opacity: 0,
+            },
+            {
+              duration: 1800,
+              easing: 'easeLinear',
+              repeat: true,
+            }
+          );
+          decorator2.animate(
+            {
+              r: 20,
+              opacity: 0,
+            },
+            {
+              duration: 1800,
+              easing: 'easeLinear',
+              repeat: true,
+              delay: 600,
+            }
+          );
+          decorator3.animate(
+            {
+              r: 20,
+              opacity: 0,
+            },
+            {
+              duration: 1800,
+              easing: 'easeLinear',
+              repeat: true,
+              delay: 1200,
+            }
+          );
+          group.addShape('circle', {
+            attrs: {
+              x: point.x,
+              y: point.y,
+              r: 6,
+              fill: cfg.color,
+              opacity: 0.7,
+            },
+          });
+          group.addShape('circle', {
+            attrs: {
+              x: point.x,
+              y: point.y,
+              r: 1.5,
+              fill: cfg.color,
+            },
+          });
+        }
+
+        return group;
+      },
+    });
+    /**/
     var chart;
     return {
       renderValue: function(x) {
         $(el).empty();  // clear out the previous chart, fixed #3
         // https://g2plot.antv.antgroup.com/api/plot-api
-        switch (x.type) {
-          // Line 折线图
-          // StepLine -> Line
-          case 'Line':
+        switch (x.chart.toLowerCase()) {
+          case 'line':
             chart = new G2Plot.Line(el.id, x.cfg);
             break;
-          // Area 面积图
-          // StackedArea/PercentStackedArea -> Area, 去掉 stackField, 改用 seriesField以及增加isPercent: true
-          case 'Area':
+          case 'area':
             chart = new G2Plot.Area(el.id, x.cfg);
             break;
-          // Column 柱状图
-          // StackedColumn/GroupedColumn/PercentStackedColumn/RangeColumn -> Column, add isStack/isGroup/isRange/seriesField
-          case 'Column':
+          case 'column':
             chart = new G2Plot.Column(el.id, x.cfg);
             break;
-          // Bar 条形图
-          // StackedBar/PercentStackedBar/RangeBar -> Bar, add isGroup/isStack/isPercent/isRange
-          case 'Bar':
+          case 'bar':
             chart = new G2Plot.Bar(el.id, x.cfg);
             break;
-          // Pie 饼图
-          // Donut -> Pie
-          case 'Pie':
+          case 'pie':
             chart = new G2Plot.Pie(el.id, x.cfg);
             break;
-          // Scatter 散点图
-          // Bubble -> Scatter
-          case 'Scatter':
+          case 'scatter':
             chart = new G2Plot.Scatter(el.id, x.cfg);
             break;
-          // Gauge 仪表盘
-          // MeterGauge/FanGauge
-          case 'Gauge':
+          case 'gauge':
             chart = new G2Plot.Gauge(el.id, x.cfg);
             break;
-          // DualAxes 双轴图
-          // DualLine/ColumnLine/StackedColumnLine/GroupedColumnLine -> DualAxes
-          case 'DualAxes':
+          case 'dual-axes':
             chart = new G2Plot.DualAxes(el.id, x.cfg);
             break;
-          // Liquid 水波图
-          case 'Liquid':
+          case 'liquid':
             chart = new G2Plot.Liquid(el.id, x.cfg);
             break;
-          // Radar 雷达图
-          case 'Radar':
+          case 'radar':
             chart = new G2Plot.Radar(el.id, x.cfg);
             break;
-          // WordCloud 词云图
-          case 'WordCloud':
+          case 'word-cloud':
             chart = new G2Plot.WordCloud(el.id, x.cfg);
             break;
-          // Funnel 漏斗图
-          case 'Funnel':
+          case 'funnel':
             chart = new G2Plot.Funnel(el.id, x.cfg);
             break;
-          // Bullet 子弹图
-          case 'Bullet':
+          case 'bullet':
             chart = new G2Plot.Bullet(el.id, x.cfg);
             break;
-          // Histogram 直方图
-          case 'Histogram':
+          case 'histogram':
             chart = new G2Plot.Histogram(el.id, x.cfg);
             break;
-          // Venn 韦恩图
-          case 'Venn':
+          case 'venn':
             chart = new G2Plot.Venn(el.id, x.cfg);
             break;
-          // Rose 玫瑰图
-          // StackedRose/isGroup -> Rose, add isStack/isGroup/seriesField cfg
-          case 'Rose':
+          case 'rose':
             chart = new G2Plot.Rose(el.id, x.cfg);
             break;
-          // TinyLine 迷你折线图
-          case 'TinyLine':
+          case 'tiny-line':
             chart = new G2Plot.TinyLine(el.id, x.cfg);
             break;
-          // TinyArea 迷你面积图
-          case 'TinyArea':
+          case 'tiny-area':
             chart = new G2Plot.TinyArea(el.id, x.cfg);
             break;
-          // TinyColumn 迷你柱形图
-          case 'TinyColumn':
+          case 'tiny-column':
             chart = new G2Plot.TinyColumn(el.id, x.cfg);
             break;
-          // Sunburst 旭日图
-          case 'Sunburst':
+          case 'sunburst':
             chart = new G2Plot.Sunburst(el.id, x.cfg);
             break;
-          // Stock 股票图
-          case 'Stock':
+          case 'stock':
             chart = new G2Plot.Stock(el.id, x.cfg)
             break;
-          // RingProgress 进度环图
-          case 'RingProgress':
+          case 'ring-progress':
             chart = new G2Plot.RingProgress(el.id, x.cfg);
             break;
-          // Progress 进度条图
-          case 'Progress':
+          case 'progress':
             chart = new G2Plot.Progress(el.id, x.cfg);
             break;
-          // Box 箱型图
-          case 'Box':
+          case 'box':
             chart = new G2Plot.Box(el.id, x.cfg)
             break;
-          // Heatmap 热力图
-          // Calendar/DensityHeatmap -> Heatmap, type: 'density'
-          case 'Heatmap':
+          case 'heatmap':
             chart = new G2Plot.Heatmap(el.id, x.cfg);
             break;
-          // Waterfall 瀑布图
-          case 'Waterfall':
+          case 'waterfall':
             chart = new G2Plot.Waterfall(el.id, x.cfg);
             break;
-          // RadialBar 玉珏图
-          case 'RadialBar':
+          case 'radial-bar':
             chart = new G2Plot.RadialBar(el.id, x.cfg)
             break;
-          // BidirectionalBar 对称条形图
-          case 'BidirectionalBar':
+          case 'bidirectional-bar':
             chart = new G2Plot.BidirectionalBar(el.id, x.cfg)
             break;
-          // Sankey 桑基图
-          case 'Sankey':
+          case 'sankey':
             chart = new G2Plot.Sankey(el.id, x.cfg)
             break;
-          // Chord 弦图
-          case 'Chord':
+          case 'chord':
             chart = new G2Plot.Chord(el.id, x.cfg)
             break;
-          // Treemap 矩阵树图
-          case 'Treemap':
+          case 'treemap':
             chart = new G2Plot.Treemap(el.id, x.cfg);
             break;
-          // violin 小提琴图
-          case 'Violin':
+          case 'violin':
             chart = new G2Plot.Violin(el.id, x.cfg);
             break;
-          // Circle packing
-          case 'CirclePacking':
+          case 'circle-packing':
             chart = new G2Plot.CirclePacking(el.id, x.cfg);
             break;
-          // Mix 多图层图表
-          // MultiView
-          case 'Mix':
+          case 'mix':
             chart = new G2Plot.Mix(el.id, x.cfg);
             break;
-          // Facet 分面图
-          case 'Facet':
+          case 'facet':
             chart = new G2Plot.Facet(el.id, x.cfg);
             break;
           default:
