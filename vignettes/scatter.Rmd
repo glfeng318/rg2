@@ -1,8 +1,8 @@
 ---
-title: "column"
+title: "scatter"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{column}
+  %\VignetteIndexEntry{scatter}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,24 +10,22 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.dim = c(7,4)
 )
 ```
-
-cfg for `column` chart
+cfg for `scatter` chart
 ```r
 cfg = list(
   xField,
   yField,
-  seriesField=NULL,
-  groupField=NULL,
-  isGroup=FALSE,
-  isStack=FALSE,
-  isRange=FALSE,
-  isPercent=FALSE
+  colorField = NULL,
+  sizeField = NULL,
+  shapeField = NULL
   ...
 )
 ```
 ```{r setup}
 library(rg2)
+g2(cars, 'scatter',list(xField='speed', yField='dist'))
 ```
