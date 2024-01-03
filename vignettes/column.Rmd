@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.dim = c(7,4)
 )
 ```
 
@@ -30,4 +31,97 @@ cfg = list(
 ```
 ```{r setup}
 library(rg2)
+df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json',simplifyVector = T)
+df2 = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/mor%26R5yBI9/stack-group-column.json',simplifyVector = T)
+df3 = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/jSRiL%26YNql/percent-column.json', simplifyVector = T)
 ```
+```{r}
+g2(women, 'column', list(xField='height', yField='weight'))
+```
+
+```{r}
+g2(df,
+   'column',
+    list(
+       isStack=T,
+       xField='year',
+       yField='value',
+       seriesField='type',
+       label=list(
+         position='middle'
+       )
+     ))
+```
+
+```{r}
+g2(df,
+   'column',
+    list(
+       isGroup=T,
+       xField='year',
+       yField='value',
+       seriesField='type',
+       label=list(
+         position='middle'
+       )
+     ))
+```
+
+```{r}
+g2(df2,
+   'column',
+    list(
+       isGroup=T,
+       isStack=T,
+       xField='product_type',
+       yField='order_amt',
+       seriesField='product_sub_type',
+       groupField='sex'
+     ))
+```
+
+```{r}
+g2(df3,
+   'column',
+    list(
+       xField='year',
+      yField='value',
+      seriesField='type',
+      isPercent=T,
+      isStack=T,
+      meta=list(
+        value=list(
+          min=0,
+          max=1
+        )
+    ),
+       label=list(
+         position='middle',
+         content=htmlwidgets::JS('(item)=>{return `${(item.value * 100).toFixed(2)}%`;}')
+       ),
+    tooltip=F,
+    interactions=jsonlite::toJSON(data.frame(type=c('element-highlight-by-color','element-link')))
+     ))
+```
+```{r}
+df = jsonlite::fromJSON('
+[
+  { "type": "cate1", "values": [76, 100] },
+  { "type": "cate2", "values": [56, 108] },
+  { "type": "cate3", "values": [38, 129] },
+  { "type": "cate4", "values": [58, 155] },
+  { "type": "cate5", "values": [45, 120] },
+  { "type": "cate6", "values": [23, 99] },
+  { "type": "cate7", "values": [18, 56] },
+  { "type": "cate8", "values": [18, 34] }
+]')
+g2(df, 'column',
+   cfg=list(
+     xField='type',
+  yField='values',
+  isRange=T,
+  label=list(position='middle')
+   ))
+```
+
+
