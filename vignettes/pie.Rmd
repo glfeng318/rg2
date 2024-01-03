@@ -10,10 +10,50 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.dim = c(6,6)
+)
+```
+cfg for `pie` chart
+```r
+cfg = list(
+  angleField,
+  colorField = '',
+  label = list(
+    type = 'inner',
+    offset = '-50%',
+    content = '{value}',
+    style = list(
+      textAlign = 'center',
+      fontSize = 14
+    )
+  ),
+  ...
 )
 ```
 
 ```{r setup}
 library(rg2)
+df = data.frame(
+  cate = c('a','b','c','d','e'),
+  value = c(1,2,3,5,8)
+)
+g2(df, 
+   'pie',
+   list(angleField='value',
+        colorField='cate',
+        radius=.8,
+        legend=F,
+        label = list(
+          type = 'inner',
+          offset = '-50%',
+          content = '{value}',
+          style = list(
+            textAlign = 'center',
+            fontSize = 14
+          ))))
+
+g2(df, 'pie', list(angleField='value',colorField='cate', radius=.8, innerRadius=.4,legend=F))
+
+
 ```

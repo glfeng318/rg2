@@ -3,6 +3,10 @@ HTMLWidgets.widget({
   type: "output",
   factory: function(el, width, height) {
     /**/
+    G2Plot.G2.registerInteraction('element-link', {
+      start: [{trigger: 'interval:mouseenter', action: 'element-link-by-color:link'}],
+      end: [{trigger: 'interval:mouseleave', action: 'element-link-by-color:unlink'}]
+    });
     G2Plot.G2.registerShape('polygon', 'boundary-polygon', {
       draw(cfg, container) {
         const group = container.addGroup();

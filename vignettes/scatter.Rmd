@@ -1,0 +1,31 @@
+---
+title: "scatter"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{scatter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.dim = c(7,4)
+)
+```
+cfg for `scatter` chart
+```r
+cfg = list(
+  xField,
+  yField,
+  colorField = NULL,
+  sizeField = NULL,
+  shapeField = NULL
+  ...
+)
+```
+```{r setup}
+library(rg2)
+g2(cars, 'scatter',list(xField='speed', yField='dist'))
+```
