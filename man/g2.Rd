@@ -14,15 +14,14 @@ data should only contains the necessary data for chart (reduce json/data size)}
 
 \item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.antgroup.com/en/api} for more details.}
 
-\item{width}{width of the chart}
+\item{width}{optional number default: 400. width of the chart.}
 
-\item{height}{height of the chart}
+\item{height}{optional number default: 400. height of the chart.}
 }
 \description{
 all g2 plots can be confined in cfg param
 }
 \examples{
-\dontrun{
 cfg = list(
   xField='drat',
   yField='wt',
@@ -31,6 +30,16 @@ cfg = list(
 )
 g2(mtcars, 'scatter', cfg = cfg)
 
-}
 
 }
+\seealso{
+\link{cfg}
+
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_column}()},
+\code{\link{g2_line}()},
+\code{\link{g2_pie}()}
+}
+\concept{g2}

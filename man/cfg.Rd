@@ -4,23 +4,52 @@
 \alias{cfg}
 \title{G2Plot configuration
 \url{https://g2plot.antv.antgroup.com/en/api}}
+\arguments{
+\item{width}{optional number default: 400. width of the chart.}
+
+\item{height}{optional number default: 400. height of the chart.}
+
+\item{data}{required. Data frame for plot.}
+
+\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{cfg} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
+
+\item{yField}{the name of the data field corresponding to the graph in the y direction.}
+
+\item{x}{short for xField}
+
+\item{y}{short for yField}
+
+\item{color, colorField}{the name of the data field or a string represent the color, '#ffffff', 'red'}
+
+\item{group, groupField}{grouping field}
+
+\item{series, seriesField}{grouping field}
+
+\item{smooth}{TRUE/FALSE. whether the curve is smooth.}
+
+\item{isStack}{to stack charts}
+
+\item{isGroup}{to group charts}
+
+\item{isPercent}{to percent charts}
+
+\item{isRange}{to range charts}
+}
 \description{
 G2Plot configuration
 \url{https://g2plot.antv.antgroup.com/en/api}
 }
 \examples{
-\dontrun{
+
 cfg = list(
   xField='drat',
   yField='wt',
   shape='circle',
-  legend = list(position = 'top-left')
-)
-# theme: default / dark
-cfg = list(
-  theme='dark'
+  legend = list(position = 'top-left'),
+  theme='dark' # default / dark
 )
 g2(mtcars, 'scatter', cfg = cfg)
+g2_scatter(mtcars, 'drat', 'wt', shape='circle')
 
-}
+
 }
