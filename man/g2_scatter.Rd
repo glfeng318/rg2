@@ -4,11 +4,53 @@
 \alias{g2_scatter}
 \title{g2_scatter}
 \usage{
-g2_scatter()
+g2_scatter(
+  data,
+  x,
+  y,
+  size = NULL,
+  shape = NULL,
+  color = NULL,
+  width = NULL,
+  height = NULL
+)
 }
-\value{
-scatter
+\arguments{
+\item{data}{required. Data frame for plot.}
+
+\item{x}{short for xField}
+
+\item{y}{short for yField}
+
+\item{width}{optional number default: 400. width of the chart.}
+
+\item{height}{optional number default: 400. height of the chart.}
 }
 \description{
 g2_scatter
 }
+\examples{
+
+cfg = list(
+  xField='drat',
+  yField='wt',
+  shape='circle',
+  legend = list(position = 'top-left'),
+  theme='dark' # default / dark
+)
+g2(mtcars, 'scatter', cfg = cfg)
+g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+
+
+}
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_column}()},
+\code{\link{g2_line}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_radar}()},
+\code{\link{g2}()}
+}
+\concept{g2}

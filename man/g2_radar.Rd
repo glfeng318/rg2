@@ -4,11 +4,62 @@
 \alias{g2_radar}
 \title{g2_radar}
 \usage{
-g2_radar()
+g2_radar(
+  data,
+  x,
+  y,
+  series = NULL,
+  radius = NULL,
+  startAngle = (pi * 0/180),
+  endAngle = (pi * 180)/180,
+  color = NULL,
+  smooth = FALSE
+)
 }
-\value{
-radar
+\arguments{
+\item{data}{required. Data frame for plot.}
+
+\item{x}{xField}
+
+\item{y}{yField}
+
+\item{series}{seriesField}
+
+\item{radius}{The radius of the radar map, starting at the center of the drawing area (not including the chart component area). The configuration range is (0,1), where 1 means to fill the drawing area.}
+
+\item{startAngle}{The starting angle of the disk.}
+
+\item{endAngle}{The termination angle of the disk.}
+
+\item{color}{color name, hex color code or colorField}
+
+\item{smooth}{Whether to draw as a curve (spline).}
 }
 \description{
 g2_radar
 }
+\examples{
+
+cfg = list(
+  xField='drat',
+  yField='wt',
+  shape='circle',
+  legend = list(position = 'top-left'),
+  theme='dark' # default / dark
+)
+g2(mtcars, 'scatter', cfg = cfg)
+g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+
+
+}
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_column}()},
+\code{\link{g2_line}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2}()}
+}
+\concept{g2}

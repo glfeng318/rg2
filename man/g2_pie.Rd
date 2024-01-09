@@ -52,6 +52,8 @@ Other g2:
 \code{\link{g2_bar}()},
 \code{\link{g2_column}()},
 \code{\link{g2_line}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_scatter}()},
 \code{\link{g2}()}
 }
 \concept{g2}

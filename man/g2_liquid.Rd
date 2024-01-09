@@ -4,11 +4,29 @@
 \alias{g2_liquid}
 \title{g2_liquid}
 \usage{
-g2_liquid()
+g2_liquid(
+  percent,
+  radius = 0.9,
+  shape = "circle",
+  wave = list(count = 3, length = 192),
+  color = NULL
+)
 }
-\value{
-liquid
+\arguments{
+\item{percent}{Ratio data \link{0-1}}
+
+\item{radius}{Radius of outer ring \link{0-1}}
+
+\item{shape}{circle | diamond | triangle | pin | rect}
+
+\item{wave}{list(count=3, length=192), length in px}
+
+\item{color}{color name or hex color code}
 }
 \description{
 g2_liquid
+}
+\examples{
+g2_liquid(0.618)
+
 }

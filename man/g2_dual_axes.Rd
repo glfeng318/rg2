@@ -4,11 +4,22 @@
 \alias{g2_dual_axes}
 \title{g2_dual_axes}
 \usage{
-g2_dual_axes()
+g2_dual_axes(data, x, y, geometry)
 }
-\value{
-dual-axes
+\arguments{
+\item{y}{should be: c('filed_name1','field_name_2')}
+
+\item{geometry}{should be: ll(line-line), cl(column-line), lc(column-line). use \code{g2()} for  complex configurations}
 }
 \description{
 g2_dual_axes
+}
+\examples{
+data = data.frame(
+ time = c('2023-01','2023-02','2023-03','2023-04','2023-05'),
+ value=c(350,900,300,450,470),
+ count=c(800,600,400,380,200)
+)
+g2_dual_axes(data, x='time', y=c('value','count'), geometry='ll')
+
 }

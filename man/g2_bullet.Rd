@@ -4,11 +4,42 @@
 \alias{g2_bullet}
 \title{g2_bullet}
 \usage{
-g2_bullet()
+g2_bullet(
+  data,
+  measure,
+  range,
+  target,
+  x = NULL,
+  layout = "horizontal",
+  color = NULL,
+  size = NULL,
+  bulletStyle = NULL
+)
 }
-\value{
-bullet
+\arguments{
+\item{data}{The data source is a collection of objects [{title: '满意度', ranges: \link{50,100}, measures: \link{80}, target: 85}]}
+
+\item{measure}{Use the length of the data bar, the setting field for the actual value, to represent the actual value.}
+
+\item{range}{Use the setting field for the length of the background bar to represent the range.}
+
+\item{target}{Use a setting field for the position of the scale axis of the measurement mark to represent the target value.}
+
+\item{x}{Used to distinguish different types, suitable for grouping bullet diagrams.}
+
+\item{layout}{optional 'horizontal' | 'vertical' default: 'horizontal'}
+
+\item{color}{Set color property of each graph of bullet map.}
+
+\item{size}{Set the size property of each graph of bullet map.}
+
+\item{bulletStyle}{Set the style properties of each bullet map.}
 }
 \description{
 g2_bullet
+}
+\examples{
+data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
+g2_bullet(data,'measures','ranges','target',color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),size=list(range=12,measure=12,target=12))
+
 }

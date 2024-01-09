@@ -282,58 +282,200 @@ g2_pie <- function(data,angle,color,
              height=height)
   g2(data, 'pie', cfg)
 }
+
+#' g2_scatter
+#'
+#' @family g2
+#' @inherit cfg
+#'
+#' @export
+#'
+g2_scatter <- function(data, x, y,
+                       size=NULL,
+                       shape=NULL,
+                       color=NULL,
+                       width=NULL,
+                       height=NULL){
+  cfg = list(xField=x,
+             yField=y,
+             sizeField=series,
+             shapeField=group,
+             width=width,
+             height=height)
+  if (!is.null(color)) {
+    if (color %in% colnames(data)) {
+      cfg$colorField = color
+    } else {
+      cfg$color = color
+    }
+  }
+  g2(data, 'scatter', cfg)}
+
+#' g2_dual_axes
+#'
+#'
+#' @param y should be: c('filed_name1','field_name_2')
+#' @param geometry should be: ll(line-line), cl(column-line), lc(column-line). use `g2()` for  complex configurations
+#'
+#' @export
+#' @examples
+#' data = data.frame(
+#'  time = c('2023-01','2023-02','2023-03','2023-04','2023-05'),
+#'  value=c(350,900,300,450,470),
+#'  count=c(800,600,400,380,200)
+#' )
+#' g2_dual_axes(data, x='time', y=c('value','count'), geometry='ll')
+#'
+g2_dual_axes <- function(data, x, y, geometry){
+  cfg = list(xField=x,yField=y)
+  if (geometry == 'll') {
+    cfg$geometryOptions = list(list(geometry='line'), list(geometry='line'))
+  } else if (geometry == 'cl') {
+    cfg$geometryOptions = list(list(geometry='column'), list(geometry='line'))
+  } else if (geometry == 'lc') {
+    cfg$geometryOptions = list(list(geometry='line'), list(geometry='column'))
+  }  else {
+    stop('param geometry should be one of "ll, "cl", "lc"')
+  }
+  g2(list(data, data), 'dual-axes', cfg)
+}
 #' g2_gauge
 #'
-#' @return gauge
+#' @param percent Indicator ratio data [0-1]
+#' @param radius 0.95
+#' @param innerRadius 0.9
+#' @param startAngle (-7 / 6) * pi
+#' @param endAngle (1 / 6) * pi
+#' @param range.ticks number vector
+#' @param range.color The color swatches of auxiliary arcs are selected in accordance with the color swatches; When ticks are set, color cannot be used as a callback
+#' @param range.width width of gauge range. Default using 'radius', 'innerRadius' to calculate the width of range.
+#'
 #' @export
-g2_gauge <- function(data,percent,
-                     radius=NULL,
-                     innerRadius=NULL,
-                     startAngle=NULL,
-                     endAngle=NULL){
+#' @examples
+#' g2_gauge(0.618)
+#'
+g2_gauge <- function(percent,
+                     radius=0.95,
+                     innerRadius=0.9,
+                     startAngle=(-7 / 6) * pi,
+                     endAngle=(1 / 6) * pi,
+                     range.ticks=NULL,
+                     range.color=NULL,
+                     range.width=NULL
+                     ){
   cfg = list(percent=percent,
              radius=radius,
              innerRadius=innerRadius,
              startAngle=startAngle,
              endAngle=endAngle,
-             width=width,
-             height=height)
-  g2(data, 'gauge', cfg)}
-#' g2_scatter
-#'
-#' @export
-g2_scatter <- function(){'scatter'}
-
-#' g2_dual_axes
-#'
-#' @return dual-axes
-#' @export
-g2_dual_axes <- function(){'dual-axes'}
+             range=list(ticks=range.ticks,
+                        color=range.color,
+                        width=range.width))
+  g2(NULL, 'gauge', cfg=cfg)
+}
 #' g2_liquid
 #'
-#' @return liquid
+#' @param percent Ratio data [0-1]
+#' @param radius Radius of outer ring [0-1]
+#' @param shape circle | diamond | triangle | pin | rect
+#' @param wave list(count=3, length=192), length in px
+#' @param color color name or hex color code
+#'
 #' @export
-g2_liquid <- function(){'liquid'}
+#' @examples
+#' g2_liquid(0.618)
+#'
+g2_liquid <- function(percent,
+                      radius=0.9,
+                      shape='circle',
+                      wave=list(count=3, length=192),
+                      color=NULL
+                      ){
+  cfg = list(percent=percent, radius=radius)
+  g2(NULL, 'liquid', cfg=cfg)
+}
+#' g2_bullet
+#'
+#' @param data The data source is a collection of objects [{title: '满意度', ranges: [50,100], measures: [80], target: 85}]
+#' @param measure Use the length of the data bar, the setting field for the actual value, to represent the actual value.
+#' @param range Use the setting field for the length of the background bar to represent the range.
+#' @param target Use a setting field for the position of the scale axis of the measurement mark to represent the target value.
+#' @param x Used to distinguish different types, suitable for grouping bullet diagrams.
+#' @param layout optional 'horizontal' | 'vertical' default: 'horizontal'
+#' @param color Set color property of each graph of bullet map.
+#' @param size Set the size property of each graph of bullet map.
+#' @param bulletStyle Set the style properties of each bullet map.
+#'
+#' @export
+#' @examples
+#' data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
+#' g2_bullet(data,'measures','ranges','target',color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),size=list(range=12,measure=12,target=12))
+#'
+g2_bullet <- function(data, measure,range,target,
+                      x=NULL,
+                      layout='horizontal',
+                      color=NULL,
+                      size=NULL,
+                      bulletStyle=NULL){
+  cfg = list(measureField=measure,
+             rangeField=range,
+             targetField=target,
+             xField=x,
+             layout=layout,
+             color=color,
+             size=size,
+             bulletStyle=bulletStyle)
+  g2(data, 'bullet', cfg=cfg)
+}
 #' g2_radar
 #'
-#' @return radar
+#' @param x xField
+#' @param y yField
+#' @param series seriesField
+#' @param radius The radius of the radar map, starting at the center of the drawing area (not including the chart component area). The configuration range is (0,1), where 1 means to fill the drawing area.
+#' @param startAngle The starting angle of the disk.
+#' @param endAngle The termination angle of the disk.
+#' @param color color name, hex color code or colorField
+#' @param smooth Whether to draw as a curve (spline).
+#' @inherit cfg
+#' @family g2
 #' @export
-g2_radar <- function(){'radar'}
+g2_radar <- function(data,x,y,
+                     series=NULL,
+                     radius=NULL,
+                     startAngle=(pi*0/180),
+                     endAngle=(pi*180)/180,
+                     color=NULL,
+                     smooth=FALSE){
+  cfg=list(xField=x,
+           yField=y,
+           seriesField=series,
+           radius=radius,
+           startAngle=startAngle,
+           endAngle=endAngle,
+           smooth=smooth)
+  if (!is.null(color)) {
+    if (color %in% colnames(data)) {
+      cfg$colorField = color
+    } else {
+      cfg$color = color
+    }
+  }
+  g2(data, 'radar', cfg=cfg)
+}
 #' g2_word_cloud
 #'
 #' @return word-cloud
 #' @export
-g2_word_cloud <- function(){'word-cloud'}
+g2_word_cloud <- function(){
+  'word-cloud'
+}
 #' g2_funnel
 #'
 #' @return funnel
 #' @export
 g2_funnel <- function(){'funnel'}
-#' g2_bullet
-#'
-#' @return bullet
-#' @export
-g2_bullet <- function(){'bullet'}
+
 #' g2_histogram
 #'
 #' @return histogram
