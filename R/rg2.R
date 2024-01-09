@@ -117,7 +117,7 @@ g2 <- function(data, chart, cfg = list(), width = NULL, height = NULL) {
 #'
 #' @examples
 #'
-#' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = T)
+#' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = TRUE)
 #' g2_line(df, 'Date','scales')
 #'
 g2_line <- function(data, x, y,
@@ -153,7 +153,7 @@ g2_line <- function(data, x, y,
 #'
 #' @export
 #' @examples
-#' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = T)
+#' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = TRUE)
 #' g2_area(df, 'Date','scales')
 #'
 g2_area <- function(data, x, y,
@@ -190,8 +190,8 @@ g2_area <- function(data, x, y,
 #'
 #' @export
 #' @examples
-#' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json',simplifyVector = T)
-#' g2_column(df,'year','value','type',isStack=T)
+#' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json',simplifyVector = TRUE)
+#' g2_column(df,'year','value','type',isStack=TRUE)
 #'
 g2_column <- function(data, x, y,
                       series=NULL,
