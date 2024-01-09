@@ -42,17 +42,13 @@ g2_bar(
 g2_bar
 }
 \examples{
-
-cfg = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2(mtcars, 'scatter', cfg = cfg)
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
-
+df = jsonlite::fromJSON('
+[{ "year": "1951", "value": 38 },
+  { "year": "1952", "value": 52 },
+  { "year": "1956", "value": 61 },
+  { "year": "1957", "value": 145 },
+  { "year": "1958", "value": 48 }]')
+g2_bar(df, 'value', 'year')
 
 }
 \seealso{

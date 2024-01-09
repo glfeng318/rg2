@@ -38,12 +38,7 @@ g2_line
 \examples{
 
 df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = T)
-g2(df, 'line', list(
-  xField = 'Date',
-  yField = 'scales',
-  xAxis = list(type = 'timeCat',
-               tickCount = 5)
-))
+g2_line(df, 'Date','scales')
 
 }
 \seealso{

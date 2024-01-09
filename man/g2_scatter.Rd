@@ -30,17 +30,8 @@ g2_scatter(
 g2_scatter
 }
 \examples{
-
-cfg = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2(mtcars, 'scatter', cfg = cfg)
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
-
+g2_scatter(cars, 'speed', 'dist')
+g2_scatter(iris, 'Sepal.Length', 'Sepal.Width',color='Species')
 
 }
 \seealso{

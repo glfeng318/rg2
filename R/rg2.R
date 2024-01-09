@@ -118,12 +118,7 @@ g2 <- function(data, chart, cfg = list(), width = NULL, height = NULL) {
 #' @examples
 #'
 #' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = T)
-#' g2(df, 'line', list(
-#'   xField = 'Date',
-#'   yField = 'scales',
-#'   xAxis = list(type = 'timeCat',
-#'                tickCount = 5)
-#'))
+#' g2_line(df, 'Date','scales')
 #'
 g2_line <- function(data, x, y,
                     series=NULL,
@@ -157,6 +152,10 @@ g2_line <- function(data, x, y,
 #' @inherit cfg
 #'
 #' @export
+#' @examples
+#' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = T)
+#' g2_area(df, 'Date','scales')
+#'
 g2_area <- function(data, x, y,
                     series=NULL,
                     color=NULL,
@@ -190,6 +189,10 @@ g2_area <- function(data, x, y,
 #' @inherit cfg
 #'
 #' @export
+#' @examples
+#' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json',simplifyVector = T)
+#' g2_column(df,'year','value','type',isStack=T)
+#'
 g2_column <- function(data, x, y,
                       series=NULL,
                       group=NULL,
@@ -225,6 +228,15 @@ g2_column <- function(data, x, y,
 #' @inherit cfg
 #'
 #' @export
+#' @examples
+#' df = jsonlite::fromJSON('
+#' [{ "year": "1951", "value": 38 },
+#'   { "year": "1952", "value": 52 },
+#'   { "year": "1956", "value": 61 },
+#'   { "year": "1957", "value": 145 },
+#'   { "year": "1958", "value": 48 }]')
+#' g2_bar(df, 'value', 'year')
+#'
 g2_bar <- function(data, x, y,
                    series=NULL,
                    group=NULL,
@@ -267,11 +279,20 @@ g2_bar <- function(data, x, y,
 #' @inherit cfg
 #'
 #' @export
+#' @examples
+#' df = data.frame(
+#'   cate = c('a','b','c','d','e'),
+#'   value = c(1,2,3,5,8)
+#' )
+#' g2_pie(df, angle='value',color='cate', radius=.8, innerRadius=.4)
+#'
 g2_pie <- function(data,angle,color,
                    radius=NULL,
                    innerRadius=NULL,
-                   startAngle=NULL,
-                   endAngle=NULL){
+                   startAngle=-pi/2,
+                   endAngle=pi*1.5,
+                   width=NULL,
+                   height=NULL){
   cfg = list(angleField=angle,
              colorField=color,
              radius=radius,
@@ -289,6 +310,9 @@ g2_pie <- function(data,angle,color,
 #' @inherit cfg
 #'
 #' @export
+#' @examples
+#' g2_scatter(cars, 'speed', 'dist')
+#' g2_scatter(iris, 'Sepal.Length', 'Sepal.Width',color='Species')
 #'
 g2_scatter <- function(data, x, y,
                        size=NULL,
@@ -298,8 +322,8 @@ g2_scatter <- function(data, x, y,
                        height=NULL){
   cfg = list(xField=x,
              yField=y,
-             sizeField=series,
-             shapeField=group,
+             sizeField=size,
+             shapeField=shape,
              width=width,
              height=height)
   if (!is.null(color)) {

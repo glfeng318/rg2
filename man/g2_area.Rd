@@ -39,17 +39,8 @@ g2_area(
 g2_area
 }
 \examples{
-
-cfg = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2(mtcars, 'scatter', cfg = cfg)
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
-
+df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = T)
+g2_area(df, 'Date','scales')
 
 }
 \seealso{

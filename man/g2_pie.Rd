@@ -10,8 +10,10 @@ g2_pie(
   color,
   radius = NULL,
   innerRadius = NULL,
-  startAngle = NULL,
-  endAngle = NULL
+  startAngle = -pi/2,
+  endAngle = pi * 1.5,
+  width = NULL,
+  height = NULL
 )
 }
 \arguments{
@@ -28,22 +30,20 @@ g2_pie(
 \item{startAngle}{Configure the starting angle of the coordinate system. try \code{pi}.}
 
 \item{endAngle}{Configure the end angle of the coordinate system.}
+
+\item{width}{optional number default: 400. width of the chart.}
+
+\item{height}{optional number default: 400. height of the chart.}
 }
 \description{
 g2_pie
 }
 \examples{
-
-cfg = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
+df = data.frame(
+  cate = c('a','b','c','d','e'),
+  value = c(1,2,3,5,8)
 )
-g2(mtcars, 'scatter', cfg = cfg)
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
-
+g2_pie(df, angle='value',color='cate', radius=.8, innerRadius=.4)
 
 }
 \seealso{

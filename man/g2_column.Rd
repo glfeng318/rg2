@@ -42,17 +42,8 @@ g2_column(
 g2_column
 }
 \examples{
-
-cfg = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2(mtcars, 'scatter', cfg = cfg)
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
-
+df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX\%26irfq/stack-column-data.json',simplifyVector = T)
+g2_column(df,'year','value','type',isStack=T)
 
 }
 \seealso{
