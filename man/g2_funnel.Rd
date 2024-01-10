@@ -4,10 +4,28 @@
 \alias{g2_funnel}
 \title{g2_funnel}
 \usage{
-g2_funnel()
+g2_funnel(
+  data,
+  x,
+  y,
+  series = NULL,
+  isTransposed = FALSE,
+  shape = "funnel",
+  maxSize = 1,
+  minSize = 0,
+  showFacetTitle = TRUE
+)
 }
-\value{
-funnel
+\arguments{
+\item{isTransposed}{Whether the plot is transposed.}
+
+\item{shape}{'funnel' ｜ 'pyramid'}
+
+\item{maxSize}{the max size of graphic，is between 0 and 1, default 1}
+
+\item{minSize}{the min size of graphic，is between 0 and 1, default 0}
+
+\item{showFacetTitle}{}
 }
 \description{
 g2_funnel

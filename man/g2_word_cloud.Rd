@@ -4,11 +4,55 @@
 \alias{g2_word_cloud}
 \title{g2_word_cloud}
 \usage{
-g2_word_cloud()
+g2_word_cloud(
+  data,
+  word,
+  weight,
+  color = NULL,
+  random = NULL,
+  spiral = "archimedean",
+  timeInterval = 2000
+)
 }
-\value{
-word-cloud
+\arguments{
+\item{data}{required. Data frame for plot.}
+
+\item{word}{wordField}
+
+\item{weight}{weightField}
+
+\item{color}{colorField}
+
+\item{random}{The value of a js random function can be a value in the interval \link{0, 1} or a function that returns the value. When the value is a fixed value, the layout coordinates of each word corresponding to the word cloud of the same data will be the same every time the word cloud of the same data is rendered.}
+
+\item{spiral}{'archimedean' | 'rectangular' default: 'archimedean'}
+
+\item{timeInterval}{Sets the maximum execution time of the drawing program in milliseconds. If the time is set too short, it may draw only part of the words.default 2000}
 }
 \description{
-g2_word_cloud
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
+}
+\examples{
+
+opt = list(
+  xField='drat',
+  yField='wt',
+  shape='circle',
+  legend = list(position = 'top-left'),
+  theme='dark' # default / dark
+)
+g2(mtcars, 'scatter', opt = opt)
+
+opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2(mtcars, 'scatter', opt = opt)
+
+g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+
+
 }

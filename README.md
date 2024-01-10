@@ -25,5 +25,7 @@ This is a basic example which shows you how to solve a common problem:
 library(rg2)
 data(mpg, package = 'ggplot2')
 g2(mpg,'scatter', list(xField='displ',yField='hwy',colorField = 'class', shape='circle'))
+#
+g2_scatter(mpg, 'displ', 'hwy', color='class', shape='circle')
 ```
 ![](./demo.png)

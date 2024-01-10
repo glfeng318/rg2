@@ -36,18 +36,28 @@ g2_radar(
 \item{smooth}{Whether to draw as a curve (spline).}
 }
 \description{
-g2_radar
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
 
-cfg = list(
+opt = list(
   xField='drat',
   yField='wt',
   shape='circle',
   legend = list(position = 'top-left'),
   theme='dark' # default / dark
 )
-g2(mtcars, 'scatter', cfg = cfg)
+g2(mtcars, 'scatter', opt = opt)
+
+opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2(mtcars, 'scatter', opt = opt)
+
 g2_scatter(mtcars, 'drat', 'wt', shape='circle')
 
 

@@ -1,14 +1,19 @@
-#' G2Plot configuration
-#' \url{https://g2plot.antv.antgroup.com/en/api}
+#' G2Plot options
+#'
+#' opt param in rg2 is the PlotOptions for G2Plot.
+#' You can construct an opt in two way:
+#' - use `list()` function in R base package.
+#' - use `opt_from_json()` from rg2 package.
+#' \url{https://g2plot.antv.antgroup.com/en/api} for details
 #'
 #' @param width optional number default: 400. width of the chart.
 #' @param height optional number default: 400. height of the chart.
 #' @param data required. Data frame for plot.
-#' @param xField the name of the data field corresponding to the graph in the x direction. you should config the `cfg` param with `xField` in `g2()` function, and `x` (short for `xField`) is param name for functions with `g2_` prefix.
+#' @param xField the name of the data field corresponding to the graph in the x direction. you should config the `opt` param with `xField` in `g2()` function, and `x` (short for `xField`) is param name for functions with `g2_` prefix.
 #' @param yField the name of the data field corresponding to the graph in the y direction.
 #' @param x short for xField
 #' @param y short for yField
-#' @param color,colorField the name of the data field or a string represent the color, '#ffffff', 'red'
+#' @param color,colorField the name of the data field or color name or hex color code
 #' @param series,seriesField grouping field
 #' @param group,groupField grouping field
 #' @param series,seriesField grouping field
@@ -20,45 +25,63 @@
 #'
 #' @examples
 #'
-#' cfg = list(
+#' opt = list(
 #'   xField='drat',
 #'   yField='wt',
 #'   shape='circle',
 #'   legend = list(position = 'top-left'),
 #'   theme='dark' # default / dark
 #' )
-#' g2(mtcars, 'scatter', cfg = cfg)
+#' g2(mtcars, 'scatter', opt = opt)
+#'
+#' opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+#' g2(mtcars, 'scatter', opt = opt)
+#'
 #' g2_scatter(mtcars, 'drat', 'wt', shape='circle')
 #'
 #'
-#' @name cfg
+#' @name opt
 NULL
+
+
+#' opt_from_json
+#'
+#' @param json a json string of G2Plot options
+#'
+#' @return a list of options for G2Plot
+#' @export
+#'
+#' @examples
+#' opt = opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
+opt_from_json <- function(json) {
+  jsonlite::fromJSON(json)
+}
 
 #' g2 plot
 #'
-#' all g2 plots can be confined in cfg param
+#' all g2 plots can be confined in opt param
 #'
 #' @param data a data object.Currently supported object is data.frame,
 #'    data should only contains the necessary data for chart (reduce json/data size)
 #' @param chart the chart type of G2Plot ('line','area','column','bar','pie','scatter','gauge','dual-axes','liquid','radar','word-cloud','funnel','bullet','histogram','venn','rose','tiny-line','tiny-area','tiny-column','sunburst','stock','ring-progress','progress','box','heatmap','waterfall','radial-bar','bidirectional-bar','sankey','chord','treemap','violin','circle-packing','mix','facet')
-#' @param cfg configuration of G2Plot. See \url{https://g2plot.antv.antgroup.com/en/api} for more details.
+#' @param opt options of G2Plot. you can use function `opt_from_json()` to build an options or use `list()` to make it. See \url{https://g2plot.antv.antgroup.com/en/api} for details.
 #'
-#' @inherit cfg
+#' @inherit opt
 #' @family g2
-#' @seealso [cfg]
+#' @seealso [opt]
 #'
 #' @export
 #' @examples
-#' cfg = list(
+#' opt = list(
 #'   xField='drat',
 #'   yField='wt',
 #'   shape='circle',
 #'   legend = list(position = 'top-left')
 #' )
-#' g2(mtcars, 'scatter', cfg = cfg)
+#' g2(mtcars, 'scatter', opt = opt)
 #'
 #'
-g2 <- function(data, chart, cfg = list(), width = NULL, height = NULL) {
+g2 <- function(data, chart, opt = list(), width = NULL, height = NULL) {
   chart_type_list = c('line',
                       'area',
                       'column',
@@ -97,10 +120,10 @@ g2 <- function(data, chart, cfg = list(), width = NULL, height = NULL) {
   if (! chart %in% chart_type_list) {
     stop("param chart should be one of ", paste(chart_type_list,collapse = ","))
   }
-  cfg$data = jsonlite::toJSON(data)
+  opt$data = jsonlite::toJSON(data)
   x <- list(
     chart = chart,
-    cfg = cfg
+    opt = opt
   )
   # create the widget
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
@@ -111,7 +134,7 @@ g2 <- function(data, chart, cfg = list(), width = NULL, height = NULL) {
 #'
 #'
 #' @family g2
-#' @inherit cfg
+#' @inherit opt
 #'
 #' @export
 #'
@@ -128,7 +151,7 @@ g2_line <- function(data, x, y,
                     stepType=NULL,
                     width=NULL,
                     height=NULL) {
-  cfg = list(xField=x,
+  opt = list(xField=x,
              yField=y,
              seriesField=series,
              smooth=smooth,
@@ -138,18 +161,18 @@ g2_line <- function(data, x, y,
              height=height)
   if (!is.null(color)) {
     if (color %in% colnames(data)) {
-      cfg$colorField = color
+      opt$colorField = color
     } else {
-      cfg$color = color
+      opt$color = color
     }
   }
-  g2(data, 'line', cfg)
+  g2(data, 'line', opt)
 }
 
 #' g2_area
 #'
 #' @family g2
-#' @inherit cfg
+#' @inherit opt
 #'
 #' @export
 #' @examples
@@ -165,7 +188,7 @@ g2_area <- function(data, x, y,
                     startOnZero=TRUE,
                     width=NULL,
                     height=NULL){
-  cfg = list(xField=x,
+  opt = list(xField=x,
              yField=y,
              seriesField=series,
              smooth=smooth,
@@ -176,17 +199,17 @@ g2_area <- function(data, x, y,
              height=height)
   if (!is.null(color)) {
     if (color %in% colnames(data)) {
-      cfg$colorField = color
+      opt$colorField = color
     } else {
-      cfg$color = color
+      opt$color = color
     }
   }
-  g2(data, 'area', cfg)
+  g2(data, 'area', opt)
 }
 #' g2_column
 #'
 #' @family g2
-#' @inherit cfg
+#' @inherit opt
 #'
 #' @export
 #' @examples
@@ -203,7 +226,7 @@ g2_column <- function(data, x, y,
                       isPercent=NULL,
                       width=NULL,
                       height=NULL){
-  cfg = list(xField=x,
+  opt = list(xField=x,
              yField=y,
              seriesField=series,
              groupField=group,
@@ -215,17 +238,17 @@ g2_column <- function(data, x, y,
              height=height)
   if (!is.null(color)) {
     if (color %in% colnames(data)) {
-      cfg$colorField = color
+      opt$colorField = color
     } else {
-      cfg$color = color
+      opt$color = color
     }
   }
-  g2(data, 'column', cfg)
+  g2(data, 'column', opt)
 }
 #' g2_bar
 #'
 #' @family g2
-#' @inherit cfg
+#' @inherit opt
 #'
 #' @export
 #' @examples
@@ -247,7 +270,7 @@ g2_bar <- function(data, x, y,
                    isPercent=NULL,
                    width=NULL,
                    height=NULL){
-  cfg = list(xField=x,
+  opt = list(xField=x,
              yField=y,
              seriesField=series,
              groupField=group,
@@ -259,12 +282,12 @@ g2_bar <- function(data, x, y,
              height=height)
   if (!is.null(color)) {
     if (color %in% colnames(data)) {
-      cfg$colorField = color
+      opt$colorField = color
     } else {
-      cfg$color = color
+      opt$color = color
     }
   }
-  g2(data, 'bar', cfg)
+  g2(data, 'bar', opt)
 }
 #' g2_pie
 #'
@@ -276,7 +299,7 @@ g2_bar <- function(data, x, y,
 #' @param endAngle Configure the end angle of the coordinate system.
 #'
 #' @family g2
-#' @inherit cfg
+#' @inherit opt
 #'
 #' @export
 #' @examples
@@ -293,7 +316,7 @@ g2_pie <- function(data,angle,color,
                    endAngle=pi*1.5,
                    width=NULL,
                    height=NULL){
-  cfg = list(angleField=angle,
+  opt = list(angleField=angle,
              colorField=color,
              radius=radius,
              innerRadius=innerRadius,
@@ -301,13 +324,13 @@ g2_pie <- function(data,angle,color,
              endAngle=endAngle,
              width=width,
              height=height)
-  g2(data, 'pie', cfg)
+  g2(data, 'pie', opt)
 }
 
 #' g2_scatter
 #'
 #' @family g2
-#' @inherit cfg
+#' @inherit opt
 #'
 #' @export
 #' @examples
@@ -320,7 +343,7 @@ g2_scatter <- function(data, x, y,
                        color=NULL,
                        width=NULL,
                        height=NULL){
-  cfg = list(xField=x,
+  opt = list(xField=x,
              yField=y,
              sizeField=size,
              shapeField=shape,
@@ -328,12 +351,12 @@ g2_scatter <- function(data, x, y,
              height=height)
   if (!is.null(color)) {
     if (color %in% colnames(data)) {
-      cfg$colorField = color
+      opt$colorField = color
     } else {
-      cfg$color = color
+      opt$color = color
     }
   }
-  g2(data, 'scatter', cfg)}
+  g2(data, 'scatter', opt)}
 
 #' g2_dual_axes
 #'
@@ -351,17 +374,17 @@ g2_scatter <- function(data, x, y,
 #' g2_dual_axes(data, x='time', y=c('value','count'), geometry='ll')
 #'
 g2_dual_axes <- function(data, x, y, geometry){
-  cfg = list(xField=x,yField=y)
+  opt = list(xField=x,yField=y)
   if (geometry == 'll') {
-    cfg$geometryOptions = list(list(geometry='line'), list(geometry='line'))
+    opt$geometryOptions = list(list(geometry='line'), list(geometry='line'))
   } else if (geometry == 'cl') {
-    cfg$geometryOptions = list(list(geometry='column'), list(geometry='line'))
+    opt$geometryOptions = list(list(geometry='column'), list(geometry='line'))
   } else if (geometry == 'lc') {
-    cfg$geometryOptions = list(list(geometry='line'), list(geometry='column'))
+    opt$geometryOptions = list(list(geometry='line'), list(geometry='column'))
   }  else {
     stop('param geometry should be one of "ll, "cl", "lc"')
   }
-  g2(list(data, data), 'dual-axes', cfg)
+  g2(list(data, data), 'dual-axes', opt)
 }
 #' g2_gauge
 #'
@@ -387,7 +410,7 @@ g2_gauge <- function(percent,
                      range.color=NULL,
                      range.width=NULL
                      ){
-  cfg = list(percent=percent,
+  opt = list(percent=percent,
              radius=radius,
              innerRadius=innerRadius,
              startAngle=startAngle,
@@ -395,7 +418,7 @@ g2_gauge <- function(percent,
              range=list(ticks=range.ticks,
                         color=range.color,
                         width=range.width))
-  g2(NULL, 'gauge', cfg=cfg)
+  g2(NULL, 'gauge', opt=opt)
 }
 #' g2_liquid
 #'
@@ -415,8 +438,8 @@ g2_liquid <- function(percent,
                       wave=list(count=3, length=192),
                       color=NULL
                       ){
-  cfg = list(percent=percent, radius=radius)
-  g2(NULL, 'liquid', cfg=cfg)
+  opt = list(percent=percent, radius=radius)
+  g2(NULL, 'liquid', opt=opt)
 }
 #' g2_bullet
 #'
@@ -441,7 +464,7 @@ g2_bullet <- function(data, measure,range,target,
                       color=NULL,
                       size=NULL,
                       bulletStyle=NULL){
-  cfg = list(measureField=measure,
+  opt = list(measureField=measure,
              rangeField=range,
              targetField=target,
              xField=x,
@@ -449,7 +472,7 @@ g2_bullet <- function(data, measure,range,target,
              color=color,
              size=size,
              bulletStyle=bulletStyle)
-  g2(data, 'bullet', cfg=cfg)
+  g2(data, 'bullet', opt=opt)
 }
 #' g2_radar
 #'
@@ -461,7 +484,7 @@ g2_bullet <- function(data, measure,range,target,
 #' @param endAngle The termination angle of the disk.
 #' @param color color name, hex color code or colorField
 #' @param smooth Whether to draw as a curve (spline).
-#' @inherit cfg
+#' @inherit opt
 #' @family g2
 #' @export
 g2_radar <- function(data,x,y,
@@ -471,7 +494,7 @@ g2_radar <- function(data,x,y,
                      endAngle=(pi*180)/180,
                      color=NULL,
                      smooth=FALSE){
-  cfg=list(xField=x,
+  opt=list(xField=x,
            yField=y,
            seriesField=series,
            radius=radius,
@@ -480,36 +503,116 @@ g2_radar <- function(data,x,y,
            smooth=smooth)
   if (!is.null(color)) {
     if (color %in% colnames(data)) {
-      cfg$colorField = color
+      opt$colorField = color
     } else {
-      cfg$color = color
+      opt$color = color
     }
   }
-  g2(data, 'radar', cfg=cfg)
+  g2(data, 'radar', opt=opt)
 }
 #' g2_word_cloud
 #'
-#' @return word-cloud
+#' @param word wordField
+#' @param weight weightField
+#' @param color colorField
+#' @param random The value of a js random function can be a value in the interval [0, 1] or a function that returns the value. When the value is a fixed value, the layout coordinates of each word corresponding to the word cloud of the same data will be the same every time the word cloud of the same data is rendered.
+#' @param spiral 'archimedean' | 'rectangular' default: 'archimedean'
+#' @param timeInterval Sets the maximum execution time of the drawing program in milliseconds. If the time is set too short, it may draw only part of the words.default 2000
+#'
+#' @inherit opt
+#'
 #' @export
-g2_word_cloud <- function(){
-  'word-cloud'
+g2_word_cloud <- function(data, word, weight,
+                          color=NULL,
+                          random=NULL,
+                          spiral='archimedean',
+                          timeInterval=2000){
+  opt = list(
+    wordField=word,
+    weightField=weight,
+    colorField=color,
+    random=random,
+    spiral=sprial,
+    timeInterval=timeInterval
+    )
+  g2(data, 'word-cloud', opt = opt)
 }
 #' g2_funnel
 #'
-#' @return funnel
+#' @param isTransposed Whether the plot is transposed.
+#' @param shape 'funnel' ｜ 'pyramid'
+#' @param maxSize the max size of graphic，is between 0 and 1, default 1
+#' @param minSize the min size of graphic，is between 0 and 1, default 0
+#' @param showFacetTitle
+#'
 #' @export
-g2_funnel <- function(){'funnel'}
+g2_funnel <- function(data, x, y,
+                      series=NULL,
+                      isTransposed=FALSE,
+                      shape='funnel',
+                      maxSize=1,
+                      minSize=0,
+                      showFacetTitle=TRUE){
+  opt = list(
+    xField=x,
+    yField=y,
+    seriesField=series
+  )
+  g2(data, 'funnel', opt=opt)
+}
 
 #' g2_histogram
 #'
-#' @return histogram
+#' @param bin binField
+#' @param stack stackField
+#' @param binWidth  Set the box width of the histogram. BinWidth affects how many boxes the histogram is divided into. Cannot be used with BinNumber.
+#' @param binNumber Set the number of histogram boxes. BinNumber affects the width of each column after histogram boxes.
+#'
 #' @export
-g2_histogram <- function(){'histogram'}
+#' @examples
+#' df = data.frame(value=rnorm(1000))
+#' g2_histogram(df, 'value', binNumber)
+#'
+g2_histogram <- function(data, bin,
+                         stack=NULL,
+                         binWidth=NULL,
+                         binNumber=NULL){
+  opt = list(
+    binField=bin,
+    stackField=stack,
+    binWidth=binWidth,
+    binNumber=binNumber
+  )
+  g2(data, 'histogram', opt=opt)
+}
 #' g2_venn
 #'
-#' @return venn
+#' @param data
+#' @param sets The field of the collection(sets).
+#' @param size The name of the data field corresponding to the point size map.
+#' @param color color or color vector or javascript function return color.
+#' @param blendMode Color blend mode of the intersection area, default: multiply. Other: normal, darken, lighten, screen, overlay, burn, and dodge. reference：https://gka.github.io/chroma.js/#chroma-blend
+#'
 #' @export
-g2_venn <- function(){'venn'}
+#' @examples
+#' df = jsonlite::fromJSON('[
+#'   {"sets": ["A"], "size": 5},
+#'   {"sets": ["B"], "size": 10},
+#'   {"sets": ["A", "B"], "size": 2},
+#' ]')
+#' g2_venn(df, 'sets', 'size')
+g2_venn <- function(data, sets,
+                    size=NULL,
+                    color=NULL,
+                    blendMode='multiply'){
+  opt = list(
+    setsField=sets,
+    sizeField=size,
+    color=color,
+    blendMode=blendMode
+    )
+  g2(data, 'venn', opt=opt)
+}
 #' g2_rose
 #'
 #' @return rose

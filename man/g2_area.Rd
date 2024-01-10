@@ -36,7 +36,13 @@ g2_area(
 \item{height}{optional number default: 400. height of the chart.}
 }
 \description{
-g2_area
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
 df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = TRUE)

@@ -4,11 +4,25 @@
 \alias{g2_venn}
 \title{g2_venn}
 \usage{
-g2_venn()
+g2_venn(data, sets, size = NULL, color = NULL, blendMode = NULL)
 }
-\value{
-venn
+\arguments{
+\item{sets}{The field of the collection(sets).}
+
+\item{size}{The name of the data field corresponding to the point size map.}
+
+\item{color}{color or color vector or javascript function return color.}
+
+\item{blendMode}{Color blend mode of the intersection area, default: multiply. Other: normal, darken, lighten, screen, overlay, burn, and dodge. reference：https://gka.github.io/chroma.js/#chroma-blend}
 }
 \description{
 g2_venn
+}
+\examples{
+df = jsonlite::fromJSON('[
+  {"sets": ['A'], "size": 5},
+  {"sets": ['B'], "size": 10},
+  {"sets": ['A', 'B'], "size": 2},
+]')
+g2_venn(df, 'sets', 'size')
 }

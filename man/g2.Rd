@@ -4,7 +4,7 @@
 \alias{g2}
 \title{g2 plot}
 \usage{
-g2(data, chart, cfg = list(), width = NULL, height = NULL)
+g2(data, chart, opt = list(), width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{a data object.Currently supported object is data.frame,
@@ -12,28 +12,28 @@ data should only contains the necessary data for chart (reduce json/data size)}
 
 \item{chart}{the chart type of G2Plot ('line','area','column','bar','pie','scatter','gauge','dual-axes','liquid','radar','word-cloud','funnel','bullet','histogram','venn','rose','tiny-line','tiny-area','tiny-column','sunburst','stock','ring-progress','progress','box','heatmap','waterfall','radial-bar','bidirectional-bar','sankey','chord','treemap','violin','circle-packing','mix','facet')}
 
-\item{cfg}{configuration of G2Plot. See \url{https://g2plot.antv.antgroup.com/en/api} for more details.}
+\item{opt}{options of G2Plot. you can use function \code{opt_from_json()} to build an options or use \code{list()} to make it. See \url{https://g2plot.antv.antgroup.com/en/api} for details.}
 
 \item{width}{optional number default: 400. width of the chart.}
 
 \item{height}{optional number default: 400. height of the chart.}
 }
 \description{
-all g2 plots can be confined in cfg param
+all g2 plots can be confined in opt param
 }
 \examples{
-cfg = list(
+opt = list(
   xField='drat',
   yField='wt',
   shape='circle',
   legend = list(position = 'top-left')
 )
-g2(mtcars, 'scatter', cfg = cfg)
+g2(mtcars, 'scatter', opt = opt)
 
 
 }
 \seealso{
-\link{cfg}
+\link{opt}
 
 Other g2: 
 \code{\link{g2_area}()},

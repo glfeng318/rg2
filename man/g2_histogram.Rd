@@ -4,11 +4,22 @@
 \alias{g2_histogram}
 \title{g2_histogram}
 \usage{
-g2_histogram()
+g2_histogram(data, bin, stack = NULL, binWidth = NULL, binNumber = NULL)
 }
-\value{
-histogram
+\arguments{
+\item{bin}{binField}
+
+\item{stack}{stackField}
+
+\item{binWidth}{Set the box width of the histogram. BinWidth affects how many boxes the histogram is divided into. Cannot be used with BinNumber.}
+
+\item{binNumber}{Set the number of histogram boxes. BinNumber affects the width of each column after histogram boxes.}
 }
 \description{
 g2_histogram
+}
+\examples{
+df = data.frame(value=rnorm(1000))
+g2_histogram(df, 'value', binNumber)
+
 }
