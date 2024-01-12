@@ -4,36 +4,10 @@
 \alias{g2_pie}
 \title{g2_pie}
 \usage{
-g2_pie(
-  data,
-  angle,
-  color,
-  radius = NULL,
-  innerRadius = NULL,
-  startAngle = -pi/2,
-  endAngle = pi * 1.5,
-  width = NULL,
-  height = NULL
-)
+g2_pie(data, angleField, colorField)
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
-
-\item{angle}{angleField}
-
-\item{color}{colorField}
-
-\item{radius}{The radius of the pie chart, the origin is the center of the canvas. The configuration range is (0,1), where 1 represents a pie chart that fills the drawing area.}
-
-\item{innerRadius}{The inner radius of the pie chart, starting at the center of the canvas. Configure the range (0,1)}
-
-\item{startAngle}{Configure the starting angle of the coordinate system. try \code{pi}.}
-
-\item{endAngle}{Configure the end angle of the coordinate system.}
-
-\item{width}{optional number default: 400. width of the chart.}
-
-\item{height}{optional number default: 400. height of the chart.}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -45,11 +19,13 @@ You can construct an opt in two way:
 }
 }
 \examples{
-df = data.frame(
+data.frame(
   cate = c('a','b','c','d','e'),
   value = c(1,2,3,5,8)
-)
-g2_pie(df, angle='value',color='cate', radius=.8, innerRadius=.4)
+) |>
+g2_pie('value','cate') |>
+g2_style(radius=.8, innerRadius=.4) |>
+g2()
 
 }
 \seealso{
@@ -57,9 +33,12 @@ Other g2:
 \code{\link{g2_area}()},
 \code{\link{g2_bar}()},
 \code{\link{g2_column}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_histogram}()},
 \code{\link{g2_line}()},
 \code{\link{g2_radar}()},
 \code{\link{g2_scatter}()},
-\code{\link{g2}()}
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
 }
 \concept{g2}

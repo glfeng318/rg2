@@ -4,11 +4,22 @@
 \alias{g2_tiny_line}
 \title{g2_tiny_line}
 \usage{
-g2_tiny_line()
+g2_tiny_line(data)
 }
-\value{
-tiny-line
+\arguments{
+\item{data}{number vector}
 }
 \description{
 g2_tiny_line
+}
+\examples{
+g2_tiny_line(rnorm(100)) |>
+g2_style(
+  smooth=FALSE,
+  connectNulls=TRUE,
+  height=80,
+  color='red',
+  autoFit=FALSE) |>
+g2()
+
 }

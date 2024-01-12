@@ -4,29 +4,53 @@
 \alias{g2_funnel}
 \title{g2_funnel}
 \usage{
-g2_funnel(
-  data,
-  x,
-  y,
-  series = NULL,
-  isTransposed = FALSE,
-  shape = "funnel",
-  maxSize = 1,
-  minSize = 0,
-  showFacetTitle = TRUE
-)
+g2_funnel(data, xField, yField, compareField = NULL, seriesField = NULL)
 }
 \arguments{
-\item{isTransposed}{Whether the plot is transposed.}
+\item{data}{required. Data frame for plot.}
 
-\item{shape}{'funnel' ｜ 'pyramid'}
+\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
 
-\item{maxSize}{the max size of graphic，is between 0 and 1, default 1}
-
-\item{minSize}{the min size of graphic，is between 0 and 1, default 0}
-
-\item{showFacetTitle}{}
+\item{yField}{the name of the data field corresponding to the graph in the y direction.}
 }
 \description{
-g2_funnel
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
 }
+}
+\examples{
+
+opt = list(
+  xField='drat',
+  yField='wt',
+  shape='circle',
+  legend = list(position = 'top-left'),
+  theme='dark' # default / dark
+)
+g2(mtcars, 'scatter', opt = opt)
+
+opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2(mtcars, 'scatter', opt = opt)
+
+g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+
+
+}
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_column}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
+}
+\concept{g2}

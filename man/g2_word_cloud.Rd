@@ -4,30 +4,10 @@
 \alias{g2_word_cloud}
 \title{g2_word_cloud}
 \usage{
-g2_word_cloud(
-  data,
-  word,
-  weight,
-  color = NULL,
-  random = NULL,
-  spiral = "archimedean",
-  timeInterval = 2000
-)
+g2_word_cloud(data, wordField, weightField, colorField = NULL)
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
-
-\item{word}{wordField}
-
-\item{weight}{weightField}
-
-\item{color}{colorField}
-
-\item{random}{The value of a js random function can be a value in the interval \link{0, 1} or a function that returns the value. When the value is a fixed value, the layout coordinates of each word corresponding to the word cloud of the same data will be the same every time the word cloud of the same data is rendered.}
-
-\item{spiral}{'archimedean' | 'rectangular' default: 'archimedean'}
-
-\item{timeInterval}{Sets the maximum execution time of the drawing program in milliseconds. If the time is set too short, it may draw only part of the words.default 2000}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -56,3 +36,17 @@ g2_scatter(mtcars, 'drat', 'wt', shape='circle')
 
 
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_column}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2plot}()}
+}
+\concept{g2}

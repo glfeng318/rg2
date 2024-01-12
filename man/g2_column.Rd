@@ -6,25 +6,23 @@
 \usage{
 g2_column(
   data,
-  x,
-  y,
-  series = NULL,
-  group = NULL,
-  color = NULL,
+  xField,
+  yField,
+  seriesField = NULL,
+  groupField = NULL,
+  colorField = NULL,
   isGroup = NULL,
   isStack = NULL,
   isRange = NULL,
-  isPercent = NULL,
-  width = NULL,
-  height = NULL
+  isPercent = NULL
 )
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
 
-\item{x}{short for xField}
+\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
 
-\item{y}{short for yField}
+\item{yField}{the name of the data field corresponding to the graph in the y direction.}
 
 \item{isGroup}{to group charts}
 
@@ -33,10 +31,6 @@ g2_column(
 \item{isRange}{to range charts}
 
 \item{isPercent}{to percent charts}
-
-\item{width}{optional number default: 400. width of the chart.}
-
-\item{height}{optional number default: 400. height of the chart.}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -56,10 +50,13 @@ g2_column(df,'year','value','type',isStack=TRUE)
 Other g2: 
 \code{\link{g2_area}()},
 \code{\link{g2_bar}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_histogram}()},
 \code{\link{g2_line}()},
 \code{\link{g2_pie}()},
 \code{\link{g2_radar}()},
 \code{\link{g2_scatter}()},
-\code{\link{g2}()}
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
 }
 \concept{g2}

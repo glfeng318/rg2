@@ -4,11 +4,18 @@
 \alias{g2_tiny_column}
 \title{g2_tiny_column}
 \usage{
-g2_tiny_column()
-}
-\value{
-tiny-column
+g2_tiny_column(data)
 }
 \description{
 g2_tiny_column
+}
+\examples{
+g2_tiny_column(rnorm(100)) |>
+g2_style(
+  columnWidthRatio=0.5,
+  height=80,
+  color=NULL,
+  autoFit=FALSE) |>
+g2()
+
 }

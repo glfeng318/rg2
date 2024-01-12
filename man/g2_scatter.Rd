@@ -6,25 +6,19 @@
 \usage{
 g2_scatter(
   data,
-  x,
-  y,
-  size = NULL,
-  shape = NULL,
-  color = NULL,
-  width = NULL,
-  height = NULL
+  xField,
+  yField,
+  sizeField = NULL,
+  shapeField = NULL,
+  colorField = NULL
 )
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
 
-\item{x}{short for xField}
+\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
 
-\item{y}{short for yField}
-
-\item{width}{optional number default: 400. width of the chart.}
-
-\item{height}{optional number default: 400. height of the chart.}
+\item{yField}{the name of the data field corresponding to the graph in the y direction.}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -36,8 +30,8 @@ You can construct an opt in two way:
 }
 }
 \examples{
-g2_scatter(cars, 'speed', 'dist')
-g2_scatter(iris, 'Sepal.Length', 'Sepal.Width',color='Species')
+g2_scatter(cars, 'speed', 'dist') |> g2()
+g2_scatter(iris, 'Sepal.Length', 'Sepal.Width',colorField='Species') |> g2()
 
 }
 \seealso{
@@ -45,9 +39,12 @@ Other g2:
 \code{\link{g2_area}()},
 \code{\link{g2_bar}()},
 \code{\link{g2_column}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_histogram}()},
 \code{\link{g2_line}()},
 \code{\link{g2_pie}()},
 \code{\link{g2_radar}()},
-\code{\link{g2}()}
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
 }
 \concept{g2}

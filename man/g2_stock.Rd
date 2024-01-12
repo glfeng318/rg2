@@ -4,11 +4,18 @@
 \alias{g2_stock}
 \title{g2_stock}
 \usage{
-g2_stock()
+g2_stock(data, xField, yField)
 }
-\value{
-stock
+\arguments{
+\item{yField}{array c('open', 'close', 'high', 'low')}
+
+\item{xField:}{timestamp like 1436237115500 or datetime string like '2015-03-01', '2015-03-01 12:01:40'，'2015/01/05', '2015-03-01T16:00:00.000Z'}
 }
 \description{
 g2_stock
+}
+\examples{
+df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json')
+g2_stock(df, 'trade_date', c('open', 'close', 'high', 'low')) |> g2()
+
 }

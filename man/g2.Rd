@@ -2,46 +2,17 @@
 % Please edit documentation in R/rg2.R
 \name{g2}
 \alias{g2}
-\title{g2 plot}
+\title{g2}
 \usage{
-g2(data, chart, opt = list(), width = NULL, height = NULL)
+g2(opt, width = NULL, height = NULL)
 }
 \arguments{
-\item{data}{a data object.Currently supported object is data.frame,
-data should only contains the necessary data for chart (reduce json/data size)}
+\item{opt}{opt}
 
-\item{chart}{the chart type of G2Plot ('line','area','column','bar','pie','scatter','gauge','dual-axes','liquid','radar','word-cloud','funnel','bullet','histogram','venn','rose','tiny-line','tiny-area','tiny-column','sunburst','stock','ring-progress','progress','box','heatmap','waterfall','radial-bar','bidirectional-bar','sankey','chord','treemap','violin','circle-packing','mix','facet')}
+\item{width}{400}
 
-\item{opt}{options of G2Plot. you can use function \code{opt_from_json()} to build an options or use \code{list()} to make it. See \url{https://g2plot.antv.antgroup.com/en/api} for details.}
-
-\item{width}{optional number default: 400. width of the chart.}
-
-\item{height}{optional number default: 400. height of the chart.}
+\item{height}{400}
 }
 \description{
-all g2 plots can be confined in opt param
+g2
 }
-\examples{
-opt = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left')
-)
-g2(mtcars, 'scatter', opt = opt)
-
-
-}
-\seealso{
-\link{opt}
-
-Other g2: 
-\code{\link{g2_area}()},
-\code{\link{g2_bar}()},
-\code{\link{g2_column}()},
-\code{\link{g2_line}()},
-\code{\link{g2_pie}()},
-\code{\link{g2_radar}()},
-\code{\link{g2_scatter}()}
-}
-\concept{g2}

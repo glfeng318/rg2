@@ -4,33 +4,14 @@
 \alias{g2_line}
 \title{g2_line}
 \usage{
-g2_line(
-  data,
-  x,
-  y,
-  series = NULL,
-  color = NULL,
-  smooth = FALSE,
-  isStack = FALSE,
-  stepType = NULL,
-  width = NULL,
-  height = NULL
-)
+g2_line(data, xField, yField, seriesField = NULL, colorField = NULL)
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
 
-\item{x}{short for xField}
+\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
 
-\item{y}{short for yField}
-
-\item{smooth}{TRUE/FALSE. whether the curve is smooth.}
-
-\item{isStack}{to stack charts}
-
-\item{width}{optional number default: 400. width of the chart.}
-
-\item{height}{optional number default: 400. height of the chart.}
+\item{yField}{the name of the data field corresponding to the graph in the y direction.}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -44,7 +25,7 @@ You can construct an opt in two way:
 \examples{
 
 df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = TRUE)
-g2_line(df, 'Date','scales')
+g2_line(df, 'Date','scales') |> g2()
 
 }
 \seealso{
@@ -52,9 +33,12 @@ Other g2:
 \code{\link{g2_area}()},
 \code{\link{g2_bar}()},
 \code{\link{g2_column}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_histogram}()},
 \code{\link{g2_pie}()},
 \code{\link{g2_radar}()},
 \code{\link{g2_scatter}()},
-\code{\link{g2}()}
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
 }
 \concept{g2}

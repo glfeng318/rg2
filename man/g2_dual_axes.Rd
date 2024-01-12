@@ -4,12 +4,7 @@
 \alias{g2_dual_axes}
 \title{g2_dual_axes}
 \usage{
-g2_dual_axes(data, x, y, geometry)
-}
-\arguments{
-\item{y}{should be: c('filed_name1','field_name_2')}
-
-\item{geometry}{should be: ll(line-line), cl(column-line), lc(column-line). use \code{g2()} for  complex configurations}
+g2_dual_axes(data, xField, yField)
 }
 \description{
 g2_dual_axes
@@ -20,6 +15,16 @@ data = data.frame(
  value=c(350,900,300,450,470),
  count=c(800,600,400,380,200)
 )
-g2_dual_axes(data, x='time', y=c('value','count'), geometry='ll')
+g2_dual_axes(data, 'time', c('value','count')) |>
+g2_style(geometryOptions = list(list(geometry='line'), list(geometry='line'))) |>
+g2()
+
+g2_dual_axes(data, 'time', c('value','count')) |>
+g2_style(geometryOptions = list(list(geometry='column'), list(geometry='line'))) |>
+g2()
+
+g2_dual_axes(data, 'time', c('value','count')) |>
+g2_style(geometryOptions = list(list(geometry='line'), list(geometry='column'))) |>
+g2()
 
 }

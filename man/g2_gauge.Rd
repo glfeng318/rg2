@@ -4,33 +4,7 @@
 \alias{g2_gauge}
 \title{g2_gauge}
 \usage{
-g2_gauge(
-  percent,
-  radius = 0.95,
-  innerRadius = 0.9,
-  startAngle = (-7/6) * pi,
-  endAngle = (1/6) * pi,
-  range.ticks = NULL,
-  range.color = NULL,
-  range.width = NULL
-)
-}
-\arguments{
-\item{percent}{Indicator ratio data \link{0-1}}
-
-\item{radius}{0.95}
-
-\item{innerRadius}{0.9}
-
-\item{startAngle}{(-7 / 6) * pi}
-
-\item{endAngle}{(1 / 6) * pi}
-
-\item{range.ticks}{number vector}
-
-\item{range.color}{The color swatches of auxiliary arcs are selected in accordance with the color swatches; When ticks are set, color cannot be used as a callback}
-
-\item{range.width}{width of gauge range. Default using 'radius', 'innerRadius' to calculate the width of range.}
+g2_gauge(percent)
 }
 \description{
 g2_gauge

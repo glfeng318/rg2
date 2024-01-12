@@ -4,22 +4,42 @@
 \alias{g2_histogram}
 \title{g2_histogram}
 \usage{
-g2_histogram(data, bin, stack = NULL, binWidth = NULL, binNumber = NULL)
+g2_histogram(data, binField, stackField = NULL)
 }
 \arguments{
-\item{bin}{binField}
-
-\item{stack}{stackField}
-
-\item{binWidth}{Set the box width of the histogram. BinWidth affects how many boxes the histogram is divided into. Cannot be used with BinNumber.}
-
-\item{binNumber}{Set the number of histogram boxes. BinNumber affects the width of each column after histogram boxes.}
+\item{data}{required. Data frame for plot.}
 }
 \description{
-g2_histogram
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
-df = data.frame(value=rnorm(1000))
-g2_histogram(df, 'value', binNumber)
+data.frame(value=rnorm(1000)) |>
+g2_histogram('value') |>
+g2()
+
+data.frame(value=rnorm(1000)) |>
+g2_histogram('value') |>
+g2_style(binNumber=100) |>
+g2()
 
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_column}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_line}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
+}
+\concept{g2}

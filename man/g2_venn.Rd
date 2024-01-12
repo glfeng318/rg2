@@ -4,7 +4,7 @@
 \alias{g2_venn}
 \title{g2_venn}
 \usage{
-g2_venn(data, sets, size = NULL, color = NULL, blendMode = NULL)
+g2_venn(data, setsField, sizeField = NULL, colorField = NULL)
 }
 \arguments{
 \item{sets}{The field of the collection(sets).}
@@ -20,9 +20,9 @@ g2_venn
 }
 \examples{
 df = jsonlite::fromJSON('[
-  {"sets": ['A'], "size": 5},
-  {"sets": ['B'], "size": 10},
-  {"sets": ['A', 'B'], "size": 2},
+  {"sets": ["A"], "size": 5},
+  {"sets": ["B"], "size": 10},
+  {"sets": ["A", "B"], "size": 2},
 ]')
 g2_venn(df, 'sets', 'size')
 }

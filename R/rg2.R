@@ -81,7 +81,7 @@ opt_from_json <- function(json) {
 #' g2(mtcars, 'scatter', opt = opt)
 #'
 #'
-g2 <- function(data, chart, opt = list(), width = NULL, height = NULL) {
+g2plot <- function(data, chart, opt = list(), width = NULL, height = NULL) {
   chart_type_list = c('line',
                       'area',
                       'column',
@@ -120,18 +120,30 @@ g2 <- function(data, chart, opt = list(), width = NULL, height = NULL) {
   if (! chart %in% chart_type_list) {
     stop("param chart should be one of ", paste(chart_type_list,collapse = ","))
   }
-  opt$data = jsonlite::toJSON(data)
-  x <- list(
-    chart = chart,
-    opt = opt
-  )
+  opt$data = jsonlite::toJSON(data, auto_unbox = T, null = 'null')
+  opt$g2_chart = chart
+  x <- list(opt = opt)
+  # create the widget
+  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
+}
+
+#' g2
+#'
+#' @param opt opt
+#' @param width 400
+#' @param height 400
+#'
+#' @export
+#'
+g2 <- function(opt, width=NULL, height=NULL) {
+  opt$data = jsonlite::toJSON(opt$data, auto_unbox = T, null = 'null')
+  x = list(opt=opt)
   # create the widget
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
 }
 
 
 #' g2_line
-#'
 #'
 #' @family g2
 #' @inherit opt
@@ -141,32 +153,19 @@ g2 <- function(data, chart, opt = list(), width = NULL, height = NULL) {
 #' @examples
 #'
 #' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = TRUE)
-#' g2_line(df, 'Date','scales')
+#' g2_line(df, 'Date','scales') |> g2()
 #'
-g2_line <- function(data, x, y,
-                    series=NULL,
-                    color=NULL,
-                    smooth=FALSE,
-                    isStack=FALSE,
-                    stepType=NULL,
-                    width=NULL,
-                    height=NULL) {
-  opt = list(xField=x,
-             yField=y,
-             seriesField=series,
-             smooth=smooth,
-             stepType=stepType,
-             isStack=isStack,
-             width=width,
-             height=height)
-  if (!is.null(color)) {
-    if (color %in% colnames(data)) {
-      opt$colorField = color
-    } else {
-      opt$color = color
-    }
-  }
-  g2(data, 'line', opt)
+g2_line <- function(data, xField, yField,
+                    seriesField=NULL,
+                    colorField=NULL) {
+  list(
+    g2_chart='line',
+    data=data,
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField,
+    colorField=colorField
+  )
 }
 
 #' g2_area
@@ -177,34 +176,19 @@ g2_line <- function(data, x, y,
 #' @export
 #' @examples
 #' df = jsonlite::read_json("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json",simplifyVector = TRUE)
-#' g2_area(df, 'Date','scales')
+#' g2_area(df, 'Date','scales') |> g2()
 #'
-g2_area <- function(data, x, y,
-                    series=NULL,
-                    color=NULL,
-                    smooth=FALSE,
-                    isStack=TRUE,
-                    isPercent=FALSE,
-                    startOnZero=TRUE,
-                    width=NULL,
-                    height=NULL){
-  opt = list(xField=x,
-             yField=y,
-             seriesField=series,
-             smooth=smooth,
-             isStack=isStack,
-             isPercent=isPercent,
-             startOnZero=startOnZero,
-             width=width,
-             height=height)
-  if (!is.null(color)) {
-    if (color %in% colnames(data)) {
-      opt$colorField = color
-    } else {
-      opt$color = color
-    }
-  }
-  g2(data, 'area', opt)
+g2_area <- function(data, xField, yField,
+                    seriesField=NULL,
+                    colorField=NULL){
+  list(
+    g2_chart='area',
+    data=data,
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField,
+    colorField=colorField
+  )
 }
 #' g2_column
 #'
@@ -216,34 +200,22 @@ g2_area <- function(data, x, y,
 #' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json',simplifyVector = TRUE)
 #' g2_column(df,'year','value','type',isStack=TRUE)
 #'
-g2_column <- function(data, x, y,
-                      series=NULL,
-                      group=NULL,
-                      color=NULL,
+g2_column <- function(data, xField, yField,
+                      seriesField=NULL,
+                      groupField=NULL,
+                      colorField=NULL,
                       isGroup=NULL,
                       isStack=NULL,
                       isRange=NULL,
-                      isPercent=NULL,
-                      width=NULL,
-                      height=NULL){
-  opt = list(xField=x,
-             yField=y,
-             seriesField=series,
-             groupField=group,
-             isGroup=isGroup,
-             isStack=isStack,
-             isPercent=isPercent,
-             isRange=isRange,
-             width=width,
-             height=height)
-  if (!is.null(color)) {
-    if (color %in% colnames(data)) {
-      opt$colorField = color
-    } else {
-      opt$color = color
-    }
-  }
-  g2(data, 'column', opt)
+                      isPercent=NULL){
+  list(
+    g2_chart='column',
+    data=data,
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField,
+    groupField=groupField
+  )
 }
 #' g2_bar
 #'
@@ -252,79 +224,51 @@ g2_column <- function(data, x, y,
 #'
 #' @export
 #' @examples
-#' df = jsonlite::fromJSON('
-#' [{ "year": "1951", "value": 38 },
+#' jsonlite::fromJSON('[
+#'   { "year": "1951", "value": 38 },
 #'   { "year": "1952", "value": 52 },
 #'   { "year": "1956", "value": 61 },
 #'   { "year": "1957", "value": 145 },
-#'   { "year": "1958", "value": 48 }]')
-#' g2_bar(df, 'value', 'year')
+#'   { "year": "1958", "value": 48 }]') |>
+#'   g2_bar('value', 'year') |>
+#'   g2()
 #'
-g2_bar <- function(data, x, y,
-                   series=NULL,
-                   group=NULL,
-                   color=NULL,
-                   isGroup=NULL,
-                   isStack=NULL,
-                   isRange=NULL,
-                   isPercent=NULL,
-                   width=NULL,
-                   height=NULL){
-  opt = list(xField=x,
-             yField=y,
-             seriesField=series,
-             groupField=group,
-             isGroup=isGroup,
-             isStack=isStack,
-             isPercent=isPercent,
-             isRange=isRange,
-             width=width,
-             height=height)
-  if (!is.null(color)) {
-    if (color %in% colnames(data)) {
-      opt$colorField = color
-    } else {
-      opt$color = color
-    }
-  }
-  g2(data, 'bar', opt)
+g2_bar <- function(data, xField, yField,
+                   seriesField=NULL,
+                   groupField=NULL,
+                   colorField=NULL){
+  list(
+    g2_chart='bar',
+    data=data,
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField,
+    groupField=groupField
+  )
 }
 #' g2_pie
 #'
-#' @param angle angleField
-#' @param color colorField
-#' @param radius The radius of the pie chart, the origin is the center of the canvas. The configuration range is (0,1), where 1 represents a pie chart that fills the drawing area.
-#' @param innerRadius The inner radius of the pie chart, starting at the center of the canvas. Configure the range (0,1)
-#' @param startAngle Configure the starting angle of the coordinate system. try `pi`.
-#' @param endAngle Configure the end angle of the coordinate system.
 #'
 #' @family g2
 #' @inherit opt
 #'
 #' @export
 #' @examples
-#' df = data.frame(
+#' data.frame(
 #'   cate = c('a','b','c','d','e'),
 #'   value = c(1,2,3,5,8)
-#' )
-#' g2_pie(df, angle='value',color='cate', radius=.8, innerRadius=.4)
+#' ) |>
+#' g2_pie('value','cate') |>
+#' g2_style(radius=.8, innerRadius=.4) |>
+#' g2()
 #'
-g2_pie <- function(data,angle,color,
-                   radius=NULL,
-                   innerRadius=NULL,
-                   startAngle=-pi/2,
-                   endAngle=pi*1.5,
-                   width=NULL,
-                   height=NULL){
-  opt = list(angleField=angle,
-             colorField=color,
-             radius=radius,
-             innerRadius=innerRadius,
-             startAngle=startAngle,
-             endAngle=endAngle,
-             width=width,
-             height=height)
-  g2(data, 'pie', opt)
+g2_pie <- function(data,angleField,colorField){
+  list(
+    g2_chart='pie',
+    data=data,
+    angleField=angleField,
+    colorField=colorField
+  )
 }
 
 #' g2_scatter
@@ -334,35 +278,25 @@ g2_pie <- function(data,angle,color,
 #'
 #' @export
 #' @examples
-#' g2_scatter(cars, 'speed', 'dist')
-#' g2_scatter(iris, 'Sepal.Length', 'Sepal.Width',color='Species')
+#' g2_scatter(cars, 'speed', 'dist') |> g2()
+#' g2_scatter(iris, 'Sepal.Length', 'Sepal.Width',colorField='Species') |> g2()
 #'
-g2_scatter <- function(data, x, y,
-                       size=NULL,
-                       shape=NULL,
-                       color=NULL,
-                       width=NULL,
-                       height=NULL){
-  opt = list(xField=x,
-             yField=y,
-             sizeField=size,
-             shapeField=shape,
-             width=width,
-             height=height)
-  if (!is.null(color)) {
-    if (color %in% colnames(data)) {
-      opt$colorField = color
-    } else {
-      opt$color = color
-    }
-  }
-  g2(data, 'scatter', opt)}
+g2_scatter <- function(data, xField, yField,
+                       sizeField=NULL,
+                       shapeField=NULL,
+                       colorField=NULL){
+  list(
+    g2_chart='scatter',
+    data=data,
+    xField=xField,
+    yField=yField,
+    sizeField=sizeField,
+    shapeField=shapeField,
+    colorField=colorField
+  )
+}
 
 #' g2_dual_axes
-#'
-#'
-#' @param y should be: c('filed_name1','field_name_2')
-#' @param geometry should be: ll(line-line), cl(column-line), lc(column-line). use `g2()` for  complex configurations
 #'
 #' @export
 #' @examples
@@ -371,223 +305,159 @@ g2_scatter <- function(data, x, y,
 #'  value=c(350,900,300,450,470),
 #'  count=c(800,600,400,380,200)
 #' )
-#' g2_dual_axes(data, x='time', y=c('value','count'), geometry='ll')
+#' g2_dual_axes(data, 'time', c('value','count')) |>
+#' g2_style(geometryOptions = list(list(geometry='line'), list(geometry='line'))) |>
+#' g2()
 #'
-g2_dual_axes <- function(data, x, y, geometry){
-  opt = list(xField=x,yField=y)
-  if (geometry == 'll') {
-    opt$geometryOptions = list(list(geometry='line'), list(geometry='line'))
-  } else if (geometry == 'cl') {
-    opt$geometryOptions = list(list(geometry='column'), list(geometry='line'))
-  } else if (geometry == 'lc') {
-    opt$geometryOptions = list(list(geometry='line'), list(geometry='column'))
-  }  else {
-    stop('param geometry should be one of "ll, "cl", "lc"')
-  }
-  g2(list(data, data), 'dual-axes', opt)
+#' g2_dual_axes(data, 'time', c('value','count')) |>
+#' g2_style(geometryOptions = list(list(geometry='column'), list(geometry='line'))) |>
+#' g2()
+#'
+#' g2_dual_axes(data, 'time', c('value','count')) |>
+#' g2_style(geometryOptions = list(list(geometry='line'), list(geometry='column'))) |>
+#' g2()
+#'
+g2_dual_axes <- function(data, xField, yField){
+  list(
+    g2_chart='dual-axes',
+    data=list(data,data),
+    xField=xField,
+    yField=yField
+  )
 }
 #' g2_gauge
 #'
-#' @param percent Indicator ratio data [0-1]
-#' @param radius 0.95
-#' @param innerRadius 0.9
-#' @param startAngle (-7 / 6) * pi
-#' @param endAngle (1 / 6) * pi
-#' @param range.ticks number vector
-#' @param range.color The color swatches of auxiliary arcs are selected in accordance with the color swatches; When ticks are set, color cannot be used as a callback
-#' @param range.width width of gauge range. Default using 'radius', 'innerRadius' to calculate the width of range.
 #'
 #' @export
 #' @examples
 #' g2_gauge(0.618)
 #'
-g2_gauge <- function(percent,
-                     radius=0.95,
-                     innerRadius=0.9,
-                     startAngle=(-7 / 6) * pi,
-                     endAngle=(1 / 6) * pi,
-                     range.ticks=NULL,
-                     range.color=NULL,
-                     range.width=NULL
-                     ){
-  opt = list(percent=percent,
-             radius=radius,
-             innerRadius=innerRadius,
-             startAngle=startAngle,
-             endAngle=endAngle,
-             range=list(ticks=range.ticks,
-                        color=range.color,
-                        width=range.width))
-  g2(NULL, 'gauge', opt=opt)
+g2_gauge <- function(percent){
+  list(
+    g2_chart='gauge',
+    data=NULL,
+    percent=percent
+  )
 }
 #' g2_liquid
 #'
-#' @param percent Ratio data [0-1]
-#' @param radius Radius of outer ring [0-1]
-#' @param shape circle | diamond | triangle | pin | rect
-#' @param wave list(count=3, length=192), length in px
-#' @param color color name or hex color code
-#'
 #' @export
 #' @examples
-#' g2_liquid(0.618)
+#' g2_liquid(0.618) |> g2()
 #'
-g2_liquid <- function(percent,
-                      radius=0.9,
-                      shape='circle',
-                      wave=list(count=3, length=192),
-                      color=NULL
-                      ){
-  opt = list(percent=percent, radius=radius)
-  g2(NULL, 'liquid', opt=opt)
+g2_liquid <- function(percent){
+  list(
+    g2_chart='liquid',
+    data=NULL,
+    percent=percent
+  )
 }
 #' g2_bullet
 #'
-#' @param data The data source is a collection of objects [{title: '满意度', ranges: [50,100], measures: [80], target: 85}]
-#' @param measure Use the length of the data bar, the setting field for the actual value, to represent the actual value.
-#' @param range Use the setting field for the length of the background bar to represent the range.
-#' @param target Use a setting field for the position of the scale axis of the measurement mark to represent the target value.
-#' @param x Used to distinguish different types, suitable for grouping bullet diagrams.
-#' @param layout optional 'horizontal' | 'vertical' default: 'horizontal'
-#' @param color Set color property of each graph of bullet map.
-#' @param size Set the size property of each graph of bullet map.
-#' @param bulletStyle Set the style properties of each bullet map.
+#' @param data The data source is a collection of objects [{title: 'income', ranges: [50,100], measures: [80], target: 85}]
+#' @param measureField Use the length of the data bar, the setting field for the actual value, to represent the actual value.
+#' @param rangeField Use the setting field for the length of the background bar to represent the range.
+#' @param targetField Use a setting field for the position of the scale axis of the measurement mark to represent the target value.
+#' @param xField Used to distinguish different types, suitable for grouping bullet diagrams.
 #'
 #' @export
 #' @examples
 #' data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
-#' g2_bullet(data,'measures','ranges','target',color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),size=list(range=12,measure=12,target=12))
+#' g2_bullet(data,'measures','ranges','target') |>
+#' g2_style(color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),
+#'          size=list(range=12,measure=12,target=12)) |>
+#' g2()
 #'
-g2_bullet <- function(data, measure,range,target,
-                      x=NULL,
-                      layout='horizontal',
-                      color=NULL,
-                      size=NULL,
-                      bulletStyle=NULL){
-  opt = list(measureField=measure,
-             rangeField=range,
-             targetField=target,
-             xField=x,
-             layout=layout,
-             color=color,
-             size=size,
-             bulletStyle=bulletStyle)
-  g2(data, 'bullet', opt=opt)
+g2_bullet <- function(data, measureField,rangeField,targetField,
+                      xField=NULL){
+  list(
+    g2_chart='bullet',
+    data=data,
+    measureField=measureField,
+    rangeField=rangeField,
+    targetField=targetField,
+    xField=xField
+  )
 }
 #' g2_radar
 #'
-#' @param x xField
-#' @param y yField
-#' @param series seriesField
-#' @param radius The radius of the radar map, starting at the center of the drawing area (not including the chart component area). The configuration range is (0,1), where 1 means to fill the drawing area.
-#' @param startAngle The starting angle of the disk.
-#' @param endAngle The termination angle of the disk.
-#' @param color color name, hex color code or colorField
-#' @param smooth Whether to draw as a curve (spline).
 #' @inherit opt
 #' @family g2
 #' @export
-g2_radar <- function(data,x,y,
-                     series=NULL,
-                     radius=NULL,
-                     startAngle=(pi*0/180),
-                     endAngle=(pi*180)/180,
-                     color=NULL,
-                     smooth=FALSE){
-  opt=list(xField=x,
-           yField=y,
-           seriesField=series,
-           radius=radius,
-           startAngle=startAngle,
-           endAngle=endAngle,
-           smooth=smooth)
-  if (!is.null(color)) {
-    if (color %in% colnames(data)) {
-      opt$colorField = color
-    } else {
-      opt$color = color
-    }
-  }
-  g2(data, 'radar', opt=opt)
+#' @examples
+#' data = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/svFjSfJkYy/radar.json')
+#' g2_radar(data,'item','score','user') |> g2_style(area=list()) |> g2()
+#'
+g2_radar <- function(data,xField,yField,
+                     seriesField=NULL){
+  list(
+    g2_chart='radar',
+    data=data,
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField
+  )
 }
 #' g2_word_cloud
 #'
-#' @param word wordField
-#' @param weight weightField
-#' @param color colorField
-#' @param random The value of a js random function can be a value in the interval [0, 1] or a function that returns the value. When the value is a fixed value, the layout coordinates of each word corresponding to the word cloud of the same data will be the same every time the word cloud of the same data is rendered.
-#' @param spiral 'archimedean' | 'rectangular' default: 'archimedean'
-#' @param timeInterval Sets the maximum execution time of the drawing program in milliseconds. If the time is set too short, it may draw only part of the words.default 2000
-#'
 #' @inherit opt
+#' @family g2
 #'
 #' @export
-g2_word_cloud <- function(data, word, weight,
-                          color=NULL,
-                          random=NULL,
-                          spiral='archimedean',
-                          timeInterval=2000){
-  opt = list(
-    wordField=word,
-    weightField=weight,
-    colorField=color,
-    random=random,
-    spiral=sprial,
-    timeInterval=timeInterval
-    )
-  g2(data, 'word-cloud', opt = opt)
+g2_word_cloud <- function(data, wordField, weightField,
+                          colorField=NULL){
+  list(
+    g2_chart='word-cloud',
+    data=data,
+    wordField=wordField,
+    weightField=weightField,
+    colorField=colorField
+  )
 }
 #' g2_funnel
 #'
-#' @param isTransposed Whether the plot is transposed.
-#' @param shape 'funnel' ｜ 'pyramid'
-#' @param maxSize the max size of graphic，is between 0 and 1, default 1
-#' @param minSize the min size of graphic，is between 0 and 1, default 0
-#' @param showFacetTitle
-#'
+#' @inherit opt
+#' @family g2
 #' @export
-g2_funnel <- function(data, x, y,
-                      series=NULL,
-                      isTransposed=FALSE,
-                      shape='funnel',
-                      maxSize=1,
-                      minSize=0,
-                      showFacetTitle=TRUE){
-  opt = list(
-    xField=x,
-    yField=y,
-    seriesField=series
+g2_funnel <- function(data, xField, yField,
+                      compareField=NULL,
+                      seriesField=NULL){
+  list(
+    g2_cahrt='funnel',
+    data=data,
+    xField=xField,
+    yField=yField,
+    compareField=compareField,
+    seriesField=seriesField
   )
-  g2(data, 'funnel', opt=opt)
 }
 
 #' g2_histogram
 #'
-#' @param bin binField
-#' @param stack stackField
-#' @param binWidth  Set the box width of the histogram. BinWidth affects how many boxes the histogram is divided into. Cannot be used with BinNumber.
-#' @param binNumber Set the number of histogram boxes. BinNumber affects the width of each column after histogram boxes.
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
-#' df = data.frame(value=rnorm(1000))
-#' g2_histogram(df, 'value', binNumber)
+#' data.frame(value=rnorm(1000)) |>
+#' g2_histogram('value') |>
+#' g2()
 #'
-g2_histogram <- function(data, bin,
-                         stack=NULL,
-                         binWidth=NULL,
-                         binNumber=NULL){
-  opt = list(
-    binField=bin,
-    stackField=stack,
-    binWidth=binWidth,
-    binNumber=binNumber
+#' data.frame(value=rnorm(1000)) |>
+#' g2_histogram('value') |>
+#' g2_style(binNumber=100) |>
+#' g2()
+#'
+g2_histogram <- function(data, binField,
+                         stackField=NULL){
+  list(
+    g2_chart='histogram',
+    data=data,
+    binField=binField,
+    stackField=stackField
   )
-  g2(data, 'histogram', opt=opt)
 }
 #' g2_venn
 #'
-#' @param data
 #' @param sets The field of the collection(sets).
 #' @param size The name of the data field corresponding to the point size map.
 #' @param color color or color vector or javascript function return color.
@@ -601,63 +471,257 @@ g2_histogram <- function(data, bin,
 #'   {"sets": ["A", "B"], "size": 2},
 #' ]')
 #' g2_venn(df, 'sets', 'size')
-g2_venn <- function(data, sets,
-                    size=NULL,
-                    color=NULL,
-                    blendMode='multiply'){
-  opt = list(
-    setsField=sets,
-    sizeField=size,
-    color=color,
-    blendMode=blendMode
-    )
-  g2(data, 'venn', opt=opt)
+g2_venn <- function(data, setsField,
+                    sizeField=NULL,
+                    colorField=NULL){
+  list(
+    g2_chart='venn',
+    data=data,
+    setsField=setsField,
+    sizeField=sizeField,
+    color=colorField
+  )
 }
 #' g2_rose
 #'
 #' @return rose
 #' @export
-g2_rose <- function(){'rose'}
+g2_rose <- function(data, xField, yField,
+                    seriesField=NULL,
+                    colorField=NULL){
+  lsit(
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField,
+    colorField=colorField
+  )
+}
 #' g2_tiny_line
 #'
-#' @return tiny-line
+#' @param data number vector
+#'
 #' @export
-g2_tiny_line <- function(){'tiny-line'}
+#' @examples
+#' g2_tiny_line(rnorm(100)) |>
+#' g2_style(
+#'   smooth=FALSE,
+#'   connectNulls=TRUE,
+#'   height=80,
+#'   color='red',
+#'   autoFit=FALSE) |>
+#' g2()
+#'
+g2_tiny_line <- function(data){
+  list(
+    g2_chart='tiny-line',
+    data=data
+  )
+}
 #' g2_tiny_area
 #'
 #' @return tiny-area
 #' @export
-g2_tiny_area <- function(){'tiny-area'}
+#' @examples
+#' g2_tiny_area(rnorm(100)) |>
+#' g2_style(
+#'   smooth=TRUE,
+#'   height=80,
+#'   color='red',
+#'   autoFit=FALSE) |>
+#' g2()
+#'
+g2_tiny_area <- function(data){
+  list(
+    g2_chart='tiny-area',
+    data=data
+  )
+}
 #' g2_tiny_column
 #'
-#' @return tiny-column
 #' @export
-g2_tiny_column <- function(){'tiny-column'}
+#' @examples
+#' g2_tiny_column(rnorm(100)) |>
+#' g2_style(
+#'   columnWidthRatio=0.5,
+#'   height=80,
+#'   color=NULL,
+#'   autoFit=FALSE) |>
+#' g2()
+#'
+g2_tiny_column <- function(data){
+  list(
+    g2_chart='tiny-column',
+    data=data
+  )
+}
 #' g2_sunburst
 #'
-#' @return sunburst
+#' The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the `hierarchyConfig` in `g2_style()`
+#'
+#' @section Data:
+#' data schema
+#' ```
+#'
+#' type Node = { name: string; value?: number; children: Node[]; }
+#'
+#' ```
+#' an example data looks like:
+#' ```
+#' {
+#' name: 'root',
+#' children: [
+#'   { name: 'type1', value: 1 },
+#'   { name: 'type2', value: 3, children: [{ name: 'type2-1', value: 2 }] }
+#' ]
+#' }
+#' ```
+#'
 #' @export
-g2_sunburst <- function(){'sunburst'}
+#' @examples
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.json') |> g2_sunburst() |> g2()
+#'
+#' # Data Node with label/uv/sum/count (default Node with name/value/children)
+#' df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json", simplifyVector = T)
+#' g2_sunburst(df, 'label') |> g2_style(hierarchyConfig = list(field='sum')) |> g2()
+#'
+#'
+g2_sunburst <- function(data,
+                        colorField=NULL,
+                        rawFields=NULL){
+  opt = list(
+    g2_chart='sunburst',
+    data=data
+  )
+  if(!is.null(colorField)) {
+    opt$colorField=colorField
+  }
+  if(!is.null(rawFields)) {
+    opt$rawFields=rawFields
+  }
+  opt
+}
 #' g2_stock
 #'
-#' @return stock
+#' @param xField: timestamp like 1436237115500 or datetime string like '2015-03-01', '2015-03-01 12:01:40'，'2015/01/05', '2015-03-01T16:00:00.000Z'
+#' @param yField array c('open', 'close', 'high', 'low')
+#'
 #' @export
-g2_stock <- function(){'stock'}
+#' @examples
+#' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json')
+#' g2_stock(df, 'trade_date', c('open', 'close', 'high', 'low')) |> g2()
+#'
+g2_stock <- function(data, xField, yField){
+  list(
+    g2_chart='stock',
+    data=data,
+    xField=xField,
+    yField=yField
+  )
+}
 #' g2_ring_progress
 #'
-#' @return ring-progress
+#' @param color color vector of length 2
+#'
 #' @export
-g2_ring_progress <- function(){'ring-progress'}
+#' @examples
+#' g2_ring_progress(0.75) |>
+#' g2_style(
+#'   color=c('#5B8FF9', '#E8EDF3'),
+#'   radius=0.8,
+#'   innerRadius=0.75,
+#'   autoFit=FALSE,
+#'   width=200,
+#'   height=200) |>
+#' g2()
+#'
+g2_ring_progress <- function(percent){
+  list(
+    g2_chart='ring-progress',
+    data=NULL,
+    percent=percent
+  )
+}
 #' g2_progress
 #'
-#' @return progress
+#' @param color color vector of length 2
+#' @param barWidthRatio [0-1]
+#'
 #' @export
-g2_progress <- function(){'progress'}
+#' @examples
+#' g2_progress(0.75, color=c('#F4664A', '#E8EDF3'), barWidthRatio=0.3)
+#'
+g2_progress <- function(percent,
+                        color=NULL,
+                        barWidthRatio=0.5,
+                        autoFit=FALSE,
+                        width=300,
+                        height=100){
+  opt = list(
+    percent=percent,
+    color=color,
+    barWidthRatio=barWidthRatio,
+    autoFit=autoFit,
+    width=width,
+    height=height
+  )
+  g2(NULL, 'progress', opt=opt)
+}
 #' g2_box
 #'
-#' @return box
+#' @param x xField
+#' @param y yField
+#' @param group Grouping field. It is used for grouping by default, and color is used as visual channel.
+#' @param outliers Outlier field.
+#' @param boxStyle list(fill="#f6f",...)
+#' @param outliersStyle list(fill="#f6f",...)
+#'
 #' @export
-g2_box <- function(){'box'}
+#' @examples
+#' df = jsonlite::fromJSON('[
+#' { "x": "Oceania", "low": 1, "q1": 9, "median": 16, "q3": 22, "high": 24 },
+#' { "x": "East Europe", "low": 1, "q1": 5, "median": 8, "q3": 12, "high": 16 },
+#' { "x": "Australia", "low": 1, "q1": 8, "median": 12, "q3": 19, "high": 26 },
+#' { "x": "South America", "low": 2, "q1": 8, "median": 12, "q3": 21, "high": 28 },
+#' { "x": "North Africa", "low": 1, "q1": 8, "median": 14, "q3": 18, "high": 24 },
+#' { "x": "North America", "low": 3, "q1": 10, "median": 17, "q3": 28, "high": 30 },
+#' { "x": "West Europe", "low": 1, "q1": 7, "median": 10, "q3": 17, "high": 22 },
+#' { "x": "West Africa", "low": 1, "q1": 6, "median": 8, "q3": 13, "high": 16 }
+#' ]')
+#' g2_box(df, 'x',c('low', 'q1', 'median', 'q3', 'high'))
+#'
+#' # different data format (yField)
+#' df = jsonlite::fromJSON('
+#' [
+#' { "Species": "I. setosa", "type": "SepalLength", "value": 5.1, "bin": [4.3, 4.8, 5, 5.2, 5.8] },
+#' { "Species": "I. setosa", "type": "SepalWidth", "value": 3.5, "bin": [2.3, 3.2, 3.4, 3.7, 4.4] },
+#' { "Species": "I. setosa", "type": "PetalLength", "value": 1.4, "bin": [1, 1.4, 1.5, 1.6, 1.9] },
+#' { "Species": "I. setosa", "type": "PetalWidth", "value": 0.2, "bin": [0.1, 0.2, 0.2, 0.3, 0.6] },
+#' { "Species": "I. versicolor", "type": "SepalLength", "value": 7, "bin": [4.9, 5.6, 5.9, 6.3, 7] },
+#' { "Species": "I. versicolor", "type": "SepalWidth", "value": 3.2, "bin": [2, 2.5, 2.8, 3, 3.4] },
+#' { "Species": "I. versicolor", "type": "PetalLength", "value": 4.7, "bin": [3, 4, 4.35, 4.6, 5.1] },
+#' { "Species": "I. versicolor", "type": "PetalWidth", "value": 1.4, "bin": [1, 1.2, 1.3, 1.5, 1.8] },
+#' { "Species": "I. virginica", "type": "SepalLength", "value": 6.3, "bin": [4.9, 6.2, 6.5, 6.9, 7.9] },
+#' { "Species": "I. virginica", "type": "SepalWidth", "value": 3.3, "bin": [2.2, 2.8, 3, 3.2, 3.8] },
+#' { "Species": "I. virginica", "type": "PetalLength", "value": 6, "bin": [4.5, 5.1, 5.55, 5.9, 6.9] },
+#' { "Species": "I. virginica", "type": "PetalWidth", "value": 2.5, "bin": [1.4, 1.8, 2, 2.3, 2.5] }
+#' ]')
+#' g2_box(df, 'type','bin',group = 'Species')
+#'
+g2_box <- function(data, x, y,
+                   group=NULL,
+                   outliers=NULL,
+                   boxStyle=NULL,
+                   outliersStyle=NULL){
+  opt=list(
+    xField=x,
+    yField=y,
+    groupField=group,
+    outliersField=outliers,
+    boxStyle=boxStyle,
+    outliersStyle=outliersStyle
+  )
+  g2(data,'box',opt=opt)
+}
 #' g2_heatmap
 #'
 #' @return heatmap

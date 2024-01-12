@@ -156,7 +156,7 @@ HTMLWidgets.widget({
       renderValue: function(x) {
         $(el).empty();  // clear out the previous chart, fixed #3
         // https://g2plot.antv.antgroup.com/api/plot-api
-        switch (x.chart.toLowerCase()) {
+        switch (x.opt.g2_chart.toLowerCase()) {
           case 'line':
             chart = new G2Plot.Line(el.id, x.opt);
             break;

@@ -4,11 +4,38 @@
 \alias{g2_sunburst}
 \title{g2_sunburst}
 \usage{
-g2_sunburst()
-}
-\value{
-sunburst
+g2_sunburst(data, colorField = NULL, rawFields = NULL)
 }
 \description{
-g2_sunburst
+The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the \code{hierarchyConfig} in \code{g2_style()}
+}
+\section{Data}{
+
+data schema
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{
+type Node = \{ name: string; value?: number; children: Node[]; \}
+
+}\if{html}{\out{</div>}}
+
+an example data looks like:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{\{
+name: 'root',
+children: [
+  \{ name: 'type1', value: 1 \},
+  \{ name: 'type2', value: 3, children: [\{ name: 'type2-1', value: 2 \}] \}
+]
+\}
+}\if{html}{\out{</div>}}
+}
+
+\examples{
+jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.json') |> g2_sunburst() |> g2()
+
+# Data Node with label/uv/sum/count (default Node with name/value/children)
+df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json", simplifyVector = T)
+g2_sunburst(df, 'label') |> g2_style(hierarchyConfig = list(field='sum')) |> g2()
+
+
 }

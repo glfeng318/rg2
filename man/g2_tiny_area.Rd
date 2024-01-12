@@ -4,11 +4,21 @@
 \alias{g2_tiny_area}
 \title{g2_tiny_area}
 \usage{
-g2_tiny_area()
+g2_tiny_area(data)
 }
 \value{
 tiny-area
 }
 \description{
 g2_tiny_area
+}
+\examples{
+g2_tiny_area(rnorm(100)) |>
+g2_style(
+  smooth=TRUE,
+  height=80,
+  color='red',
+  autoFit=FALSE) |>
+g2()
+
 }

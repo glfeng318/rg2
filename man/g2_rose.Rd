@@ -4,7 +4,7 @@
 \alias{g2_rose}
 \title{g2_rose}
 \usage{
-g2_rose()
+g2_rose(data, xField, yField, seriesField = NULL, colorField = NULL)
 }
 \value{
 rose
