@@ -9,9 +9,11 @@ g2_radar(data, xField, yField, seriesField = NULL)
 \arguments{
 \item{data}{required. Data frame for plot.}
 
-\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
 
-\item{yField}{the name of the data field corresponding to the graph in the y direction.}
+\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
+
+\item{seriesField}{grouping field}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -24,7 +26,7 @@ You can construct an opt in two way:
 }
 \examples{
 data = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/svFjSfJkYy/radar.json')
-g2_radar(data,'item','score','user') |> g2_style(area=list()) |> g2()
+g2_radar(data,'item','score','user') |> g2_opt(area=list()) |> g2()
 
 }
 \seealso{

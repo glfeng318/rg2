@@ -4,11 +4,42 @@
 \alias{g2_circle_packing}
 \title{g2_circle_packing}
 \usage{
-g2_circle_packing()
-}
-\value{
-circle-packing
+g2_circle_packing(data, colorField = NULL, sizeField = NULL, rawFields = NULL)
 }
 \description{
 g2_circle_packing
+}
+\examples{
+jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/\%24m0nDoQYqH/basic-packing.json') |>
+  g2_circle_packing() |>
+  g2()
+
+jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/\%24m0nDoQYqH/basic-packing.json') |>
+  g2_circle_packing() |>
+  g2_opt(
+    label=FALSE,
+    legend=FALSE,
+    hierarchyConfig=list(sort=htmlwidgets::JS('(a, b) => b.depth - a.depth'))
+  ) |>
+  g2()
+
+jsonlite::fromJSON('https://gw.alipayobjects.com/os/antvdemo/assets/data/flare.json') |>
+  g2_circle_packing(sizeField = 'r',colorField = 'r') |>
+  g2_opt(
+    color='rgb(252, 253, 191)-rgb(231, 82, 99)-rgb(183, 55, 121)',
+    pointStyle=list(
+      stroke='rgb(183, 55, 121)',
+      lineWidth= 0.5
+    ),
+    label=FALSE,
+    legend=FALSE,
+    drilldown=list(
+      enabled=TRUE,
+      breadCrumb= list(
+        position='top-left'
+      )
+    )
+  ) |>
+  g2()
+
 }

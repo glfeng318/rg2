@@ -4,10 +4,7 @@
 \alias{g2_treemap}
 \title{g2_treemap}
 \usage{
-g2_treemap()
-}
-\value{
-treemap
+g2_treemap(data, colorField, rawFields)
 }
 \description{
 g2_treemap

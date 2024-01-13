@@ -8,6 +8,8 @@ g2_word_cloud(data, wordField, weightField, colorField = NULL)
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
+
+\item{colorField}{the name of the data field or color name or hex color code}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -27,12 +29,14 @@ opt = list(
   legend = list(position = 'top-left'),
   theme='dark' # default / dark
 )
-g2(mtcars, 'scatter', opt = opt)
+g2plot(mtcars, 'scatter', opt = opt)
 
-opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2(mtcars, 'scatter', opt = opt)
+opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2plot(mtcars, 'scatter', opt = opt)
 
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+g2_scatter(mtcars, 'drat', 'wt') |>
+  g2_opt(shape='circle', theme='dark') |>
+  g2()
 
 
 }

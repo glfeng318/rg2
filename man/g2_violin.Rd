@@ -4,10 +4,7 @@
 \alias{g2_violin}
 \title{g2_violin}
 \usage{
-g2_violin()
-}
-\value{
-voilin
+g2_violin(data, xField, yField, seriesField = NULL)
 }
 \description{
 g2_violin

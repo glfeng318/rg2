@@ -14,7 +14,7 @@ g2_tiny_area
 }
 \examples{
 g2_tiny_area(rnorm(100)) |>
-g2_style(
+g2_opt(
   smooth=TRUE,
   height=80,
   color='red',

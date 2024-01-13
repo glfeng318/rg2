@@ -10,19 +10,17 @@
 
 \item{data}{required. Data frame for plot.}
 
-\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
+\item{reflect}{Apply reflect transform to the coordinate of line plot. When reflect: 'y' is set, y-axis can be inverted; in the same way, you can set reflect: 'x' to invert x-axis, and invert x-axis and y-axis at the same time is also supported with 'c('x','y')'.}
 
-\item{yField}{the name of the data field corresponding to the graph in the y direction.}
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
 
-\item{x}{short for xField}
+\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
 
-\item{y}{short for yField}
+\item{colorField}{the name of the data field or color name or hex color code}
 
-\item{color, colorField}{the name of the data field or color name or hex color code}
+\item{groupField}{grouping field}
 
-\item{group, groupField}{grouping field}
-
-\item{series, seriesField}{grouping field}
+\item{seriesField}{grouping field}
 
 \item{smooth}{TRUE/FALSE. whether the curve is smooth.}
 
@@ -52,12 +50,14 @@ opt = list(
   legend = list(position = 'top-left'),
   theme='dark' # default / dark
 )
-g2(mtcars, 'scatter', opt = opt)
+g2plot(mtcars, 'scatter', opt = opt)
 
-opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2(mtcars, 'scatter', opt = opt)
+opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2plot(mtcars, 'scatter', opt = opt)
 
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+g2_scatter(mtcars, 'drat', 'wt') |>
+  g2_opt(shape='circle', theme='dark') |>
+  g2()
 
 
 }

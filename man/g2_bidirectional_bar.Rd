@@ -4,7 +4,7 @@
 \alias{g2_bidirectional_bar}
 \title{g2_bidirectional_bar}
 \usage{
-g2_bidirectional_bar()
+g2_bidirectional_bar(data, xField, yField)
 }
 \value{
 bidirectional-bar

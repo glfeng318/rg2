@@ -9,9 +9,11 @@ g2_funnel(data, xField, yField, compareField = NULL, seriesField = NULL)
 \arguments{
 \item{data}{required. Data frame for plot.}
 
-\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
 
-\item{yField}{the name of the data field corresponding to the graph in the y direction.}
+\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
+
+\item{seriesField}{grouping field}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -31,12 +33,14 @@ opt = list(
   legend = list(position = 'top-left'),
   theme='dark' # default / dark
 )
-g2(mtcars, 'scatter', opt = opt)
+g2plot(mtcars, 'scatter', opt = opt)
 
-opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2(mtcars, 'scatter', opt = opt)
+opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2plot(mtcars, 'scatter', opt = opt)
 
-g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+g2_scatter(mtcars, 'drat', 'wt') |>
+  g2_opt(shape='circle', theme='dark') |>
+  g2()
 
 
 }

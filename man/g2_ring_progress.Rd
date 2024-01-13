@@ -14,7 +14,7 @@ g2_ring_progress
 }
 \examples{
 g2_ring_progress(0.75) |>
-g2_style(
+g2_opt(
   color=c('#5B8FF9', '#E8EDF3'),
   radius=0.8,
   innerRadius=0.75,

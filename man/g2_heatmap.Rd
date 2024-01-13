@@ -4,11 +4,18 @@
 \alias{g2_heatmap}
 \title{g2_heatmap}
 \usage{
-g2_heatmap()
-}
-\value{
-heatmap
+g2_heatmap(data, xField, yField, colorField = NULL, sizeField = NULL)
 }
 \description{
 g2_heatmap
+}
+\examples{
+jsonlite::fromJSON('https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json') |>
+g2_heatmap('Month of Year','District','AQHI') |>
+g2_opt(
+  color=c('#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'),
+  meta=list('Month of Year'=list(type='cat'))
+) |>
+g2()
+
 }

@@ -11,7 +11,7 @@ g2_tiny_column
 }
 \examples{
 g2_tiny_column(rnorm(100)) |>
-g2_style(
+g2_opt(
   columnWidthRatio=0.5,
   height=80,
   color=NULL,

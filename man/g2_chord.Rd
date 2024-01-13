@@ -4,10 +4,7 @@
 \alias{g2_chord}
 \title{g2_chord}
 \usage{
-g2_chord()
-}
-\value{
-chord
+g2_chord(data, sourceField, targetField, weightField)
 }
 \description{
 g2_chord

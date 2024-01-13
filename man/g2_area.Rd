@@ -9,9 +9,13 @@ g2_area(data, xField, yField, seriesField = NULL, colorField = NULL)
 \arguments{
 \item{data}{required. Data frame for plot.}
 
-\item{xField}{the name of the data field corresponding to the graph in the x direction. you should config the \code{opt} param with \code{xField} in \code{g2()} function, and \code{x} (short for \code{xField}) is param name for functions with \code{g2_} prefix.}
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
 
-\item{yField}{the name of the data field corresponding to the graph in the y direction.}
+\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
+
+\item{seriesField}{grouping field}
+
+\item{colorField}{the name of the data field or color name or hex color code}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.

@@ -16,15 +16,15 @@ data = data.frame(
  count=c(800,600,400,380,200)
 )
 g2_dual_axes(data, 'time', c('value','count')) |>
-g2_style(geometryOptions = list(list(geometry='line'), list(geometry='line'))) |>
+g2_opt(geometryOptions = list(list(geometry='line'), list(geometry='line'))) |>
 g2()
 
 g2_dual_axes(data, 'time', c('value','count')) |>
-g2_style(geometryOptions = list(list(geometry='column'), list(geometry='line'))) |>
+g2_opt(geometryOptions = list(list(geometry='column'), list(geometry='line'))) |>
 g2()
 
 g2_dual_axes(data, 'time', c('value','count')) |>
-g2_style(geometryOptions = list(list(geometry='line'), list(geometry='column'))) |>
+g2_opt(geometryOptions = list(list(geometry='line'), list(geometry='column'))) |>
 g2()
 
 }

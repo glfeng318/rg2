@@ -4,14 +4,7 @@
 \alias{g2_progress}
 \title{g2_progress}
 \usage{
-g2_progress(
-  percent,
-  color = NULL,
-  barWidthRatio = 0.5,
-  autoFit = FALSE,
-  width = 300,
-  height = 100
-)
+g2_progress(percent)
 }
 \arguments{
 \item{color}{color vector of length 2}
@@ -22,6 +15,13 @@ g2_progress(
 g2_progress
 }
 \examples{
-g2_progress(0.75, color=c('#F4664A', '#E8EDF3'), barWidthRatio=0.3)
+g2_progress(0.75) |>
+g2_opt(
+  color=c('#F4664A', '#E8EDF3'),
+  barWidthRatio=0.3,
+  autoFit=FALSE,
+  width=300,
+  height=100) |>
+g2()
 
 }

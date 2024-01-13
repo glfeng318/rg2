@@ -14,7 +14,7 @@ g2_tiny_line
 }
 \examples{
 g2_tiny_line(rnorm(100)) |>
-g2_style(
+g2_opt(
   smooth=FALSE,
   connectNulls=TRUE,
   height=80,

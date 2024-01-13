@@ -24,8 +24,25 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(rg2)
 data(mpg, package = 'ggplot2')
-g2(mpg,'scatter', list(xField='displ',yField='hwy',colorField = 'class', shape='circle'))
-#
-g2_scatter(mpg, 'displ', 'hwy', color='class', shape='circle')
+
+# g2plot
+opt = list(
+  xField='displ',
+  yField='hwy',
+  colorField='class',
+  shape='circle',
+  legend=list(position='right')
+)
+g2plot(mpg,'scatter', opt)
+
+# g2plot
+opt = g2_opt_from_json('{"xField":"displ","yField":"hwy","colorField": "class", "shape":"circle","legend":{"position":"right"}}')
+g2plot(mpg,'scatter', opt)
+
+# 
+g2_scatter(mpg, 'displ', 'hwy', color='class', shape='circle') |> 
+  g2_opt(legend=list(position='right')) |> 
+  g2()
 ```
 ![](./demo.png)
+

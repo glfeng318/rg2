@@ -7,7 +7,7 @@
 g2_sunburst(data, colorField = NULL, rawFields = NULL)
 }
 \description{
-The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the \code{hierarchyConfig} in \code{g2_style()}
+The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the \code{hierarchyConfig} in \code{g2_opt()}
 }
 \section{Data}{
 
@@ -35,7 +35,7 @@ jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.
 
 # Data Node with label/uv/sum/count (default Node with name/value/children)
 df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json", simplifyVector = T)
-g2_sunburst(df, 'label') |> g2_style(hierarchyConfig = list(field='sum')) |> g2()
+g2_sunburst(df, 'label') |> g2_opt(hierarchyConfig = list(field='sum')) |> g2()
 
 
 }

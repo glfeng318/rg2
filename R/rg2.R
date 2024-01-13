@@ -9,14 +9,13 @@
 #' @param width optional number default: 400. width of the chart.
 #' @param height optional number default: 400. height of the chart.
 #' @param data required. Data frame for plot.
-#' @param xField the name of the data field corresponding to the graph in the x direction. you should config the `opt` param with `xField` in `g2()` function, and `x` (short for `xField`) is param name for functions with `g2_` prefix.
-#' @param yField the name of the data field corresponding to the graph in the y direction.
-#' @param x short for xField
-#' @param y short for yField
-#' @param color,colorField the name of the data field or color name or hex color code
-#' @param series,seriesField grouping field
-#' @param group,groupField grouping field
-#' @param series,seriesField grouping field
+#' @param reflect Apply reflect transform to the coordinate of line plot. When reflect: 'y' is set, y-axis can be inverted; in the same way, you can set reflect: 'x' to invert x-axis, and invert x-axis and y-axis at the same time is also supported with 'c('x','y')'.
+#' @param xField The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.
+#' @param yField The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.
+#' @param colorField the name of the data field or color name or hex color code
+#' @param seriesField grouping field
+#' @param groupField grouping field
+#' @param seriesField grouping field
 #' @param smooth TRUE/FALSE. whether the curve is smooth.
 #' @param isStack to stack charts
 #' @param isGroup to group charts
@@ -32,30 +31,19 @@
 #'   legend = list(position = 'top-left'),
 #'   theme='dark' # default / dark
 #' )
-#' g2(mtcars, 'scatter', opt = opt)
+#' g2plot(mtcars, 'scatter', opt = opt)
 #'
-#' opt = opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-#' g2(mtcars, 'scatter', opt = opt)
+#' opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+#' g2plot(mtcars, 'scatter', opt = opt)
 #'
-#' g2_scatter(mtcars, 'drat', 'wt', shape='circle')
+#' g2_scatter(mtcars, 'drat', 'wt') |>
+#'   g2_opt(shape='circle', theme='dark') |>
+#'   g2()
 #'
 #'
 #' @name opt
 NULL
 
-
-#' opt_from_json
-#'
-#' @param json a json string of G2Plot options
-#'
-#' @return a list of options for G2Plot
-#' @export
-#'
-#' @examples
-#' opt = opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
-opt_from_json <- function(json) {
-  jsonlite::fromJSON(json)
-}
 
 #' g2 plot
 #'
@@ -64,7 +52,7 @@ opt_from_json <- function(json) {
 #' @param data a data object.Currently supported object is data.frame,
 #'    data should only contains the necessary data for chart (reduce json/data size)
 #' @param chart the chart type of G2Plot ('line','area','column','bar','pie','scatter','gauge','dual-axes','liquid','radar','word-cloud','funnel','bullet','histogram','venn','rose','tiny-line','tiny-area','tiny-column','sunburst','stock','ring-progress','progress','box','heatmap','waterfall','radial-bar','bidirectional-bar','sankey','chord','treemap','violin','circle-packing','mix','facet')
-#' @param opt options of G2Plot. you can use function `opt_from_json()` to build an options or use `list()` to make it. See \url{https://g2plot.antv.antgroup.com/en/api} for details.
+#' @param opt options of G2Plot. you can use function `g2_opt_from_json()` to build an options or use `list()` to make it. See \url{https://g2plot.antv.antgroup.com/en/api} for details.
 #'
 #' @inherit opt
 #' @family g2
@@ -78,7 +66,7 @@ opt_from_json <- function(json) {
 #'   shape='circle',
 #'   legend = list(position = 'top-left')
 #' )
-#' g2(mtcars, 'scatter', opt = opt)
+#' g2plot(mtcars, 'scatter', opt = opt)
 #'
 #'
 g2plot <- function(data, chart, opt = list(), width = NULL, height = NULL) {
@@ -198,23 +186,20 @@ g2_area <- function(data, xField, yField,
 #' @export
 #' @examples
 #' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json',simplifyVector = TRUE)
-#' g2_column(df,'year','value','type',isStack=TRUE)
+#' g2_column(df,'year','value','type') |> g2_opt(isStack=TRUE) |> g2()
 #'
 g2_column <- function(data, xField, yField,
                       seriesField=NULL,
                       groupField=NULL,
-                      colorField=NULL,
-                      isGroup=NULL,
-                      isStack=NULL,
-                      isRange=NULL,
-                      isPercent=NULL){
+                      colorField=NULL){
   list(
     g2_chart='column',
     data=data,
     xField=xField,
     yField=yField,
     seriesField=seriesField,
-    groupField=groupField
+    groupField=groupField,
+    colorField=colorField
   )
 }
 #' g2_bar
@@ -258,9 +243,9 @@ g2_bar <- function(data, xField, yField,
 #'   cate = c('a','b','c','d','e'),
 #'   value = c(1,2,3,5,8)
 #' ) |>
-#' g2_pie('value','cate') |>
-#' g2_style(radius=.8, innerRadius=.4) |>
-#' g2()
+#'   g2_pie('value','cate') |>
+#'   g2_opt(radius=.8, innerRadius=.4) |>
+#'   g2()
 #'
 g2_pie <- function(data,angleField,colorField){
   list(
@@ -306,15 +291,15 @@ g2_scatter <- function(data, xField, yField,
 #'  count=c(800,600,400,380,200)
 #' )
 #' g2_dual_axes(data, 'time', c('value','count')) |>
-#' g2_style(geometryOptions = list(list(geometry='line'), list(geometry='line'))) |>
+#' g2_opt(geometryOptions = list(list(geometry='line'), list(geometry='line'))) |>
 #' g2()
 #'
 #' g2_dual_axes(data, 'time', c('value','count')) |>
-#' g2_style(geometryOptions = list(list(geometry='column'), list(geometry='line'))) |>
+#' g2_opt(geometryOptions = list(list(geometry='column'), list(geometry='line'))) |>
 #' g2()
 #'
 #' g2_dual_axes(data, 'time', c('value','count')) |>
-#' g2_style(geometryOptions = list(list(geometry='line'), list(geometry='column'))) |>
+#' g2_opt(geometryOptions = list(list(geometry='line'), list(geometry='column'))) |>
 #' g2()
 #'
 g2_dual_axes <- function(data, xField, yField){
@@ -364,8 +349,8 @@ g2_liquid <- function(percent){
 #' @examples
 #' data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
 #' g2_bullet(data,'measures','ranges','target') |>
-#' g2_style(color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),
-#'          size=list(range=12,measure=12,target=12)) |>
+#' g2_opt(color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),
+#'        size=list(range=12,measure=12,target=12)) |>
 #' g2()
 #'
 g2_bullet <- function(data, measureField,rangeField,targetField,
@@ -386,7 +371,7 @@ g2_bullet <- function(data, measureField,rangeField,targetField,
 #' @export
 #' @examples
 #' data = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/svFjSfJkYy/radar.json')
-#' g2_radar(data,'item','score','user') |> g2_style(area=list()) |> g2()
+#' g2_radar(data,'item','score','user') |> g2_opt(area=list()) |> g2()
 #'
 g2_radar <- function(data,xField,yField,
                      seriesField=NULL){
@@ -444,7 +429,7 @@ g2_funnel <- function(data, xField, yField,
 #'
 #' data.frame(value=rnorm(1000)) |>
 #' g2_histogram('value') |>
-#' g2_style(binNumber=100) |>
+#' g2_opt(binNumber=100) |>
 #' g2()
 #'
 g2_histogram <- function(data, binField,
@@ -503,7 +488,7 @@ g2_rose <- function(data, xField, yField,
 #' @export
 #' @examples
 #' g2_tiny_line(rnorm(100)) |>
-#' g2_style(
+#' g2_opt(
 #'   smooth=FALSE,
 #'   connectNulls=TRUE,
 #'   height=80,
@@ -523,7 +508,7 @@ g2_tiny_line <- function(data){
 #' @export
 #' @examples
 #' g2_tiny_area(rnorm(100)) |>
-#' g2_style(
+#' g2_opt(
 #'   smooth=TRUE,
 #'   height=80,
 #'   color='red',
@@ -541,7 +526,7 @@ g2_tiny_area <- function(data){
 #' @export
 #' @examples
 #' g2_tiny_column(rnorm(100)) |>
-#' g2_style(
+#' g2_opt(
 #'   columnWidthRatio=0.5,
 #'   height=80,
 #'   color=NULL,
@@ -556,7 +541,7 @@ g2_tiny_column <- function(data){
 }
 #' g2_sunburst
 #'
-#' The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the `hierarchyConfig` in `g2_style()`
+#' The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the `hierarchyConfig` in `g2_opt()`
 #'
 #' @section Data:
 #' data schema
@@ -582,7 +567,7 @@ g2_tiny_column <- function(data){
 #'
 #' # Data Node with label/uv/sum/count (default Node with name/value/children)
 #' df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json", simplifyVector = T)
-#' g2_sunburst(df, 'label') |> g2_style(hierarchyConfig = list(field='sum')) |> g2()
+#' g2_sunburst(df, 'label') |> g2_opt(hierarchyConfig = list(field='sum')) |> g2()
 #'
 #'
 g2_sunburst <- function(data,
@@ -625,7 +610,7 @@ g2_stock <- function(data, xField, yField){
 #' @export
 #' @examples
 #' g2_ring_progress(0.75) |>
-#' g2_style(
+#' g2_opt(
 #'   color=c('#5B8FF9', '#E8EDF3'),
 #'   radius=0.8,
 #'   innerRadius=0.75,
@@ -648,23 +633,19 @@ g2_ring_progress <- function(percent){
 #'
 #' @export
 #' @examples
-#' g2_progress(0.75, color=c('#F4664A', '#E8EDF3'), barWidthRatio=0.3)
+#' g2_progress(0.75) |>
+#' g2_opt(
+#'   color=c('#F4664A', '#E8EDF3'),
+#'   barWidthRatio=0.3,
+#'   autoFit=FALSE,
+#'   width=300,
+#'   height=100) |>
+#' g2()
 #'
-g2_progress <- function(percent,
-                        color=NULL,
-                        barWidthRatio=0.5,
-                        autoFit=FALSE,
-                        width=300,
-                        height=100){
-  opt = list(
-    percent=percent,
-    color=color,
-    barWidthRatio=barWidthRatio,
-    autoFit=autoFit,
-    width=width,
-    height=height
+g2_progress <- function(percent){
+  list(
+    percent=percent
   )
-  g2(NULL, 'progress', opt=opt)
 }
 #' g2_box
 #'
@@ -672,8 +653,6 @@ g2_progress <- function(percent,
 #' @param y yField
 #' @param group Grouping field. It is used for grouping by default, and color is used as visual channel.
 #' @param outliers Outlier field.
-#' @param boxStyle list(fill="#f6f",...)
-#' @param outliersStyle list(fill="#f6f",...)
 #'
 #' @export
 #' @examples
@@ -705,77 +684,186 @@ g2_progress <- function(percent,
 #' { "Species": "I. virginica", "type": "PetalLength", "value": 6, "bin": [4.5, 5.1, 5.55, 5.9, 6.9] },
 #' { "Species": "I. virginica", "type": "PetalWidth", "value": 2.5, "bin": [1.4, 1.8, 2, 2.3, 2.5] }
 #' ]')
-#' g2_box(df, 'type','bin',group = 'Species')
+#' g2_box(df, 'type','bin', 'Species') |>
+#' g2_opt(boxStyle=list(fill="#f6f"),outliersStyle=list(fill="#f6f")) |>
+#' g2()
 #'
-g2_box <- function(data, x, y,
-                   group=NULL,
-                   outliers=NULL,
-                   boxStyle=NULL,
-                   outliersStyle=NULL){
-  opt=list(
-    xField=x,
-    yField=y,
-    groupField=group,
-    outliersField=outliers,
-    boxStyle=boxStyle,
-    outliersStyle=outliersStyle
+g2_box <- function(data, xField, yField,
+                   groupField=NULL,
+                   outliersField=NULL){
+  list(
+    g2_chart='box',
+    data=data,
+    xField=xField,
+    yField=yField,
+    groupField=groupField,
+    outliersField=outliersField
   )
-  g2(data,'box',opt=opt)
 }
 #' g2_heatmap
 #'
-#' @return heatmap
 #' @export
-g2_heatmap <- function(){'heatmap'}
+#' @examples
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json') |>
+#' g2_heatmap('Month of Year','District','AQHI') |>
+#' g2_opt(
+#'   color=c('#174c83', '#7eb6d4', '#efefeb', '#efa759', '#9b4d16'),
+#'   meta=list('Month of Year'=list(type='cat'))
+#' ) |>
+#' g2()
+#'
+g2_heatmap <- function(data,xField,yField,
+                       colorField=NULL,
+                       sizeField=NULL) {
+  list(
+    g2_chart='heatmap',
+    data=data,
+    xField=xField,
+    yField=yField,
+    colorField=colorField,
+    sizeField=sizeField
+  )
+}
 #' g2_waterfall
 #'
-#' @return waterfall
 #' @export
-g2_waterfall <- function(){'waterfall'}
+#' @examples
+#' x
+#'
+g2_waterfall <- function(data,xField,yField){
+  list(
+    g2_chart='waterfall',
+    data=data,
+    xField=xField,
+    yField=yField
+  )
+}
 #' g2_radial_bar
 #'
 #' @return radial-bar
 #' @export
-g2_radial_bar <- function(){'radial_bar'}
+g2_radial_bar <- function(data, xField,yField){
+  list(
+    g2_chart='radial-bar',
+    data=data,
+    xField=xField,
+    yField=yField
+  )
+}
 #' g2_bidirectional_bar
 #'
 #' @return bidirectional-bar
 #' @export
-g2_bidirectional_bar <- function(){'bidirectional-bar'}
+g2_bidirectional_bar <- function(data,xField,yField){
+  list(
+    g2_chart='bidirectional-bar',
+    data=data,
+    xField=xField,
+    yField=yField
+  )
+}
 #' g2_sankey
 #'
-#' @return sankey
 #' @export
-g2_sankey <- function(){'sankey'}
+g2_sankey <- function(data,sourceField,targetField,weightField,
+                      rawFields=NULL){
+  list(
+    g2_chart='sankey',
+    data=data,
+    sourceField=sourceField,
+    targetField=targetField,
+    weightField=weightField,
+    rawFields=rawFields
+  )
+}
 #' g2_chord
 #'
-#' @return chord
 #' @export
-g2_chord <- function(){'chord'}
+g2_chord <- function(data,sourceField,targetField,weightField){
+  list(
+    g2_chart='chord',
+    data=data,
+    sourceField=sourceField,
+    targetField=targetField,
+    weightField=weightField
+  )
+}
 #' g2_treemap
 #'
-#' @return treemap
 #' @export
-g2_treemap <- function(){'treemap'}
+g2_treemap <- function(data,colorField,rawFields){
+  list(
+    g2_chart='treemap',
+    data=data,
+    colorField=colorField,
+    rawFields=rawFields
+  )
+}
 #' g2_violin
 #'
-#' @return voilin
 #' @export
-g2_violin <- function(){'violin'}
+g2_violin <- function(data,xField,yField,
+                      seriesField=NULL){
+  list(
+    g2_chart='violin',
+    data=data,
+    xField=xField,
+    yField=yField,
+    seriesField=seriesField
+  )
+}
 #' g2_circle_packing
 #'
-#' @return circle-packing
 #' @export
-g2_circle_packing <- function(){'circle-packing'}
-#' g2_mix
+#' @examples
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/%24m0nDoQYqH/basic-packing.json') |>
+#'   g2_circle_packing() |>
+#'   g2()
 #'
-#' @return mix
-#' @export
-g2_mix <- function(){'mix'}
-#' g2_facet
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/%24m0nDoQYqH/basic-packing.json') |>
+#'   g2_circle_packing() |>
+#'   g2_opt(
+#'     label=FALSE,
+#'     legend=FALSE,
+#'     hierarchyConfig=list(sort=htmlwidgets::JS('(a, b) => b.depth - a.depth'))
+#'   ) |>
+#'   g2()
 #'
-#' @return facet
-#' @export
-g2_facet <- function(){'facet'}
-
-
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antvdemo/assets/data/flare.json') |>
+#'   g2_circle_packing(sizeField = 'r',colorField = 'r') |>
+#'   g2_opt(
+#'     color='rgb(252, 253, 191)-rgb(231, 82, 99)-rgb(183, 55, 121)',
+#'     pointStyle=list(
+#'       stroke='rgb(183, 55, 121)',
+#'       lineWidth= 0.5
+#'     ),
+#'     label=FALSE,
+#'     legend=FALSE,
+#'     drilldown=list(
+#'       enabled=TRUE,
+#'       breadCrumb= list(
+#'         position='top-left'
+#'       )
+#'     )
+#'   ) |>
+#'   g2()
+#'
+g2_circle_packing <- function(data,
+                              colorField=NULL,
+                              sizeField=NULL,
+                              rawFields=NULL){
+  opt = list(
+    g2_chart='circle-packing',
+    data=data
+  )
+  if (!is.null(colorField)) {
+    opt$colorField=colorField
+  }
+  if (!is.null(sizeField)) {
+    opt$sizeField=sizeField
+  }
+  if (!is.null(rawFields)) {
+    opt$rawFields=rawFields
+  }
+  opt
+}

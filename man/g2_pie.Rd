@@ -8,6 +8,8 @@ g2_pie(data, angleField, colorField)
 }
 \arguments{
 \item{data}{required. Data frame for plot.}
+
+\item{colorField}{the name of the data field or color name or hex color code}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
@@ -23,9 +25,9 @@ data.frame(
   cate = c('a','b','c','d','e'),
   value = c(1,2,3,5,8)
 ) |>
-g2_pie('value','cate') |>
-g2_style(radius=.8, innerRadius=.4) |>
-g2()
+  g2_pie('value','cate') |>
+  g2_opt(radius=.8, innerRadius=.4) |>
+  g2()
 
 }
 \seealso{

@@ -23,8 +23,8 @@ g2_bullet
 \examples{
 data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
 g2_bullet(data,'measures','ranges','target') |>
-g2_style(color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),
-         size=list(range=12,measure=12,target=12)) |>
+g2_opt(color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),
+       size=list(range=12,measure=12,target=12)) |>
 g2()
 
 }

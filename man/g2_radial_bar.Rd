@@ -4,7 +4,7 @@
 \alias{g2_radial_bar}
 \title{g2_radial_bar}
 \usage{
-g2_radial_bar()
+g2_radial_bar(data, xField, yField)
 }
 \value{
 radial-bar

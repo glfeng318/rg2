@@ -4,15 +4,7 @@
 \alias{g2_box}
 \title{g2_box}
 \usage{
-g2_box(
-  data,
-  x,
-  y,
-  group = NULL,
-  outliers = NULL,
-  boxStyle = NULL,
-  outliersStyle = NULL
-)
+g2_box(data, xField, yField, groupField = NULL, outliersField = NULL)
 }
 \arguments{
 \item{x}{xField}
@@ -22,10 +14,6 @@ g2_box(
 \item{group}{Grouping field. It is used for grouping by default, and color is used as visual channel.}
 
 \item{outliers}{Outlier field.}
-
-\item{boxStyle}{list(fill="#f6f",...)}
-
-\item{outliersStyle}{list(fill="#f6f",...)}
 }
 \description{
 g2_box
@@ -59,6 +47,8 @@ df = jsonlite::fromJSON('
 { "Species": "I. virginica", "type": "PetalLength", "value": 6, "bin": [4.5, 5.1, 5.55, 5.9, 6.9] },
 { "Species": "I. virginica", "type": "PetalWidth", "value": 2.5, "bin": [1.4, 1.8, 2, 2.3, 2.5] }
 ]')
-g2_box(df, 'type','bin',group = 'Species')
+g2_box(df, 'type','bin', 'Species') |>
+g2_opt(boxStyle=list(fill="#f6f"),outliersStyle=list(fill="#f6f")) |>
+g2()
 
 }

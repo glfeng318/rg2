@@ -4,11 +4,12 @@
 \alias{g2_waterfall}
 \title{g2_waterfall}
 \usage{
-g2_waterfall()
-}
-\value{
-waterfall
+g2_waterfall(data, xField, yField)
 }
 \description{
 g2_waterfall
+}
+\examples{
+x
+
 }

@@ -25,7 +25,7 @@ g2()
 
 data.frame(value=rnorm(1000)) |>
 g2_histogram('value') |>
-g2_style(binNumber=100) |>
+g2_opt(binNumber=100) |>
 g2()
 
 }

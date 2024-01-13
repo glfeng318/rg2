@@ -4,10 +4,7 @@
 \alias{g2_sankey}
 \title{g2_sankey}
 \usage{
-g2_sankey()
-}
-\value{
-sankey
+g2_sankey(data, sourceField, targetField, weightField, rawFields = NULL)
 }
 \description{
 g2_sankey

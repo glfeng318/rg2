@@ -5,7 +5,7 @@
 #' @inheritParams htmlwidgets::shinyWidgetOutput
 #' @param width,height the width and height of the chart
 #' @export
-g2Output <- function(outputId, width = '100%', height = '400px') {
+g2_output <- function(outputId, width = '100%', height = '400px') {
   htmlwidgets::shinyWidgetOutput(outputId, 'g2', width, height, package = 'rg2')
 }
 
@@ -13,7 +13,7 @@ g2Output <- function(outputId, width = '100%', height = '400px') {
 #' @param expr An expression that generates g2 widget
 #' @inheritParams htmlwidgets::shinyRenderWidget
 #' @export
-renderG2 <- function(expr, env = parent.frame(), quoted = FALSE) {
+render_g2 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, g2Output, env, quoted = TRUE)
 }
