@@ -1,6 +1,6 @@
 Package: rg2
 Title: R interface to G2plot
-Version: 0.1.0.9000
+Version: 0.2.0
 Authors@R: person("glfeng", "", , "glfeng318@gmail.com", role = c("aut", "cre"))
 Description: An interactive and responsive charting library.
 License: MIT + file LICENSE
