@@ -40,8 +40,12 @@ opt = g2_opt_from_json('{"xField":"displ","yField":"hwy","colorField": "class", 
 g2plot(mpg,'scatter', opt)
 
 # 
-g2_scatter(mpg, 'displ', 'hwy', color='class', shape='circle') |> 
-  g2_opt(legend=list(position='right')) |> 
+g2_scatter(mpg, 'displ', 'hwy') |> 
+  g2_opt(
+    legend=list(position='right'),
+    color='class'
+    shape='circle'
+  ) |> 
   g2()
 ```
 ![](./demo.png)
