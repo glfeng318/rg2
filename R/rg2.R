@@ -3,7 +3,7 @@
 #' opt param in rg2 is the PlotOptions for G2Plot.
 #' You can construct an opt in two way:
 #' - use `list()` function in R base package.
-#' - use `opt_from_json()` from rg2 package.
+#' - use `g2_opt_from_json()` from rg2 package.
 #' \url{https://g2plot.antv.antgroup.com/en/api} for details
 #'
 #' @param width optional number default: 400. width of the chart.
@@ -339,11 +339,6 @@ g2_liquid <- function(percent){
 }
 #' g2_bullet
 #'
-#' @param data The data source is a collection of objects [{title: 'income', ranges: [50,100], measures: [80], target: 85}]
-#' @param measureField Use the length of the data bar, the setting field for the actual value, to represent the actual value.
-#' @param rangeField Use the setting field for the length of the background bar to represent the range.
-#' @param targetField Use a setting field for the position of the scale axis of the measurement mark to represent the target value.
-#' @param xField Used to distinguish different types, suitable for grouping bullet diagrams.
 #'
 #' @export
 #' @examples
@@ -752,7 +747,8 @@ g2_radial_bar <- function(data, xField,yField){
 }
 #' g2_bidirectional_bar
 #'
-#' @return bidirectional-bar
+#' @inherit opt
+#' @family g2
 #' @export
 g2_bidirectional_bar <- function(data,xField,yField){
   list(

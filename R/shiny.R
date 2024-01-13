@@ -15,5 +15,5 @@ g2_output <- function(outputId, width = '100%', height = '400px') {
 #' @export
 render_g2 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, g2Output, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, g2_output, env, quoted = TRUE)
 }

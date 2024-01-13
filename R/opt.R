@@ -30,7 +30,7 @@ g2_opt <- function(opt, ...) {
 #' @export
 #'
 #' @examples
-#' opt = opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
+#' opt = g2_opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
 g2_opt_from_json <- function(json) {
   jsonlite::fromJSON(json)
 }
