@@ -7,12 +7,59 @@
 g2(opt, width = NULL, height = NULL)
 }
 \arguments{
-\item{opt}{opt}
+\item{opt}{G2Plot options build from plot function with prefix 'g2_'}
 
-\item{width}{400}
+\item{width}{optional number default: 400. width of the chart.}
 
-\item{height}{400}
+\item{height}{optional number default: 400. height of the chart.}
 }
 \description{
-g2
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{g2_opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
 }
+}
+\examples{
+g2_liquid(0.6) |> g2()
+
+}
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()}
+}
+\concept{g2}

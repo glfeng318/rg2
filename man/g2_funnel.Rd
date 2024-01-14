@@ -13,6 +13,8 @@ g2_funnel(data, xField, yField, compareField = NULL, seriesField = NULL)
 
 \item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
 
+\item{compareField}{compare field}
+
 \item{seriesField}{grouping field}
 }
 \description{
@@ -20,41 +22,57 @@ opt param in rg2 is the PlotOptions for G2Plot.
 You can construct an opt in two way:
 \itemize{
 \item use \code{list()} function in R base package.
-\item use \code{opt_from_json()} from rg2 package.
+\item use \code{g2_opt_from_json()} from rg2 package.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
 }
 }
 \examples{
+data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2()
 
-opt = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2plot(mtcars, 'scatter', opt = opt)
+data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2_opt(isTransposed=TRUE) |> g2()
 
-opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2plot(mtcars, 'scatter', opt = opt)
+data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2_opt(legend=FALSE,shape='pyramid') |> g2()
 
-g2_scatter(mtcars, 'drat', 'wt') |>
-  g2_opt(shape='circle', theme='dark') |>
-  g2()
+data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2_opt(legend=FALSE,dynamicHeight=TRUE) |> g2()
 
+data.frame(stage=paste0('L', rep(1:5,2)),value=c(253,151,113,87,59,303,251,135,117,79),cate=rep(c('A','B'),each=5)) |> g2_funnel('stage','value',compareField='cate') |> g2()
+data.frame(stage=paste0('L', rep(1:5,2)),value=c(253,151,113,87,59,303,251,135,117,79),cate=rep(c('A','B'),each=5)) |> g2_funnel('stage','value',seriesField='cate') |> g2()
 
 }
 \seealso{
 Other g2: 
 \code{\link{g2_area}()},
 \code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
 \code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
 \code{\link{g2_histogram}()},
 \code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
 \code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
 \code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
 \code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()}
+\code{\link{g2plot}()},
+\code{\link{g2}()}
 }
 \concept{g2}

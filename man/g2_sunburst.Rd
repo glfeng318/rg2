@@ -6,6 +6,13 @@
 \usage{
 g2_sunburst(data, colorField = NULL, rawFields = NULL)
 }
+\arguments{
+\item{data}{required. Data frame for plot.}
+
+\item{colorField}{color field}
+
+\item{rawFields}{raw fields}
+}
 \description{
 The data for sunburst chart has a special format, if your data Node do not follow its key name, you need to specify the \code{hierarchyConfig} in \code{g2_opt()}
 }
@@ -34,8 +41,45 @@ children: [
 jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.json') |> g2_sunburst() |> g2()
 
 # Data Node with label/uv/sum/count (default Node with name/value/children)
-df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json", simplifyVector = T)
+df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json",simplifyVector=TRUE)
 g2_sunburst(df, 'label') |> g2_opt(hierarchyConfig = list(field='sum')) |> g2()
 
 
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()},
+\code{\link{g2}()}
+}
+\concept{g2}

@@ -25,7 +25,7 @@ This is a basic example which shows you how to solve a common problem:
 library(rg2)
 data(mpg, package = 'ggplot2')
 
-# g2plot
+# g2plot with options that made by list()
 opt = list(
   xField='displ',
   yField='hwy',
@@ -35,11 +35,11 @@ opt = list(
 )
 g2plot(mpg,'scatter', opt)
 
-# g2plot
+# g2plot with options that made by g2_opt_from_json()
 opt = g2_opt_from_json('{"xField":"displ","yField":"hwy","colorField": "class", "shape":"circle","legend":{"position":"right"}}')
 g2plot(mpg,'scatter', opt)
 
-# 
+# g2 with options that made by plot function with prefix 'g2_' and g2_opt()
 g2_scatter(mpg, 'displ', 'hwy') |> 
   g2_opt(
     legend=list(position='right'),

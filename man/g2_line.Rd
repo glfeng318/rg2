@@ -15,14 +15,14 @@ g2_line(data, xField, yField, seriesField = NULL, colorField = NULL)
 
 \item{seriesField}{grouping field}
 
-\item{colorField}{the name of the data field or color name or hex color code}
+\item{colorField}{color field}
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
 You can construct an opt in two way:
 \itemize{
 \item use \code{list()} function in R base package.
-\item use \code{opt_from_json()} from rg2 package.
+\item use \code{g2_opt_from_json()} from rg2 package.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
 }
 }
@@ -36,13 +36,36 @@ g2_line(df, 'Date','scales') |> g2()
 Other g2: 
 \code{\link{g2_area}()},
 \code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
 \code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
 \code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
 \code{\link{g2_histogram}()},
+\code{\link{g2_liquid}()},
 \code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
 \code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
 \code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()}
+\code{\link{g2plot}()},
+\code{\link{g2}()}
 }
 \concept{g2}

@@ -16,5 +16,5 @@ a list of options for G2Plot
 g2_opt_from_json
 }
 \examples{
-opt = opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
+opt = g2_opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
 }

@@ -7,15 +7,60 @@
 g2_stock(data, xField, yField)
 }
 \arguments{
-\item{yField}{array c('open', 'close', 'high', 'low')}
+\item{data}{required. Data frame for plot.}
 
-\item{xField:}{timestamp like 1436237115500 or datetime string like '2015-03-01', '2015-03-01 12:01:40'，'2015/01/05', '2015-03-01T16:00:00.000Z'}
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
+
+\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
 }
 \description{
-g2_stock
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{g2_opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
 df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json')
 g2_stock(df, 'trade_date', c('open', 'close', 'high', 'low')) |> g2()
 
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()},
+\code{\link{g2}()}
+}
+\concept{g2}

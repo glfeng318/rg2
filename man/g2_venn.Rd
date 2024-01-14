@@ -7,22 +7,65 @@
 g2_venn(data, setsField, sizeField = NULL, colorField = NULL)
 }
 \arguments{
-\item{sets}{The field of the collection(sets).}
+\item{data}{required. Data frame for plot.}
 
-\item{size}{The name of the data field corresponding to the point size map.}
+\item{setsField}{sets field}
 
-\item{color}{color or color vector or javascript function return color.}
+\item{sizeField}{size field}
 
-\item{blendMode}{Color blend mode of the intersection area, default: multiply. Other: normal, darken, lighten, screen, overlay, burn, and dodge. reference：https://gka.github.io/chroma.js/#chroma-blend}
+\item{colorField}{color field}
 }
 \description{
-g2_venn
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{g2_opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
 df = jsonlite::fromJSON('[
   {"sets": ["A"], "size": 5},
   {"sets": ["B"], "size": 10},
-  {"sets": ["A", "B"], "size": 2},
+  {"sets": ["A", "B"], "size": 2}
 ]')
-g2_venn(df, 'sets', 'size')
+g2_venn(df, 'sets', 'size') |> g2()
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()},
+\code{\link{g2}()}
+}
+\concept{g2}

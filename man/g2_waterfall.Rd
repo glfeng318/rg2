@@ -6,10 +6,60 @@
 \usage{
 g2_waterfall(data, xField, yField)
 }
+\arguments{
+\item{data}{required. Data frame for plot.}
+
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
+
+\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
+}
 \description{
-g2_waterfall
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{g2_opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
-x
+data.frame(cate=letters[1:7], money=c(120,900,200,300,1200,1000,-2000)) |> g2_waterfall('cate','money') |> g2()
 
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()},
+\code{\link{g2}()}
+}
+\concept{g2}

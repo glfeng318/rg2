@@ -6,6 +6,80 @@
 \usage{
 g2_sankey(data, sourceField, targetField, weightField, rawFields = NULL)
 }
-\description{
-g2_sankey
+\arguments{
+\item{data}{required. Data frame for plot.}
+
+\item{sourceField}{source field}
+
+\item{targetField}{target field}
+
+\item{weightField}{weight field}
+
+\item{rawFields}{raw fields}
 }
+\description{
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{g2_opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
+}
+\examples{
+
+opt = list(
+  xField='drat',
+  yField='wt',
+  shape='circle',
+  legend = list(position = 'top-left'),
+  theme='dark' # default / dark
+)
+g2plot(mtcars, 'scatter', opt = opt)
+
+opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
+g2plot(mtcars, 'scatter', opt = opt)
+
+g2_scatter(mtcars, 'drat', 'wt') |>
+  g2_opt(shape='circle', theme='dark') |>
+  g2()
+
+
+}
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_bullet}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()},
+\code{\link{g2}()}
+}
+\concept{g2}

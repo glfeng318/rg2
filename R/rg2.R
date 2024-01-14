@@ -15,7 +15,23 @@
 #' @param colorField the name of the data field or color name or hex color code
 #' @param seriesField grouping field
 #' @param groupField grouping field
-#' @param seriesField grouping field
+#' @param stackField stack field
+#' @param sizeField size field
+#' @param shapeField shape field
+#' @param colorField color field
+#' @param angleField angle field
+#' @param binField bin field
+#' @param setsField sets field
+#' @param outliersField outliers field
+#' @param measureField measure field
+#' @param rangeField range field
+#' @param sourceField source field
+#' @param targetField target field
+#' @param wordField word field
+#' @param weightField weight field
+#' @param rawFields raw fields
+#' @param compareField compare field
+#' @param percent percent
 #' @param smooth TRUE/FALSE. whether the curve is smooth.
 #' @param isStack to stack charts
 #' @param isGroup to group charts
@@ -117,14 +133,19 @@ g2plot <- function(data, chart, opt = list(), width = NULL, height = NULL) {
 
 #' g2
 #'
-#' @param opt opt
-#' @param width 400
-#' @param height 400
-#'
+#' @param opt G2Plot options build from plot function with prefix 'g2_'
+#' @inherit opt
+#' @family g2
 #' @export
+#' @examples
+#' g2_liquid(0.6) |> g2()
 #'
 g2 <- function(opt, width=NULL, height=NULL) {
-  opt$data = jsonlite::toJSON(opt$data, auto_unbox = T, null = 'null')
+  auto_unbox = TRUE
+  if (opt$g2_chart == 'venn') {
+    auto_unbox = FALSE
+  }
+  opt$data = jsonlite::toJSON(opt$data, auto_unbox = auto_unbox, null = 'null')
   x = list(opt=opt)
   # create the widget
   htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
@@ -283,6 +304,8 @@ g2_scatter <- function(data, xField, yField,
 
 #' g2_dual_axes
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' data = data.frame(
@@ -312,7 +335,8 @@ g2_dual_axes <- function(data, xField, yField){
 }
 #' g2_gauge
 #'
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' g2_gauge(0.618)
@@ -326,6 +350,8 @@ g2_gauge <- function(percent){
 }
 #' g2_liquid
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' g2_liquid(0.618) |> g2()
@@ -339,7 +365,8 @@ g2_liquid <- function(percent){
 }
 #' g2_bullet
 #'
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
@@ -382,8 +409,31 @@ g2_radar <- function(data,xField,yField,
 #'
 #' @inherit opt
 #' @family g2
-#'
 #' @export
+#' @examples
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/jPKbal7r9r/mock.json') |>
+#'   g2_word_cloud('x','value') |>
+#'   g2_opt(
+#'     color='#122c6a',
+#'     wordStyle=list(
+#'       fontFamily='Verdana',
+#'       fontSize=c(24, 80)
+#'     )
+#'   ) |>
+#'   g2()
+#'
+#'
+#' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antvdemo/assets/data/antv-keywords.json') |>
+#'   g2_word_cloud('name','value','name') |>
+#'   g2_opt(
+#'     imageMask='https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*07tdTIOmvlYAAAAAAAAAAABkARQnAQ',
+#'     wordStyle=list(
+#'       fontFamily='Verdana',
+#'       fontSize=c(8, 32)
+#'     )
+#'   ) |>
+#'   g2()
+#'
 g2_word_cloud <- function(data, wordField, weightField,
                           colorField=NULL){
   list(
@@ -399,11 +449,23 @@ g2_word_cloud <- function(data, wordField, weightField,
 #' @inherit opt
 #' @family g2
 #' @export
+#' @examples
+#' data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2()
+#'
+#' data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2_opt(isTransposed=TRUE) |> g2()
+#'
+#' data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2_opt(legend=FALSE,shape='pyramid') |> g2()
+#'
+#' data.frame(stage=paste0('L', 1:5),value=c(253,151,113,87,59)) |> g2_funnel('stage','value') |> g2_opt(legend=FALSE,dynamicHeight=TRUE) |> g2()
+#'
+#' data.frame(stage=paste0('L', rep(1:5,2)),value=c(253,151,113,87,59,303,251,135,117,79),cate=rep(c('A','B'),each=5)) |> g2_funnel('stage','value',compareField='cate') |> g2()
+#' data.frame(stage=paste0('L', rep(1:5,2)),value=c(253,151,113,87,59,303,251,135,117,79),cate=rep(c('A','B'),each=5)) |> g2_funnel('stage','value',seriesField='cate') |> g2()
+#'
 g2_funnel <- function(data, xField, yField,
                       compareField=NULL,
                       seriesField=NULL){
   list(
-    g2_cahrt='funnel',
+    g2_chart='funnel',
     data=data,
     xField=xField,
     yField=yField,
@@ -438,19 +500,16 @@ g2_histogram <- function(data, binField,
 }
 #' g2_venn
 #'
-#' @param sets The field of the collection(sets).
-#' @param size The name of the data field corresponding to the point size map.
-#' @param color color or color vector or javascript function return color.
-#' @param blendMode Color blend mode of the intersection area, default: multiply. Other: normal, darken, lighten, screen, overlay, burn, and dodge. reference：https://gka.github.io/chroma.js/#chroma-blend
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' df = jsonlite::fromJSON('[
 #'   {"sets": ["A"], "size": 5},
 #'   {"sets": ["B"], "size": 10},
-#'   {"sets": ["A", "B"], "size": 2},
+#'   {"sets": ["A", "B"], "size": 2}
 #' ]')
-#' g2_venn(df, 'sets', 'size')
+#' g2_venn(df, 'sets', 'size') |> g2()
 g2_venn <- function(data, setsField,
                     sizeField=NULL,
                     colorField=NULL){
@@ -459,17 +518,19 @@ g2_venn <- function(data, setsField,
     data=data,
     setsField=setsField,
     sizeField=sizeField,
-    color=colorField
+    colorField=colorField
   )
 }
 #' g2_rose
 #'
+#' @inherit opt
+#' @family g2
 #' @return rose
 #' @export
 g2_rose <- function(data, xField, yField,
                     seriesField=NULL,
                     colorField=NULL){
-  lsit(
+  list(
     xField=xField,
     yField=yField,
     seriesField=seriesField,
@@ -499,7 +560,8 @@ g2_tiny_line <- function(data){
 }
 #' g2_tiny_area
 #'
-#' @return tiny-area
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' g2_tiny_area(rnorm(100)) |>
@@ -518,6 +580,8 @@ g2_tiny_area <- function(data){
 }
 #' g2_tiny_column
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' g2_tiny_column(rnorm(100)) |>
@@ -556,12 +620,14 @@ g2_tiny_column <- function(data){
 #' }
 #' ```
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.json') |> g2_sunburst() |> g2()
 #'
 #' # Data Node with label/uv/sum/count (default Node with name/value/children)
-#' df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json", simplifyVector = T)
+#' df = jsonlite::fromJSON("https://gw.alipayobjects.com/os/antvdemo/assets/data/sunburst.json",simplifyVector=TRUE)
 #' g2_sunburst(df, 'label') |> g2_opt(hierarchyConfig = list(field='sum')) |> g2()
 #'
 #'
@@ -582,9 +648,8 @@ g2_sunburst <- function(data,
 }
 #' g2_stock
 #'
-#' @param xField: timestamp like 1436237115500 or datetime string like '2015-03-01', '2015-03-01 12:01:40'，'2015/01/05', '2015-03-01T16:00:00.000Z'
-#' @param yField array c('open', 'close', 'high', 'low')
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' df = jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json')
@@ -600,8 +665,8 @@ g2_stock <- function(data, xField, yField){
 }
 #' g2_ring_progress
 #'
-#' @param color color vector of length 2
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' g2_ring_progress(0.75) |>
@@ -623,9 +688,8 @@ g2_ring_progress <- function(percent){
 }
 #' g2_progress
 #'
-#' @param color color vector of length 2
-#' @param barWidthRatio [0-1]
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' g2_progress(0.75) |>
@@ -639,16 +703,15 @@ g2_ring_progress <- function(percent){
 #'
 g2_progress <- function(percent){
   list(
+    g2_chart='progress',
+    data=NULL,
     percent=percent
   )
 }
 #' g2_box
 #'
-#' @param x xField
-#' @param y yField
-#' @param group Grouping field. It is used for grouping by default, and color is used as visual channel.
-#' @param outliers Outlier field.
-#'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' df = jsonlite::fromJSON('[
@@ -697,6 +760,8 @@ g2_box <- function(data, xField, yField,
 }
 #' g2_heatmap
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' jsonlite::fromJSON('https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json') |>
@@ -721,9 +786,11 @@ g2_heatmap <- function(data,xField,yField,
 }
 #' g2_waterfall
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
-#' x
+#' data.frame(cate=letters[1:7], money=c(120,900,200,300,1200,1000,-2000)) |> g2_waterfall('cate','money') |> g2()
 #'
 g2_waterfall <- function(data,xField,yField){
   list(
@@ -735,7 +802,8 @@ g2_waterfall <- function(data,xField,yField){
 }
 #' g2_radial_bar
 #'
-#' @return radial-bar
+#' @inherit opt
+#' @family g2
 #' @export
 g2_radial_bar <- function(data, xField,yField){
   list(
@@ -760,6 +828,8 @@ g2_bidirectional_bar <- function(data,xField,yField){
 }
 #' g2_sankey
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 g2_sankey <- function(data,sourceField,targetField,weightField,
                       rawFields=NULL){
@@ -774,6 +844,8 @@ g2_sankey <- function(data,sourceField,targetField,weightField,
 }
 #' g2_chord
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 g2_chord <- function(data,sourceField,targetField,weightField){
   list(
@@ -786,6 +858,8 @@ g2_chord <- function(data,sourceField,targetField,weightField){
 }
 #' g2_treemap
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 g2_treemap <- function(data,colorField,rawFields){
   list(
@@ -797,6 +871,8 @@ g2_treemap <- function(data,colorField,rawFields){
 }
 #' g2_violin
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 g2_violin <- function(data,xField,yField,
                       seriesField=NULL){
@@ -810,6 +886,8 @@ g2_violin <- function(data,xField,yField,
 }
 #' g2_circle_packing
 #'
+#' @inherit opt
+#' @family g2
 #' @export
 #' @examples
 #' jsonlite::fromJSON('https://gw.alipayobjects.com/os/antfincdn/%24m0nDoQYqH/basic-packing.json') |>

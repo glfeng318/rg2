@@ -7,18 +7,24 @@
 g2_bullet(data, measureField, rangeField, targetField, xField = NULL)
 }
 \arguments{
-\item{data}{The data source is a collection of objects [{title: 'income', ranges: \link{50,100}, measures: \link{80}, target: 85}]}
+\item{data}{required. Data frame for plot.}
 
-\item{measureField}{Use the length of the data bar, the setting field for the actual value, to represent the actual value.}
+\item{measureField}{measure field}
 
-\item{rangeField}{Use the setting field for the length of the background bar to represent the range.}
+\item{rangeField}{range field}
 
-\item{targetField}{Use a setting field for the position of the scale axis of the measurement mark to represent the target value.}
+\item{targetField}{target field}
 
-\item{xField}{Used to distinguish different types, suitable for grouping bullet diagrams.}
+\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
 }
 \description{
-g2_bullet
+opt param in rg2 is the PlotOptions for G2Plot.
+You can construct an opt in two way:
+\itemize{
+\item use \code{list()} function in R base package.
+\item use \code{g2_opt_from_json()} from rg2 package.
+\url{https://g2plot.antv.antgroup.com/en/api} for details
+}
 }
 \examples{
 data = jsonlite::fromJSON('[{"title":"the title","ranges":[100],"measures":[80],"target":85}]')
@@ -28,3 +34,40 @@ g2_opt(color=list(range='#f0efff',measure= '#5B8FF9',target='#3D76DD'),
 g2()
 
 }
+\seealso{
+Other g2: 
+\code{\link{g2_area}()},
+\code{\link{g2_bar}()},
+\code{\link{g2_bidirectional_bar}()},
+\code{\link{g2_box}()},
+\code{\link{g2_chord}()},
+\code{\link{g2_circle_packing}()},
+\code{\link{g2_column}()},
+\code{\link{g2_dual_axes}()},
+\code{\link{g2_funnel}()},
+\code{\link{g2_gauge}()},
+\code{\link{g2_heatmap}()},
+\code{\link{g2_histogram}()},
+\code{\link{g2_line}()},
+\code{\link{g2_liquid}()},
+\code{\link{g2_pie}()},
+\code{\link{g2_progress}()},
+\code{\link{g2_radar}()},
+\code{\link{g2_radial_bar}()},
+\code{\link{g2_ring_progress}()},
+\code{\link{g2_rose}()},
+\code{\link{g2_sankey}()},
+\code{\link{g2_scatter}()},
+\code{\link{g2_stock}()},
+\code{\link{g2_sunburst}()},
+\code{\link{g2_tiny_area}()},
+\code{\link{g2_tiny_column}()},
+\code{\link{g2_treemap}()},
+\code{\link{g2_venn}()},
+\code{\link{g2_violin}()},
+\code{\link{g2_waterfall}()},
+\code{\link{g2_word_cloud}()},
+\code{\link{g2plot}()},
+\code{\link{g2}()}
+}
+\concept{g2}
