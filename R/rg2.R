@@ -805,6 +805,9 @@ g2_waterfall <- function(data,xField,yField){
 #' @inherit opt
 #' @family g2
 #' @export
+#' @examples
+#' data = data.frame(cate=c('a','b','c'), value=c(430, 650,800))
+#' g2_radial_bar(data, 'cate', 'value') |> g2_opt(radius=0.8,innerRadius=0.2) |>  g2()
 g2_radial_bar <- function(data, xField,yField){
   list(
     g2_chart='radial-bar',
@@ -818,6 +821,15 @@ g2_radial_bar <- function(data, xField,yField){
 #' @inherit opt
 #' @family g2
 #' @export
+#' @examples
+#' data = data.frame(city=c('a','b','c','d','e','f'),cate_a=1:6, cate_b=7:12)
+#'
+#' g2_bidirectional_bar(data,'city',c('cate_a','cate_b')) |> g2()
+#'
+#' g2_bidirectional_bar(data,'city',c('cate_a','cate_b')) |> g2_opt(xAxis=list(position='bottom'),label=list(position='right')) |> g2()
+#'
+#' g2_bidirectional_bar(data,'city',c('cate_a','cate_b')) |> g2_opt(layout='vertical',xAxis=list(position='bottom'),label=list(position='right')) |> g2()
+#'
 g2_bidirectional_bar <- function(data,xField,yField){
   list(
     g2_chart='bidirectional-bar',
@@ -831,16 +843,40 @@ g2_bidirectional_bar <- function(data,xField,yField){
 #' @inherit opt
 #' @family g2
 #' @export
+#' @examples
+#' data = jsonlite::fromJSON('[
+#' { "source": "首次打开","target": "首页 UV", "value": 160 },
+#' { "source": "结果页",  "target": "首页 UV", "value": 40 },
+#' { "source": "验证页",  "target": "首页 UV", "value": 10 },
+#' { "source": "我的",    "target": "首页 UV", "value": 10 },
+#' { "source": "朋友",    "target": "首页 UV", "value": 8 },
+#' { "source": "其他",    "target": "首页 UV", "value": 27 },
+#' { "source": "首页 UV", "target": "理财",    "value": 30 },
+#' { "source": "首页 UV", "target": "扫一扫",  "value": 40 },
+#' { "source": "首页 UV", "target": "服务",    "value": 35 },
+#' { "source": "首页 UV", "target": "蚂蚁森林","value": 25 },
+#' { "source": "首页 UV", "target": "跳失",    "value": 10 },
+#' { "source": "首页 UV", "target": "借呗",    "value": 30 },
+#' { "source": "首页 UV", "target": "花呗",    "value": 40 },
+#' { "source": "首页 UV", "target": "其他流向","value": 45 }
+#' ]')
+#' g2_sankey(data, 'source', 'target', 'value') |> g2()
+#'
+#' g2_sankey(data, 'source', 'target', 'value') |> g2_opt(nodeWidthRatio=0.008,nodePaddingRatio=0.03) |> g2()
+#'
 g2_sankey <- function(data,sourceField,targetField,weightField,
                       rawFields=NULL){
-  list(
+  opt = list(
     g2_chart='sankey',
     data=data,
     sourceField=sourceField,
     targetField=targetField,
-    weightField=weightField,
-    rawFields=rawFields
+    weightField=weightField
   )
+  if (!is.null(rawFields)) {
+    opt$rawFields=rawFields
+  }
+  opt
 }
 #' g2_chord
 #'
