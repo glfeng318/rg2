@@ -527,10 +527,16 @@ g2_venn <- function(data, setsField,
 #' @family g2
 #' @return rose
 #' @export
+#' @examples
+#' data = data.frame(cate=c('a','b','c','d','e','f'), value=c(27,25,18,15,10,5))
+#' g2_rose(data, 'cate','value','cate') |> g2_opt(radius=0.9) |> g2()
+#'
 g2_rose <- function(data, xField, yField,
                     seriesField=NULL,
                     colorField=NULL){
   list(
+    g2_chart='rose',
+    data=data,
     xField=xField,
     yField=yField,
     seriesField=seriesField,
