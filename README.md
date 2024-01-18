@@ -1,4 +1,3 @@
-
 # rg2
 
 <!-- badges: start -->
@@ -16,6 +15,11 @@ You can install the development version of rg2 like so:
 ```r
 pak::pkg_install("glfeng318/rg2")
 ```
+
+## Documentation
+
+- [Wiki](https://github.com/glfeng318/rg2/wiki) (getting started, usage, etc.)
+- [G2Plot options](https://g2plot.antv.antgroup.com/en/api/plot-api)
 
 ## Example
 
