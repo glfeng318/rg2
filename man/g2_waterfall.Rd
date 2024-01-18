@@ -15,12 +15,8 @@ g2_waterfall(data, xField, yField)
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt in two way:
-\itemize{
-\item use \code{list()} function in R base package.
-\item use \code{g2_opt_from_json()} from rg2 package.
+You can construct an opt using function with \code{g2_} prefix and \code{g2_opt()}.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
-}
 }
 \examples{
 data.frame(cate=letters[1:7], money=c(120,900,200,300,1200,1000,-2000)) |> g2_waterfall('cate','money') |> g2()
@@ -59,7 +55,6 @@ Other g2:
 \code{\link{g2_venn}()},
 \code{\link{g2_violin}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()},
 \code{\link{g2}()}
 }
 \concept{g2}

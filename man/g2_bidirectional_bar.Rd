@@ -15,31 +15,17 @@ g2_bidirectional_bar(data, xField, yField)
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt in two way:
-\itemize{
-\item use \code{list()} function in R base package.
-\item use \code{g2_opt_from_json()} from rg2 package.
+You can construct an opt using function with \code{g2_} prefix and \code{g2_opt()}.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
 }
-}
 \examples{
+data = data.frame(city=c('a','b','c','d','e','f'),cate_a=1:6, cate_b=7:12)
 
-opt = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2plot(mtcars, 'scatter', opt = opt)
+g2_bidirectional_bar(data,'city',c('cate_a','cate_b')) |> g2()
 
-opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2plot(mtcars, 'scatter', opt = opt)
+g2_bidirectional_bar(data,'city',c('cate_a','cate_b')) |> g2_opt(xAxis=list(position='bottom'),label=list(position='right')) |> g2()
 
-g2_scatter(mtcars, 'drat', 'wt') |>
-  g2_opt(shape='circle', theme='dark') |>
-  g2()
-
+g2_bidirectional_bar(data,'city',c('cate_a','cate_b')) |> g2_opt(layout='vertical',xAxis=list(position='bottom'),label=list(position='right')) |> g2()
 
 }
 \seealso{
@@ -75,7 +61,6 @@ Other g2:
 \code{\link{g2_violin}()},
 \code{\link{g2_waterfall}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()},
 \code{\link{g2}()}
 }
 \concept{g2}

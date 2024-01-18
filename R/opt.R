@@ -21,16 +21,3 @@
 g2_opt <- function(opt, ...) {
   c(opt, list(...))
 }
-
-#' g2_opt_from_json
-#'
-#' @param json a json string of G2Plot options
-#'
-#' @return a list of options for G2Plot
-#' @export
-#'
-#' @examples
-#' opt = g2_opt_from_json('{"xField":"displ", "yField":"hwy", "colorField":"class", "shape":"circle"}')
-g2_opt_from_json <- function(json) {
-  jsonlite::fromJSON(json)
-}

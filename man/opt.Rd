@@ -66,26 +66,10 @@
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt in two way:
-\itemize{
-\item use \code{list()} function in R base package.
-\item use \code{g2_opt_from_json()} from rg2 package.
+You can construct an opt using function with \code{g2_} prefix and \code{g2_opt()}.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
 }
-}
 \examples{
-
-opt = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2plot(mtcars, 'scatter', opt = opt)
-
-opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2plot(mtcars, 'scatter', opt = opt)
 
 g2_scatter(mtcars, 'drat', 'wt') |>
   g2_opt(shape='circle', theme='dark') |>

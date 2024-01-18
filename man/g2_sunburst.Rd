@@ -79,7 +79,6 @@ Other g2:
 \code{\link{g2_violin}()},
 \code{\link{g2_waterfall}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()},
 \code{\link{g2}()}
 }
 \concept{g2}

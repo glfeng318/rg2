@@ -17,31 +17,26 @@ g2_chord(data, sourceField, targetField, weightField)
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt in two way:
-\itemize{
-\item use \code{list()} function in R base package.
-\item use \code{g2_opt_from_json()} from rg2 package.
+You can construct an opt using function with \code{g2_} prefix and \code{g2_opt()}.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
 }
-}
 \examples{
-
-opt = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2plot(mtcars, 'scatter', opt = opt)
-
-opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2plot(mtcars, 'scatter', opt = opt)
-
-g2_scatter(mtcars, 'drat', 'wt') |>
-  g2_opt(shape='circle', theme='dark') |>
-  g2()
-
+data = jsonlite::fromJSON('[
+{ "source": "北京", "target": "天津", "value": 30 },
+{ "source": "北京", "target": "上海", "value": 80 },
+{ "source": "北京", "target": "河北", "value": 46 },
+{ "source": "北京", "target": "辽宁", "value": 49 },
+{ "source": "北京", "target": "黑龙江", "value": 69 },
+{ "source": "北京", "target": "吉林", "value": 19 },
+{ "source": "天津", "target": "河北", "value": 62 },
+{ "source": "天津", "target": "辽宁", "value": 82 },
+{ "source": "天津", "target": "上海", "value": 16 },
+{ "source": "上海", "target": "黑龙江", "value": 16 },
+{ "source": "河北", "target": "黑龙江", "value": 76 },
+{ "source": "河北", "target": "内蒙古", "value": 24 },
+{ "source": "内蒙古", "target": "北京", "value": 32 }
+]')
+g2_chord(data, 'source','target', 'value') |> g2()
 
 }
 \seealso{
@@ -77,7 +72,6 @@ Other g2:
 \code{\link{g2_violin}()},
 \code{\link{g2_waterfall}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()},
 \code{\link{g2}()}
 }
 \concept{g2}

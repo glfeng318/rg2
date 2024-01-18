@@ -19,31 +19,29 @@ g2_sankey(data, sourceField, targetField, weightField, rawFields = NULL)
 }
 \description{
 opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt in two way:
-\itemize{
-\item use \code{list()} function in R base package.
-\item use \code{g2_opt_from_json()} from rg2 package.
+You can construct an opt using function with \code{g2_} prefix and \code{g2_opt()}.
 \url{https://g2plot.antv.antgroup.com/en/api} for details
 }
-}
 \examples{
+data = jsonlite::fromJSON('[
+{ "source": "首次打开","target": "首页 UV", "value": 160 },
+{ "source": "结果页",  "target": "首页 UV", "value": 40 },
+{ "source": "验证页",  "target": "首页 UV", "value": 10 },
+{ "source": "我的",    "target": "首页 UV", "value": 10 },
+{ "source": "朋友",    "target": "首页 UV", "value": 8 },
+{ "source": "其他",    "target": "首页 UV", "value": 27 },
+{ "source": "首页 UV", "target": "理财",    "value": 30 },
+{ "source": "首页 UV", "target": "扫一扫",  "value": 40 },
+{ "source": "首页 UV", "target": "服务",    "value": 35 },
+{ "source": "首页 UV", "target": "蚂蚁森林","value": 25 },
+{ "source": "首页 UV", "target": "跳失",    "value": 10 },
+{ "source": "首页 UV", "target": "借呗",    "value": 30 },
+{ "source": "首页 UV", "target": "花呗",    "value": 40 },
+{ "source": "首页 UV", "target": "其他流向","value": 45 }
+]')
+g2_sankey(data, 'source', 'target', 'value') |> g2()
 
-opt = list(
-  xField='drat',
-  yField='wt',
-  shape='circle',
-  legend = list(position = 'top-left'),
-  theme='dark' # default / dark
-)
-g2plot(mtcars, 'scatter', opt = opt)
-
-opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-g2plot(mtcars, 'scatter', opt = opt)
-
-g2_scatter(mtcars, 'drat', 'wt') |>
-  g2_opt(shape='circle', theme='dark') |>
-  g2()
-
+g2_sankey(data, 'source', 'target', 'value') |> g2_opt(nodeWidthRatio=0.008,nodePaddingRatio=0.03) |> g2()
 
 }
 \seealso{
@@ -79,7 +77,6 @@ Other g2:
 \code{\link{g2_violin}()},
 \code{\link{g2_waterfall}()},
 \code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()},
 \code{\link{g2}()}
 }
 \concept{g2}

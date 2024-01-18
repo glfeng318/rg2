@@ -1,9 +1,7 @@
 #' G2Plot options
 #'
 #' opt param in rg2 is the PlotOptions for G2Plot.
-#' You can construct an opt in two way:
-#' - use `list()` function in R base package.
-#' - use `g2_opt_from_json()` from rg2 package.
+#' You can construct an opt using function with `g2_` prefix and `g2_opt()`.
 #' \url{https://g2plot.antv.antgroup.com/en/api} for details
 #'
 #' @param width optional number default: 400. width of the chart.
@@ -40,18 +38,6 @@
 #'
 #' @examples
 #'
-#' opt = list(
-#'   xField='drat',
-#'   yField='wt',
-#'   shape='circle',
-#'   legend = list(position = 'top-left'),
-#'   theme='dark' # default / dark
-#' )
-#' g2plot(mtcars, 'scatter', opt = opt)
-#'
-#' opt = g2_opt_from_json('{"xField":"drat","yField":"wt", "shape":"circle","lengend":{"position":"top-left"},"theme":"dark"}')
-#' g2plot(mtcars, 'scatter', opt = opt)
-#'
 #' g2_scatter(mtcars, 'drat', 'wt') |>
 #'   g2_opt(shape='circle', theme='dark') |>
 #'   g2()
@@ -60,87 +46,30 @@
 #' @name opt
 NULL
 
-
-#' g2 plot
-#'
-#' all g2 plots can be confined in opt param
-#'
-#' @param data a data object.Currently supported object is data.frame,
-#'    data should only contains the necessary data for chart (reduce json/data size)
-#' @param chart the chart type of G2Plot ('line','area','column','bar','pie','scatter','gauge','dual-axes','liquid','radar','word-cloud','funnel','bullet','histogram','venn','rose','tiny-line','tiny-area','tiny-column','sunburst','stock','ring-progress','progress','box','heatmap','waterfall','radial-bar','bidirectional-bar','sankey','chord','treemap','violin','circle-packing','mix','facet')
-#' @param opt options of G2Plot. you can use function `g2_opt_from_json()` to build an options or use `list()` to make it. See \url{https://g2plot.antv.antgroup.com/en/api} for details.
-#'
-#' @inherit opt
-#' @family g2
-#' @seealso [opt]
-#'
-#' @export
-#' @examples
-#' opt = list(
-#'   xField='drat',
-#'   yField='wt',
-#'   shape='circle',
-#'   legend = list(position = 'top-left')
-#' )
-#' g2plot(mtcars, 'scatter', opt = opt)
-#'
-#'
-g2plot <- function(data, chart, opt = list(), width = NULL, height = NULL) {
-  chart_type_list = c('line',
-                      'area',
-                      'column',
-                      'bar',
-                      'pie',
-                      'scatter',
-                      'gauge',
-                      'dual-axes',
-                      'liquid',
-                      'radar',
-                      'word-cloud',
-                      'funnel',
-                      'bullet',
-                      'histogram',
-                      'venn',
-                      'rose',
-                      'tiny-line',
-                      'tiny-area',
-                      'tiny-column',
-                      'sunburst',
-                      'stock',
-                      'ring-progress',
-                      'progress',
-                      'box',
-                      'heatmap',
-                      'waterfall',
-                      'radial-bar',
-                      'bidirectional-bar',
-                      'sankey',
-                      'chord',
-                      'treemap',
-                      'violin',
-                      'circle-packing',
-                      'mix',
-                      'facet')
-  if (! chart %in% chart_type_list) {
-    stop("param chart should be one of ", paste(chart_type_list,collapse = ","))
-  }
-  opt$data = jsonlite::toJSON(data, auto_unbox = T, null = 'null')
-  opt$g2_chart = chart
-  x <- list(opt = opt)
-  # create the widget
-  htmlwidgets::createWidget('g2', x, width = width, height = height, package='rg2')
-}
-
 #' g2
 #'
-#' @param opt G2Plot options build from plot function with prefix 'g2_'
+#' g2() render a G2Plot
+#'
+#' @param opt G2Plot options build from plot function with prefix 'g2_' and 'g2_opt()'
 #' @inherit opt
 #' @family g2
 #' @export
 #' @examples
-#' g2_liquid(0.6) |> g2()
+#' g2_liquid(0.6) |>
+#'   g2_opt(pattern=list(type='line')) |>
+#'   g2()
+#'
+#' g2_scatter(iris,'Sepal.Length','Sepal.Width',colorField='Species') |>
+#'   g2_opt(
+#'     legend=list(position='right'),
+#'     shape='circle'
+#'  ) |>
+#'  g2()
 #'
 g2 <- function(opt, width=NULL, height=NULL) {
+  if (is.null(opt$g2_chart)) {
+    stop("invalid opt")
+  }
   auto_unbox = TRUE
   if (opt$g2_chart == 'venn') {
     auto_unbox = FALSE
@@ -291,15 +220,22 @@ g2_scatter <- function(data, xField, yField,
                        sizeField=NULL,
                        shapeField=NULL,
                        colorField=NULL){
-  list(
+  opt = list(
     g2_chart='scatter',
     data=data,
     xField=xField,
-    yField=yField,
-    sizeField=sizeField,
-    shapeField=shapeField,
-    colorField=colorField
+    yField=yField
   )
+  if (!is.null(colorField)) {
+    opt$colorField = colorField
+  }
+  if (!is.null(shapeField)) {
+    opt$shapeField = shapeField
+  }
+  if (!is.null(sizeField)) {
+    opt$sizeField = sizeField
+  }
+  opt
 }
 
 #' g2_dual_axes

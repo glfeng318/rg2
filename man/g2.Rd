@@ -7,23 +7,26 @@
 g2(opt, width = NULL, height = NULL)
 }
 \arguments{
-\item{opt}{G2Plot options build from plot function with prefix 'g2_'}
+\item{opt}{G2Plot options build from plot function with prefix 'g2_' and 'g2_opt()'}
 
 \item{width}{optional number default: 400. width of the chart.}
 
 \item{height}{optional number default: 400. height of the chart.}
 }
 \description{
-opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt in two way:
-\itemize{
-\item use \code{list()} function in R base package.
-\item use \code{g2_opt_from_json()} from rg2 package.
-\url{https://g2plot.antv.antgroup.com/en/api} for details
-}
+g2() render a G2Plot
 }
 \examples{
-g2_liquid(0.6) |> g2()
+g2_liquid(0.6) |>
+  g2_opt(pattern=list(type='line')) |>
+  g2()
+
+g2_scatter(iris,'Sepal.Length','Sepal.Width',colorField='Species') |>
+  g2_opt(
+    legend=list(position='right'),
+    shape='circle'
+ ) |>
+ g2()
 
 }
 \seealso{
@@ -59,7 +62,6 @@ Other g2:
 \code{\link{g2_venn}()},
 \code{\link{g2_violin}()},
 \code{\link{g2_waterfall}()},
-\code{\link{g2_word_cloud}()},
-\code{\link{g2plot}()}
+\code{\link{g2_word_cloud}()}
 }
 \concept{g2}
