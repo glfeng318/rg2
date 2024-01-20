@@ -1,7 +1,7 @@
 # rg2
 
 <!-- badges: start -->
-![R-CMD-check](https://github.com/glfeng318/rg2/workflows/R-CMD-check/badge.svg)
+[![R-CMD-check](https://github.com/glfeng318/rg2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/glfeng318/rg2/actions/workflows/R-CMD-check.yaml)
 [![CRAN status](https://www.r-pkg.org/badges/version/rg2)](https://CRAN.R-project.org/package=rg2)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
@@ -31,7 +31,8 @@ library(rg2)
 g2_scatter(iris,'Sepal.Length','Sepal.Width',colorField='Species') |> 
   g2_opt(
     legend=list(position='right'),
-    shape='circle'
+    shape='circle',
+    size=5
   ) |> 
   g2()
 ```
