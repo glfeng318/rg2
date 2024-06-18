@@ -2,78 +2,49 @@
 % Please edit documentation in R/rg2.R
 \name{opt}
 \alias{opt}
-\title{G2Plot options}
+\title{G2 options}
 \arguments{
-\item{width}{optional number default: 400. width of the chart.}
+\item{width}{optional default: 640}
 
-\item{height}{optional number default: 400. height of the chart.}
+\item{height}{optional default: 480}
 
-\item{data}{required. Data frame for plot.}
-
-\item{reflect}{Apply reflect transform to the coordinate of line plot. When reflect: 'y' is set, y-axis can be inverted; in the same way, you can set reflect: 'x' to invert x-axis, and invert x-axis and y-axis at the same time is also supported with 'c('x','y')'.}
-
-\item{xField}{The name of the data field corresponding to the graph in the x direction, usually the field corresponding to the horizontal coordinate axis. For example, to see how many people are in different classes, the class field is the corresponding xField.}
-
-\item{yField}{The name of the data field corresponding to the graph in the y direction, usually the field corresponding to the vertical coordinate axis. For example, to see the number of students in different classes, the number field is the corresponding yField.}
-
-\item{seriesField}{grouping field}
-
-\item{groupField}{grouping field}
-
-\item{stackField}{stack field}
-
-\item{sizeField}{size field}
-
-\item{shapeField}{shape field}
-
-\item{colorField}{color field}
-
-\item{angleField}{angle field}
-
-\item{binField}{bin field}
-
-\item{setsField}{sets field}
-
-\item{outliersField}{outliers field}
-
-\item{measureField}{measure field}
-
-\item{rangeField}{range field}
-
-\item{sourceField}{source field}
-
-\item{targetField}{target field}
-
-\item{wordField}{word field}
-
-\item{weightField}{weight field}
-
-\item{rawFields}{raw fields}
-
-\item{compareField}{compare field}
-
-\item{percent}{percent}
-
-\item{smooth}{TRUE/FALSE. whether the curve is smooth.}
-
-\item{isStack}{to stack charts}
-
-\item{isGroup}{to group charts}
-
-\item{isPercent}{to percent charts}
-
-\item{isRange}{to range charts}
+\item{data}{required. Data Frame, URL of json/csv}
 }
 \description{
-opt param in rg2 is the PlotOptions for G2Plot.
-You can construct an opt using function with \code{g2_} prefix and \code{g2_opt()}.
-\url{https://g2plot.antv.antgroup.com/en/api} for details
+G2 provides a Spec API which declares visualizations through a JavaScript object.
+
+Options of G2 is a named list:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{\{
+  type: 'mark',  // view, spaceLayer, ...
+  data: [],
+  encode: \{\},
+  scale: \{\},
+  transform: [],
+  coordinate: \{\},
+  style: \{\},
+  labelTransform: \{\},
+  title: \{\},
+  axis: \{\},
+  legend: \{\},
+  tooltip: \{\},
+  scrollbar: \{\},
+  slider: \{\},
+  interaction: \{\},
+  theme: \{\},
+\}
+}\if{html}{\out{</div>}}
+
+For the option with array value, you should use \code{list(list(...), list(...))}
+to construct an array in JSON.
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{transform()
+}\if{html}{\out{</div>}}
+}
+\details{
+Spec: \url{https://g2.antv.antgroup.com/en/spec/overview}
 }
 \examples{
-
-g2_scatter(mtcars, 'drat', 'wt') |>
-  g2_opt(shape='circle', theme='dark') |>
-  g2()
-
+g2_point(mtcars, 'drat', 'wt')
 
 }

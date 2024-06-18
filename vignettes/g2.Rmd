@@ -1,0 +1,193 @@
+---
+title: "Core Concepts of G2"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Core Concepts of G2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rg2)
+```
+
+
+# G2
+
+## Core Concepts
+
+### Chart 图表
+
+G2 的大部分能力通过 Chart 对象暴露给用户.
+每个 G2 的可视化都是通过实例化 Chart 对象创建一个新的图表实例：
+```js
+const chart = new Chart({
+  /* 图表选项 */
+});
+```
+
+可以通 new Chart(options) 指定一些全局选项：比如挂载的容器，宽度，高度等。所有的选项都是可选的。
+
+### 规范 Spec
+
+#### 视图树
+
+G2 的 Spec 总体来讲是一个有层级结构的视图树（View Tree），由不同的节点构成。节点通过 node.type 指定类型，不同的类型有不同的作用，同时通过 node.children 来进行嵌套。
+
+```js
+// spec
+{
+  type: 'spaceFlex',
+  children: [
+    {
+      type: 'view',
+      children: [{ type: 'line' }, { type: 'point' }],
+    },
+    {
+      type: 'interval',
+    },
+  ],
+}
+
+// API
+const spaceFlex = chart.spaceFlex();
+const view = spaceFlex.view();
+view.line();
+view.point();
+spaceFlex.interval();
+```
+
+其中视图可以简单理解为图表，或者单视图图表（Single View Plot）
+
+这颗“树”通过不同的容器节点在时间和空间上管理视图，从而在时间和空间上管理我们的视图，从而绘制多视图图表（Multiple View Plots）
+
+G2 的三种节点：
+
+- 标记节点
+- 视图节点
+- 复合节点
+
+#### 标记节点 Mark
+
+标记节点是该树上的叶子节点，**不可继续嵌套**，也就是不能再包含 children 属性
+
+标记类似图表的概念，比如一个 Interval 标记可以绘制一个条形图
+
+```js
+{
+  type: 'interval',
+  ...
+}
+```
+
+#### 视图节点 View
+
+如果希望图表中有多个标记，就需要把它们放入视图节点中，绘制单视图图表
+
+**视图节点只能嵌套标记节点**
+
+```js
+{
+  type: 'view',
+  ...,
+  children: [{ type: 'line' }, { type: 'point' }],
+}
+```
+
+#### 复合节点
+
+用于在一个图表里面绘制多个视图（多视图图表）
+
+它可以嵌套*复合节点*，*视图节点*和*标记节点*
+
+```js
+{
+  type: 'spaceFlex',
+  children: [
+    { type: 'spaceFlex' }, // 复合节点
+    { type: 'view' },      // 视图节点
+    { type: 'interval' },  // 标记节点
+  ]
+}
+```
+
+复合节点类型：
+
+- facetCircle
+- facetRect
+- repeatMatrix
+- spaceFlex
+- spaceLayer
+- timingKeyframe
+
+
+### Size 大小
+
+G2 默认使用 640px 作为宽，480px 作为高
+
+`options.autoFit = true` 会将图表的宽高和容器保持一致, 其优先级比指定宽高更高
+
+布局信息（图表宽高等）是在*选项顶层*指定的
+
+```js
+const markLevel = {
+  type: 'interval',
+  width: 640,
+  height: 180,
+  margin: 10,
+};
+
+const viewLevel = {
+  type: 'view',
+  width: 640,
+  height: 180,
+  margin: 10,
+  // ...
+};
+
+const compositionLevel = {
+  type: 'spaceFlex',
+  width: 640,
+  height: 180,
+  margin: 10,
+};
+```
+
+可以通过如下的配置设置各个区域的大小：
+
+- margin - 设置外边距四个方向的值，优先级别比分别设置低
+- marginLeft - 设置左外边距
+- marginTop - 设置上外边距
+- marginRight - 设置右外边距值
+- marginBottom - 设置下外边距值
+- padding - 设置内边距四个方向的值，优先级别比分别设置低
+- paddingLeft - 设置左内边距
+- paddingTop - 设置上内边距
+- paddingRight - 设置右内边距
+- paddingBottom - 设置下内边距
+- inset - 设置呼吸区域四个方向的值，优先级别比分别设置低
+- insetLeft - 设置左呼吸区域
+- insetTop - 设置上呼吸区域
+- insetRight - 设置右呼吸区域
+- insetBottom - 设置下呼吸区域
+
+
+### 复合 - Composition
+
+- facetCircle
+- facetRect
+- repeatMatrix
+- spaceFlex
+- spaceLayer
+- timingKeyframe
+
+#### spaceFlex
+
+

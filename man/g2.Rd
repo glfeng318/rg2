@@ -4,64 +4,29 @@
 \alias{g2}
 \title{g2}
 \usage{
-g2(opt, width = NULL, height = NULL)
+g2(data, encode = NULL, ..., width = 640, height = 480)
 }
 \arguments{
-\item{opt}{G2Plot options build from plot function with prefix 'g2_' and 'g2_opt()'}
+\item{data}{required. Data Frame, URL of json/csv}
 
-\item{width}{optional number default: 400. width of the chart.}
+\item{encode}{encode}
 
-\item{height}{optional number default: 400. height of the chart.}
+\item{...}{Other arguments passed on to methods. Not currently used.}
+
+\item{width}{optional default: 640}
+
+\item{height}{optional default: 480}
+
+\item{type}{view/spaceLayer/spaceFlex/facetCircle/facetRect/repeatMatrix}
 }
 \description{
-g2() render a G2Plot
+g2() create an G2 options
+}
+\details{
+Spec: \url{https://g2.antv.antgroup.com/en/spec/overview}
 }
 \examples{
-g2_liquid(0.6) |>
-  g2_opt(pattern=list(type='line')) |>
-  g2()
+g2_point(mtcars, 'drat', 'wt')
 
-g2_scatter(iris,'Sepal.Length','Sepal.Width',colorField='Species') |>
-  g2_opt(
-    legend=list(position='right'),
-    shape='circle'
- ) |>
- g2()
-
-}
-\seealso{
-Other g2: 
-\code{\link{g2_area}()},
-\code{\link{g2_bar}()},
-\code{\link{g2_bidirectional_bar}()},
-\code{\link{g2_box}()},
-\code{\link{g2_bullet}()},
-\code{\link{g2_chord}()},
-\code{\link{g2_circle_packing}()},
-\code{\link{g2_column}()},
-\code{\link{g2_dual_axes}()},
-\code{\link{g2_funnel}()},
-\code{\link{g2_gauge}()},
-\code{\link{g2_heatmap}()},
-\code{\link{g2_histogram}()},
-\code{\link{g2_line}()},
-\code{\link{g2_liquid}()},
-\code{\link{g2_pie}()},
-\code{\link{g2_progress}()},
-\code{\link{g2_radar}()},
-\code{\link{g2_radial_bar}()},
-\code{\link{g2_ring_progress}()},
-\code{\link{g2_rose}()},
-\code{\link{g2_sankey}()},
-\code{\link{g2_scatter}()},
-\code{\link{g2_stock}()},
-\code{\link{g2_sunburst}()},
-\code{\link{g2_tiny_area}()},
-\code{\link{g2_tiny_column}()},
-\code{\link{g2_treemap}()},
-\code{\link{g2_venn}()},
-\code{\link{g2_violin}()},
-\code{\link{g2_waterfall}()},
-\code{\link{g2_word_cloud}()}
 }
 \concept{g2}

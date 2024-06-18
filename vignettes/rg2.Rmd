@@ -1,0 +1,206 @@
+---
+title: "Core Concepts of rg2(G2)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Core Concepts of rg2(G2)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+rg2 is a G2 binding for R
+
+[Core Concepts of G2](https://g2.antv.antgroup.com/en/manual/core/chart)
+
+
+```{r}
+library(rg2)
+g2(iris, encode('Sepal.Length','Sepal.Width',color='Species', shape='point',size=5)) + g2_point()
+```
+
+
+**可以同时在view/mark配置的属性需要分别在g2/g2_xxx进行支持**
+
+- Mark mark is used as the basic visual component unit
+- View view is used to draw multiple marks. A view has a coordinate system and is the smallest unit of application interaction.
+- Composite composition provides the ability to draw multiple charts in a single visualization
+
+compare view and Composite in Spec:
+
+```js
+/*
+ options:
+ - type: view <=> spaceLayer/spaceFlex/facetCircle/facetRect/repeatMatrix
+ - children: array of marks
+ - encode:
+  - view: YES
+  - facetCircle: YES
+  - facetRect: YES
+  - repeatMatrix: YES
+  - spaceLayer: NO
+  - spaceFlex: NO
+  
+ encode will be passed to every mark if mark has no encode,
+ and mark.encode has a higher priority?
+*/
+{
+  type: '...',
+  children: [{type: 'line'}, {type:'point'}]
+}
+
+```
+
+```js
+/*
+ view
+ view's encode will be passed to every mark if mark has no encode.
+ 
+*/
+
+{
+  type: 'view',
+  encode: {},
+  children: [{type: 'line'}, {type:'point'}]
+}
+
+/*
+ composite
+ 
+ */
+{
+  type: '...',
+  [encode: {},]
+  children: [{type: 'line'}, {type:'point'}]
+}
+```
+## View Tree
+
+Overall, G2's spec is a hierarchical **view tree**, composed of different nodes. Nodes specify their types through `node.type`, different types have different functions, and they are nested through `node.children`.
+```
+{
+  type: 'spaceFlex',
+  children: [
+    {
+      type: 'view',
+      children: [{ type: 'line' }, { type: 'point' }],
+    },
+    {
+      type: 'interval',
+    },
+  ],
+}
+```
+The view can be simply understood as a chart, or `a single view plot`. This "tree" manages views in time and space through different container nodes, thereby managing our views in time and space to draw `multiple view plots`.
+
+
+There are three types of nodes in G2.
+
+- Mark nodes
+- View nodes
+- Composite nodes
+
+### Mark
+
+Mark nodes are leaf nodes on this tree, which cannot be nested further, that is, they cannot contain the children attribute. Marks are similar to the concept of a chart. For example, an Interval mark can draw a bar chart.
+
+```
+{
+  type: 'interval',
+  ...
+}
+```
+
+
+### View
+
+If you want to have multiple marks in the chart, you need to put them into view nodes to draw a single view plot. View nodes can only nest mark nodes.
+
+```
+{
+  type: 'view',
+  children: [{ type: 'line' }, { type: 'point' }],
+}
+```
+
+
+### Composition
+
+Composition is used to draw multiple views in a chart (multi-view chart). It can nest composite nodes, view nodes and mark nodes.
+
+```js
+{
+  type: 'spaceFlex',
+  children: [
+    { type: 'spaceFlex' }, // composition node
+    { type: 'view' },      // view node
+    { type: 'interval' },  // mark node
+  ],
+}
+```
+
+
+`View Composition` in G2 provides the ability to draw multiple charts in a single visualization.G2 defines a `View Graph` to describe a `Multi-View Plot`.
+
+
+
+**`g2()` is used to generate basic option of G2**
+
+---
+
+## Mark
+
+There is **no concept of chart** in G2, but the mark is used as the basic visual component unit. Any chart is composed of multiple marks. Unlike traditional drawing systems, marks provide the ability to draw abstract data.
+
+
+```r
+# no plot, just generate a basic mark option
+p = g2(mtcars, encode('mpg', 'disp'))
+p
+
+# point plot
+g2(mtcars, encode('mpg', 'disp')) + g2_point()
+```
+
+Mark can also be placed inside a view and add multiple marks to the view:
+```
+g2_view(mtcars, encode('mpg', 'disp')) + g2_point() + g2_line()
+```
+
+Marks are the "first-class citizens" in G2: the most important concept in G2, a mark is composed of the following core concepts:
+
+- data - visual data
+- encode - encoding information
+- scale - mapping rules
+- transform - transformation channel values
+- layout - configuration of layout algorithms
+- coordinate - transformation of coordinate systems
+- style - visual styles
+- viewStyle - visual styles of the view
+- animate - animation properties
+- state - style of state
+- label - data labels
+- title - chart title
+- axis - coordinate axes
+- legend - legend
+- tooltip - prompt information
+- scrollbar - scrollbar
+- slider - drag axis
+- interaction - interaction
+- theme - theme
+
+```js
+g2(data, encode(...)) + g2_point() + scale() + ...
+```
+
+**`g2_` family**
+
+- g2_point()
+- g2_line() 
+
+

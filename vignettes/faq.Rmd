@@ -1,0 +1,38 @@
+---
+title: "Frequently Asked Questions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Frequently Asked Questions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(rg2)
+```
+
+### why transform not working?
+
+transform can be configured with `transform()` function
+```{r}
+g2(
+  data = 'https://gw.alipayobjects.com/os/bmw-prod/2c813e2d-2276-40b9-a9af-cf0a0fb7e942.csv',
+  encode = encode('Cylinders', 'Horsepower', shape='line', size=20, color='Cylinders'),
+  height=300
+) +
+transform(type='sortX', channel='x') +
+coordinate(transform=list(list(type='transpose'))) +
+g2_point() +
+scale(x=list(type='point')) +
+scale(y=list(zero=TRUE)) + 
+scale(color=list(type='ordinal'))
+```
+Keep in mind that the construction is **list(list(...), ...)**
+
