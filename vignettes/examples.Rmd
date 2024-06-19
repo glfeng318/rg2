@@ -86,6 +86,11 @@ data = list(
 )
 g2(data) + g2_area(encode('x', c('low','high')))
 ```
+## Gauge
+```{r}
+g2(list(value=list(target=120, total=400, name="score")))+g2_gauge()
+```
+
 
 ## Pie
 ```{r}
@@ -270,7 +275,7 @@ g2_facet_rect(
   children=list(
     g2_point(encode(x='x',y='y'), inset=10) + style(stroke='#000')
   ),
-  width = 900, height = 300
+  width = 900, height = 
 )
 ```
 

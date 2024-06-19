@@ -4,10 +4,10 @@
 \alias{g2_gauge}
 \title{gauge}
 \usage{
-g2_gauge(data, encode, ...)
+g2_gauge(...)
 }
 \arguments{
-\item{encode}{x / y / z / color / shape / size ...}
+\item{...}{...}
 }
 \description{
 gauge

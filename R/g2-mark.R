@@ -87,11 +87,25 @@ g2_density <- function(data, encode, ...) {
 #'
 #'
 #'
+#' @param ... ...
+#'
 #' @family mark
 #' @inherit mark
 #' @export
-g2_gauge <- function(data, encode, ...) {
+g2_gauge <- function(...) {
+  opt = list(
+    type='gauge'
+  )
+  dots = list(...)
+  if (!pluck_exists(dots, 'legend')) {
+    opt$legend = FALSE
+  }
+  opt = compact(list_assign(opt, !!!dots))
 
+  structure(
+    opt,
+    class = c('g2mark', 'g2')
+  )
 }
 
 #' heatmap

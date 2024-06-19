@@ -4,18 +4,56 @@
 \alias{g2_facet_circle}
 \title{facetCircle}
 \usage{
-g2_facet_circle(data, encode, children, title, scale)
+g2_facet_circle(
+  data,
+  encode,
+  children,
+  title = NULL,
+  scale = NULL,
+  padding = 0,
+  paddingLeft = 0,
+  paddingRight = 0,
+  paddingTop = 0,
+  paddingBottom = 0,
+  margin = 0,
+  marginLeft = 0,
+  marginRight = 0,
+  marginTop = 0,
+  marginBottom = 0,
+  width = 640,
+  height = 480
+)
 }
 \arguments{
 \item{data}{data}
 
-\item{encode}{encode}
+\item{encode}{facetCircle has its own unique encode channel:position}
 
 \item{children}{children}
 
 \item{title}{title}
 
 \item{scale}{scale}
+
+\item{padding}{padding}
+
+\item{paddingLeft}{padding left}
+
+\item{paddingRight}{padding right}
+
+\item{paddingTop}{padding top}
+
+\item{paddingBottom}{padding bottom}
+
+\item{margin}{margin}
+
+\item{marginLeft}{margin left}
+
+\item{marginRight}{margin right}
+
+\item{marginTop}{margin top}
+
+\item{marginBottom}{margin bottom}
 }
 \description{
 facetCircle

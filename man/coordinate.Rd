@@ -7,9 +7,9 @@
 coordinate(type = NULL, ...)
 }
 \arguments{
-\item{type}{'polar' / 'theta' / 'radial' / 'parallel'}
+\item{type}{fisheye / parallel / polar / radial / theta / transpose / cartesian3D}
 
-\item{transform}{array of transform}
+\item{transform}{array of transform.}
 }
 \description{
 coordinate be configured in \code{g2()} or in \code{g2_} family functions.
