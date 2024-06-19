@@ -9,8 +9,8 @@
 #' The coordinate system of view.
 #' The coordinate system of the first mark has the highest priority.
 #'
-#' @param type 'polar' / 'theta' / 'radial' / 'parallel'
-#' @param transform array of transform
+#' @param type fisheye / parallel / polar / radial / theta / transpose / cartesian3D
+#' @param transform array of transform.
 #'
 #' @export
 coordinate <- function(type=NULL, ...) {

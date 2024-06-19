@@ -262,3 +262,15 @@ g2_repeat_matrix(
 )
 ```
 
+## facetRect
+```{r}
+g2_facet_rect(
+  data='https://assets.antv.antgroup.com/g2/anscombe.json',
+  encode(x='series'),
+  children=list(
+    g2_point(encode(x='x',y='y'), inset=10) + style(stroke='#000')
+  ),
+  width = 900, height = 300
+)
+```
+

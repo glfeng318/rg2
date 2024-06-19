@@ -4,7 +4,25 @@
 \alias{g2_facet_rect}
 \title{facetRect}
 \usage{
-g2_facet_rect(data, encode, children, title, scale)
+g2_facet_rect(
+  data,
+  encode,
+  children,
+  title = NULL,
+  scale = NULL,
+  padding = 0,
+  paddingLeft = 0,
+  paddingRight = 0,
+  paddingTop = 0,
+  paddingBottom = 0,
+  margin = 0,
+  marginLeft = 0,
+  marginRight = 0,
+  marginTop = 0,
+  marginBottom = 0,
+  width = 640,
+  height = 480
+)
 }
 \arguments{
 \item{data}{data}
@@ -16,6 +34,26 @@ g2_facet_rect(data, encode, children, title, scale)
 \item{title}{title}
 
 \item{scale}{scale}
+
+\item{padding}{padding}
+
+\item{paddingLeft}{paddingLeft}
+
+\item{paddingRight}{paddingRight}
+
+\item{paddingTop}{paddingTop}
+
+\item{paddingBottom}{paddingBottom}
+
+\item{margin}{margin}
+
+\item{marginLeft}{marginLeft}
+
+\item{marginRight}{marginRight}
+
+\item{marginTop}{marginTop}
+
+\item{marginBottom}{marginBottom}
 }
 \description{
 facetRect
