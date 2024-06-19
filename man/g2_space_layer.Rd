@@ -4,7 +4,12 @@
 \alias{g2_space_layer}
 \title{spaceLayer}
 \usage{
-g2_space_layer(data, children = NULL)
+g2_space_layer(data, children = NULL, ..., width = 640, height = 480)
+}
+\arguments{
+\item{data}{data}
+
+\item{children}{children marks}
 }
 \description{
 spaceLayer

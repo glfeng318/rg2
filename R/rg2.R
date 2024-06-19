@@ -157,6 +157,7 @@ is.g2mark <- function(x) inherits(x, 'g2mark')
 is.g2transform <- function(x) inherits(x, 'g2transform')
 is.g2label <- function(x) inherits(x, 'g2label')
 is.g2animate <- function(x) inherits(x, 'g2animate')
+is.g2spaceflex <- function(x) inherits(x, 'g2spaceflex')
 is.widget <- function(x) inherits(x, 'htmlwidget')
 
 #' Add components to a plot

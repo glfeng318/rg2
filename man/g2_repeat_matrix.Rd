@@ -8,8 +8,8 @@ g2_repeat_matrix(
   data,
   encode,
   children,
-  title,
-  scale,
+  title = NULL,
+  scale = NULL,
   padding = 0,
   paddingLeft = 0,
   paddingRight = 0,
@@ -19,8 +19,41 @@ g2_repeat_matrix(
   marginLeft = 0,
   marginRight = 0,
   marginTop = 0,
-  marginBottom = 0
+  marginBottom = 0,
+  width = 640,
+  height = 480
 )
+}
+\arguments{
+\item{data}{data}
+
+\item{encode}{encode}
+
+\item{children}{children}
+
+\item{title}{title}
+
+\item{scale}{scale}
+
+\item{padding}{padding}
+
+\item{paddingLeft}{paddingLeft}
+
+\item{paddingRight}{paddingRight}
+
+\item{paddingTop}{paddingTop}
+
+\item{paddingBottom}{paddingBottom}
+
+\item{margin}{margin}
+
+\item{marginLeft}{marginLeft}
+
+\item{marginRight}{marginRight}
+
+\item{marginTop}{marginTop}
+
+\item{marginBottom}{marginBottom}
 }
 \description{
 repeatMatrix

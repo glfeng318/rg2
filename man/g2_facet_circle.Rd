@@ -6,6 +6,17 @@
 \usage{
 g2_facet_circle(data, encode, children, title, scale)
 }
+\arguments{
+\item{data}{data}
+
+\item{encode}{encode}
+
+\item{children}{children}
+
+\item{title}{title}
+
+\item{scale}{scale}
+}
 \description{
 facetCircle
 }

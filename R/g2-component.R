@@ -10,7 +10,7 @@ axis <- function(x=NULL, y=NULL) {
     y = y
   )
   structure(
-    list(axis = discard_null(list_assign(opt, !!!list(...)))),
+    list(axis = discard_null(opt)),
     class = c('g2axis', 'g2')
   )
 }

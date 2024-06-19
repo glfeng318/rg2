@@ -1,21 +1,21 @@
 #' View
 #'
-#' @param data
-#' @param encode
-#' @param children
-#' @param scale
-#' @param transform
-#' @param coordinate
-#' @param style
-#' @param labelTransform
-#' @param title
-#' @param axis
-#' @param legend
-#' @param tooltip
-#' @param scrollbar
-#' @param slider
-#' @param interaction
-#' @param theme
+#' @param data data
+#' @param encode encode
+#' @param children children
+#' @param scale scale
+#' @param transform transform
+#' @param coordinate coordinate
+#' @param style style
+#' @param labelTransform labelTransform
+#' @param title title
+#' @param axis axis
+#' @param legend legend
+#' @param tooltip tooltip
+#' @param scrollbar scrollbar
+#' @param slider slider
+#' @param interaction interaction
+#' @param theme theme
 #'
 #' @export
 g2_view <- function(data, encode=NULL, children=NULL,

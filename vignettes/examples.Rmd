@@ -197,11 +197,68 @@ g2('https://gw.alipayobjects.com/os/antvdemo/assets/data/bubble.json',
 
 ## spaceLayer
 ```{r}
-g2(data='https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
-   type='spaceLayer') + 
-  g2_col(encode('letter','frequency',color='letter'),
-         transform=list(list(type='sortX',reverse=TRUE, by='y'))) + 
+g2_space_layer(
+  data='https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv',
+  children = list(
+    g2_col(encode('letter','frequency',color='letter'),
+           transform=list(list(type='sortX',reverse=TRUE, by='y'))),
   g2_pie(encode(y='frequency',color='letter'),
-         x=300,y=50,width=300,height=300,legend=FALSE)
+         x=300,y=50,width=300,height=300,legend=FALSE))
+  )
+```
+
+## spaceFlex
+```{r}
+g2_space_flex(
+  data = 'https://assets.antv.antgroup.com/g2/seattle-weather.json',
+  ratio = c(1, 2),
+  direction = 'col',
+  children = list(
+    g2_col(encode(x=js('(d) => new Date(d.date).getUTCDate()'),
+                  y='temp_max',
+                  color='steelblue'),
+                paddingBottom=0,
+                paddingRight=300) +
+    transform(type='groupX',y='max') +
+    axis(x=FALSE),
+    
+    g2_space_flex(
+      paddingBottom=60,
+      ratio = c(2, 1),
+      children = list(
+        g2_cell(encode(x=js('(d) => new Date(d.date).getUTCDate()'),
+                       y=js('(d) => new Date(d.date).getUTCMonth()'),
+                       color='temp_max'),
+                paddingBottom=60,
+                paddingRight=0) + transform(type='group',color='max')+scale(color=list(palette='gnBu')) + style(inset=0.5) + axis(x=list(title='Date'),y=list(title='Month'))+legend(color=FALSE),
+        g2_bar(encode(x=js('(d) => new Date(d.date).getUTCMonth()'),
+                      y='temp_max',
+                      color='steelblue')) +
+          transform(type='groupX',y='max') +
+          axis(x=FALSE)
+      )
+    )
+  ),
+  width=900
+)
+```
+
+## repeatMatrix
+```{r}
+g2_repeat_matrix(
+  data = list(
+    type='fetch',
+    value='https://assets.antv.antgroup.com/g2/weather.json',
+    transform=list(list(
+      type='map',
+      callback=js('({ date, ...d }) => ({...d, date: new Date(date).getMonth() + ""})')
+    ))
+  ),
+  encode(x='date', y=c('temp_max', 'precipitation', 'wind')),
+  children = list(
+    g2_line(encode(color='location')) + transform(type='groupX', y='mean') + scale(y=list(zero=TRUE))
+  ),
+  width = 300, height = 720
+)
 ```
 

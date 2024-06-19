@@ -4,7 +4,57 @@
 \alias{g2_space_flex}
 \title{spaceFlex}
 \usage{
-g2_space_flex(data, children = NULL, ratio, direction = "row")
+g2_space_flex(
+  data = NULL,
+  children = NULL,
+  ratio = NULL,
+  direction = "row",
+  padding = 0,
+  paddingLeft = 0,
+  paddingRight = 0,
+  paddingTop = 0,
+  paddingBottom = 0,
+  margin = 0,
+  marginLeft = 0,
+  marginRight = 0,
+  marginTop = 0,
+  marginBottom = 0,
+  width = 640,
+  height = 480
+)
+}
+\arguments{
+\item{data}{data}
+
+\item{children}{children marks}
+
+\item{ratio}{ratio}
+
+\item{direction}{direction}
+
+\item{padding}{padding}
+
+\item{paddingLeft}{paddingLeft}
+
+\item{paddingRight}{paddingRight}
+
+\item{paddingTop}{paddingTop}
+
+\item{paddingBottom}{paddingBottom}
+
+\item{margin}{margin}
+
+\item{marginLeft}{marginLeft}
+
+\item{marginRight}{marginRight}
+
+\item{marginTop}{marginTop}
+
+\item{marginBottom}{marginBottom}
+
+\item{width}{width}
+
+\item{height}{height}
 }
 \description{
 spaceFlex

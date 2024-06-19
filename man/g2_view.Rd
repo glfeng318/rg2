@@ -20,11 +20,43 @@ g2_view(
   scrollbar = NULL,
   slider = NULL,
   interaction = NULL,
-  theme = NULL
+  theme = NULL,
+  width = 640,
+  height = 480
 )
 }
 \arguments{
-\item{theme}{}
+\item{data}{data}
+
+\item{encode}{encode}
+
+\item{children}{children}
+
+\item{scale}{scale}
+
+\item{transform}{transform}
+
+\item{coordinate}{coordinate}
+
+\item{style}{style}
+
+\item{labelTransform}{labelTransform}
+
+\item{title}{title}
+
+\item{axis}{axis}
+
+\item{legend}{legend}
+
+\item{tooltip}{tooltip}
+
+\item{scrollbar}{scrollbar}
+
+\item{slider}{slider}
+
+\item{interaction}{interaction}
+
+\item{theme}{theme}
 }
 \description{
 View
