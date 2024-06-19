@@ -38,7 +38,7 @@
 #'
 #' @param width optional default: 640
 #' @param height optional default: 480
-#' @param data required. Data Frame, URL of json/csv
+#' @param data required. Data Frame, URL of json/csv, for liquid data is a number, for gauge data is `list(value=list(target=200, total=400, percent=0.5,thresholds=c(...) name="score"))`
 #'
 #' @examples
 #' g2_point(mtcars, 'drat', 'wt')

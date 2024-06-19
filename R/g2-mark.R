@@ -246,8 +246,15 @@ g2_link <- function(data, encode, ...) {
 #' @family mark
 #' @inherit mark
 #' @export
-g2_liquid <- function(data, encode, ...) {
-
+g2_liquid <- function(style=NULL) {
+  opt = list(
+    type='liquid',
+    style=style
+  )
+  structure(
+    compact(opt),
+    class = c('g2mark', 'g2')
+  )
 }
 
 #' point
@@ -263,7 +270,7 @@ g2_point <- function(encode=NULL, ...) {
     encode = encode
   )
   structure(
-    discard_null(list_assign(opt, !!!list(...))),
+    compact(list_assign(opt, !!!list(...))),
     class = c('g2mark', 'g2')
   )
 }
