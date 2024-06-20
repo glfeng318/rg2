@@ -4,7 +4,7 @@
 \alias{g2_text}
 \title{text}
 \usage{
-g2_text(data, encode, ...)
+g2_text(encode = NULL, ...)
 }
 \arguments{
 \item{encode}{x / y / z / color / shape / size ...}
@@ -36,8 +36,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_shape}()},
 \code{\link{g2_vector}()},

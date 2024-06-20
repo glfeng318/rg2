@@ -12,6 +12,35 @@ g2_area(encode = NULL, ...)
 \description{
 Area
 }
+\details{
+g2_area has the following shape:
+\itemize{
+\item area
+\item smooth
+\item vh
+\item hv
+\item hvh
+}
+
+Style:
+\itemize{
+\item connect
+\item connect\link{Style}
+\item defined
+\item fill
+\item fillOpacity
+\item stroke
+\item strokeOpacity
+\item lineWidth
+\item lineDash
+\item opacity
+\item shadowColor
+\item shadowBlur
+\item shadowOffsetX
+\item shadowOffsetY
+\item cursor
+}
+}
 \seealso{
 Other mark: 
 \code{\link{g2_bar}()},
@@ -35,8 +64,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_shape}()},
 \code{\link{g2_text}()},

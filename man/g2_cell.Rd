@@ -12,6 +12,39 @@ g2_cell(encode = NULL, ...)
 \description{
 cell
 }
+\details{
+Shape:
+\itemize{
+\item cell
+\item hollow
+}
+
+Style:
+\itemize{
+\item radius
+\item radiusTopLeft
+\item radiusTopRight
+\item radiusBottomRight
+\item radiusBottomLeft
+\item inset
+\item insetLeft
+\item insetRight
+\item insetBottom
+\item insetTop
+\item fill
+\item fillOpacity
+\item stroke
+\item strokeOpacity
+\item lineWidth
+\item lineDash
+\item opacity
+\item shadowColor
+\item shadowBlur
+\item shadowOffsetX
+\item shadowOffsetY
+\item cursor
+}
+}
 \seealso{
 Other mark: 
 \code{\link{g2_area}()},
@@ -35,8 +68,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_shape}()},
 \code{\link{g2_text}()},

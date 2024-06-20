@@ -4,13 +4,25 @@
 \alias{g2_chord}
 \title{chord}
 \usage{
-g2_chord(data, encode, ...)
+g2_chord(encode = NULL, ...)
 }
 \arguments{
-\item{encode}{x / y / z / color / shape / size ...}
+\item{encode}{encode}
+
+\item{...}{property: y / id / source / target / sourceWeight / targetWeight / sortBy / nodeWidthRatio / nodePaddingRatio}
 }
 \description{
 chord
+}
+\details{
+data for chord:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{df = data.frame(source=..., target=..., value=...)
+g2(data=list(value=list(links=df)))
+}\if{html}{\out{</div>}}
+
+you need to pass the other property to g2_chord() to config the data field
+mapping if your data don't have the \code{source} \code{target} and \code{value}
 }
 \seealso{
 Other mark: 
@@ -35,8 +47,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_shape}()},
 \code{\link{g2_text}()},

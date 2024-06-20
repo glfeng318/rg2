@@ -4,7 +4,7 @@
 \alias{g2_shape}
 \title{shape}
 \usage{
-g2_shape(data, encode, ...)
+g2_shape(encode = NULL, ...)
 }
 \arguments{
 \item{encode}{x / y / z / color / shape / size ...}
@@ -36,8 +36,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_text}()},
 \code{\link{g2_vector}()},

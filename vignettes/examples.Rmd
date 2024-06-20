@@ -132,6 +132,15 @@ g2('https://assets.antv.antgroup.com/g2/athletes.json',encode('weight', color='s
   style(inset=0.25)
 ```
 
+## rangeX
+```{r}
+# NOT WORK: move encode from g2_view() to g2_point()
+g2_view(url,encode('height', 'weight', color='gender'), children = list(g2_point(),g2_range_x(c(160,170))))
+
+g2_view(url, children = list(g2_point(encode('height', 'weight', color='gender')),g2_range_x(c(160,170))))
+```
+
+
 ## Component
 
 ### Legend

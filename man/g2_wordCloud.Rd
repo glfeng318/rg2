@@ -4,10 +4,18 @@
 \alias{g2_wordCloud}
 \title{wordCloud}
 \usage{
-g2_wordCloud(data, encode, ...)
+g2_wordCloud(encode = NULL, layout = NULL, style = NULL, labels = NULL, ...)
 }
 \arguments{
-\item{encode}{x / y / z / color / shape / size ...}
+\item{encode}{encode}
+
+\item{layout}{layout}
+
+\item{style}{style}
+
+\item{labels}{labels}
+
+\item{...}{...}
 }
 \description{
 wordCloud
@@ -36,8 +44,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_shape}()},
 \code{\link{g2_text}()},

@@ -4,13 +4,19 @@
 \alias{g2_box}
 \title{box}
 \usage{
-g2_box(data, encode, ...)
+g2_box(encode = NULL, ...)
 }
 \arguments{
-\item{encode}{x / y / z / color / shape / size ...}
+\item{encode}{encode}
+
+\item{...}{...}
 }
 \description{
-box
+box is an Atomic mark, you need to calculate the quantile.
+}
+\details{
+Quantile data for box mark:
+\link{min, Q1, Median, Q3, max}
 }
 \seealso{
 Other mark: 
@@ -35,8 +41,8 @@ Other mark:
 \code{\link{g2_point}()},
 \code{\link{g2_polygon}()},
 \code{\link{g2_range}()},
-\code{\link{g2_rangeX}()},
-\code{\link{g2_rangeY}()},
+\code{\link{g2_range_x}()},
+\code{\link{g2_range_y}()},
 \code{\link{g2_rect}()},
 \code{\link{g2_shape}()},
 \code{\link{g2_text}()},

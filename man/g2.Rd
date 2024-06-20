@@ -7,7 +7,7 @@
 g2(data, encode = NULL, ..., width = 640, height = 480)
 }
 \arguments{
-\item{data}{required. Data Frame, URL of json/csv}
+\item{data}{required. Data Frame, URL of json/csv, for liquid data is a number, for gauge data is \verb{list(value=list(target=200, total=400, percent=0.5,thresholds=c(...) name="score"))}}
 
 \item{encode}{encode}
 

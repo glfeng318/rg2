@@ -8,7 +8,7 @@
 
 \item{height}{optional default: 480}
 
-\item{data}{required. Data Frame, URL of json/csv}
+\item{data}{required. Data Frame, URL of json/csv, for liquid data is a number, for gauge data is \verb{list(value=list(target=200, total=400, percent=0.5,thresholds=c(...) name="score"))}}
 }
 \description{
 G2 provides a Spec API which declares visualizations through a JavaScript object.
